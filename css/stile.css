@@ -994,8 +994,28 @@ body {
 
     justify-content:center;
 
+    align-items:center;
+
+    background-size:110%;
+    animation: movimentoHero 20s ease-in-out infinite alternate;
+
 }
 
+@keyframes movimentoHero {
+
+    from {
+
+        background-position:center top;
+
+    }
+
+    to {
+
+        background-position:center bottom;
+
+    }
+
+}
 
 .hero h1 {
 
