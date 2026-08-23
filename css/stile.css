@@ -62,12 +62,9 @@ h3 {
 
     background-position:center;
 
-    background-attachment:fixed;
-
     border-radius:18px;
 
 }
-
 
 
 .stemma {
@@ -987,7 +984,15 @@ body {
 
 .hero {
 
-    background-attachment:fixed;
+    background-attachment:scroll;
+
+    min-height:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
 
 }
 
