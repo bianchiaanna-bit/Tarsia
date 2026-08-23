@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Planimetria - Cimitero di Tarsia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/stile.css">
+
+</head>
+
+
+<body>
+
+
+
+<header class="hero-secondario">
+
+
+<img 
+src="immagini/stemma.webp"
+class="stemma"
+alt="Comune di Tarsia">
+
+
+<h1>
+Cimitero di Tarsia
+</h1>
+
+
+<p>
+Archivio storico dei defunti del cimitero comunale
+</p>
+
+
+</header>
+
+
+
+
+<section class="blocco-home planimetria">
+
+
+<a href="index.html" class="torna">
+
+← Torna alla ricerca
+
+</a>
+
+
+
+
+<h2 class="titolo-centro">
+
+Planimetria del cimitero comunale
+
+</h2>
+
+
+
+
+<p class="descrizione-planimetria">
+
+Consulta la planimetria per individuare
+la zona, la via e la posizione del loculo
+indicate nella scheda del defunto.
+
+</p>
+
+
+
+
+<div class="zoom-container">
+
+
+<img 
+
+id="planimetria"
+
+src="immagini/planimetria.webp"
+
+alt="Planimetria del cimitero comunale di Tarsia">
+
+
+</div>
+
+
+
+</section>
+
+
+<div id="footer"></div>
+
+<script src="js/planimetria.js"></script>
+
+<script>
+
+fetch("componenti/footer.html")
+
+.then(response => response.text())
+
+.then(data => {
+
+document.getElementById("footer").innerHTML = data;
+
+});
+
+</script>
+</body>
+
+</html>

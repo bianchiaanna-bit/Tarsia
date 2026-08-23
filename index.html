@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cimitero di Tarsia</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/stile.css">
+
+</head>
+
+
+<body>
+
+
+<header class="hero">
+
+
+<img 
+src="immagini/stemma.webp"
+class="stemma"
+alt="Comune di Tarsia">
+
+
+<h1>
+Cimitero di Tarsia
+</h1>
+
+
+<p class="sottotitolo">
+Archivio storico dei defunti del cimitero comunale
+</p>
+
+
+
+<div class="area-ricerca">
+
+
+<input 
+type="text"
+id="cerca"
+placeholder="Inserisci nome o cognome">
+
+
+<br>
+
+
+<button onclick="cercaDefunto()">
+Cerca
+</button>
+
+
+</div>
+
+
+</header>
+
+
+
+<div id="risultati"></div>
+
+
+
+<section class="blocco-home cosa-puoi-fare">
+
+
+<h2>
+Cosa puoi fare
+</h2>
+
+
+<p class="intro-home">
+
+Consulta l'archivio storico del Cimitero di Tarsia,
+ricerca i nominativi presenti e individua le informazioni
+disponibili sulla posizione del defunto.
+
+</p>
+
+
+
+<div class="funzioni-home">
+
+
+
+<div class="funzione">
+
+
+<img 
+src="immagini/icone/icona-archivio.webp"
+alt="">
+
+
+<h3>
+Cerca un nominativo
+</h3>
+
+
+<p>
+Consulta i nominativi presenti
+nell'archivio storico.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="funzione">
+
+
+<img 
+src="immagini/icone/icona-posizione.webp"
+alt="">
+
+
+<h3>
+Trova la posizione
+</h3>
+
+
+<p>
+Individua zona, via e loculo
+del defunto ricercato.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="funzione">
+
+
+<img 
+src="immagini/icone/icona-foto.webp"
+alt="">
+
+
+<h3>
+Conserva la memoria
+</h3>
+
+
+<p>
+Invia una fotografia del familiare
+per completare l'archivio storico.
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="blocco-home cimitero-sezione">
+
+
+<img 
+src="immagini/cimitero-alto.webp"
+alt="Cimitero Comunale di Tarsia">
+
+
+
+<div>
+
+
+<h2>
+Il Cimitero Comunale di Tarsia
+</h2>
+
+
+<p>
+
+Il cimitero comunale custodisce la memoria
+storica della comunità di Tarsia.
+
+Attraverso questo archivio digitale è possibile
+consultare i nominativi presenti nei registri
+storici e individuare la posizione dei defunti.
+
+</p>
+
+
+
+<p>
+
+<strong>Indirizzo:</strong><br>
+
+Cimitero Comunale di Tarsia<br>
+
+87040 Tarsia (CS)
+
+</p>
+
+
+
+<p>
+
+<strong>Orari di apertura:</strong><br>
+
+Tutti i giorni dalle 08:00 alle 17:00
+
+</p>
+
+
+<div class="pulsanti-cimitero">
+
+
+<a 
+href="https://www.google.com/maps/search/?api=1&query=Cimitero+Comunale+di+Tarsia"
+target="_blank"
+class="pulsante">
+
+Google Maps
+
+</a>
+
+
+<a href="planimetria.html" class="pulsante">
+
+Planimetria
+
+</a>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="blocco-home contribuisci">
+
+<h2>
+Contribuisci all'archivio
+</h2>
+
+
+<p>
+
+Hai fotografie storiche o informazioni da aggiungere?
+Puoi contribuire alla valorizzazione della memoria
+della comunità.
+
+</p>
+
+
+<a href="contatti.html" class="scheda-button">
+
+Contatti e segnalazioni
+
+</a>
+
+
+</section>
+
+
+<div id="footer"></div>
+
+
+
+<script src="js/script.js"></script>
+<script>
+
+fetch("componenti/footer.html")
+
+.then(response => response.text())
+
+.then(data => {
+
+document.getElementById("footer").innerHTML = data;
+
+});
+
+</script>
+
+</body>
+
+</html>

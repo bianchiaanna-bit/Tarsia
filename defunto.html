@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Cimitero di Tarsia</title>
+<link rel="stylesheet" href="css/stile.css">
+</head>
+
+<body>
+
+</body>
+<header class="hero-secondario">
+
+<img 
+src="immagini/stemma.webp"
+class="stemma">
+
+<h1>
+Cimitero di Tarsia
+</h1>
+
+<p>
+Archivio storico dei defunti del cimitero comunale
+</p>
+
+
+</header>
+
+
+
+
+
+<div id="scheda">
+Caricamento...
+</div>
+
+<div id="footer"></div>
+<script src="js/defunto.js"></script>
+<script>
+
+fetch("componenti/footer.html")
+
+.then(response => response.text())
+
+.then(data => {
+
+document.getElementById("footer").innerHTML = data;
+
+});
+
+</script>
+</body>
+
+</html>

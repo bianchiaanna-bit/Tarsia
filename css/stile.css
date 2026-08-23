@@ -1,0 +1,1089 @@
+body {
+
+    font-family:"Lato", sans-serif;
+
+    background-color:#F4F0E8;
+
+    color:#333333;
+
+    margin:0;
+
+    padding:20px;
+
+}
+
+
+/* TITOLI */
+
+h1 {
+
+    text-align:center;
+
+    color:#42586B;
+
+}
+
+
+h2 {
+
+    color:#42586B;
+
+    font-weight:700;
+
+    letter-spacing:0.3px;
+
+}
+
+
+h3 {
+
+    color:#42586B;
+
+}
+
+
+
+/* HERO */
+
+.hero {
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    background-image:
+    linear-gradient(
+    rgba(0,0,0,0.20),
+    rgba(0,0,0,0.20)
+    ),
+    url("../immagini/tarsia-alto.webp");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+    border-radius:18px;
+
+}
+
+
+
+.stemma {
+
+    width:100px;
+
+    margin-bottom:20px;
+
+    filter:drop-shadow(0 4px 8px rgba(244,240,232,0.9));
+
+}
+
+
+
+.hero h1 {
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+    color:white;
+
+    text-shadow:
+    0 3px 10px rgba(0,0,0,0.75);
+
+}
+
+
+
+.sottotitolo {
+
+    color:white;
+
+    font-size:22px;
+
+    text-shadow:
+    0 3px 10px rgba(0,0,0,0.75);
+
+}
+
+
+
+/* RICERCA */
+
+.area-ricerca {
+
+    text-align:center;
+
+    margin-top:35px;
+
+}
+
+
+
+input {
+
+    width:90%;
+
+    max-width:500px;
+
+    padding:12px;
+
+    font-size:16px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    text-align:center;
+
+}
+
+
+
+button {
+
+    margin-top:10px;
+
+    padding:12px 25px;
+
+    background:#31475A;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+
+button:hover {
+
+    opacity:0.85;
+
+}
+
+
+.area-ricerca button {
+
+    background:transparent;
+
+    color:white;
+
+    border:2px solid white;
+
+    padding:12px 35px;
+
+    border-radius:25px;
+
+    text-shadow:
+    0 2px 5px rgba(0,0,0,0.5);
+
+    transition:0.3s;
+
+}
+
+
+
+.area-ricerca button:hover {
+
+    background:white;
+
+    color:#31475A;
+
+}
+
+/* RISULTATI E SCHEDA */
+
+#risultati,
+#scheda {
+
+    background:white;
+
+    max-width:700px;
+
+    margin:30px auto;
+
+    padding:25px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+}
+
+
+
+#risultati:empty {
+
+    display:none;
+
+}
+
+
+
+.risultato-card {
+
+    background:white;
+
+    margin:20px auto;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
+}
+
+
+
+.risultato-card h3 {
+
+    margin-top:0;
+
+}
+
+
+
+/* LINK */
+
+a {
+
+    color:#42586B;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+
+a:hover {
+
+    text-decoration:underline;
+
+}
+
+
+
+/* PULSANTI */
+
+.scheda-button {
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:10px 18px;
+
+    background:white;
+
+    color:#31475A;
+
+    border:2px solid #31475A;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    letter-spacing:0.2px;
+
+}
+
+
+
+.scheda-button:hover {
+
+    background:#31475A;
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+
+.pulsante {
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:12px 22px;
+
+    background:white;
+
+    color:#31475A;
+
+    border:2px solid #31475A;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    letter-spacing:0.2px;
+
+}
+
+
+
+.pulsante:hover {
+
+    background:#31475A;
+
+    color:white;
+
+}
+
+#scheda > h1 {
+
+    color:#42586B;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+.pulsanti-cimitero {
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+.pulsanti-cimitero .pulsante {
+
+    margin-top:0;
+
+    flex:1;
+
+    text-align:center;
+
+}
+/* SCHEDA DEFUNTO */
+
+.scheda-contenuto {
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:flex-start;
+
+}
+
+
+
+.dati-defunto {
+
+    flex:1;
+
+}
+
+
+
+.titolo-posizione {
+
+    color:#42586B;
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.foto-defunto {
+
+    width:300px;
+
+    height:300px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+
+.foto-defunto img {
+
+    max-width:100%;
+
+    max-height:100%;
+
+    object-fit:contain;
+
+    border-radius:16px;
+
+}
+
+
+
+/* FOTO MANCANTE */
+
+.foto-mancante {
+
+    width:100%;
+
+    max-width:280px;
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    background:white;
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    border-radius:14px;
+
+    box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
+    box-sizing:border-box;
+
+    color:#555;
+
+}
+
+
+.foto-mancante p {
+
+    margin:0 0 20px;
+
+    font-size:16px;
+
+    line-height:1.5;
+
+}
+
+/* HOME BLOCCHI */
+
+.blocco-home {
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+}
+
+
+
+.blocco-home p {
+
+    line-height:1.7;
+
+    font-size:17px;
+
+}
+
+
+
+.blocco-home h2 {
+
+    text-align:left;
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+}
+
+
+.cosa-puoi-fare h2 {
+
+    text-align:center;
+
+}
+
+.titolo-centro {
+
+    text-align:center !important;
+
+}
+
+.contribuisci {
+
+    text-align:center;
+
+}
+
+
+.contribuisci h2 {
+
+    text-align:center;
+
+}
+
+/* INTRO HOME */
+
+.intro-home {
+
+    text-align:center;
+
+    max-width:650px;
+
+    margin:0 auto 35px;
+
+    line-height:1.6;
+
+}
+
+
+
+/* FUNZIONI HOME */
+
+.funzioni-home {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+}
+
+
+
+.funzione {
+
+    flex:1;
+
+    background:white;
+
+    padding:25px 20px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 4px 15px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+
+}
+
+
+
+.funzione:hover {
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.funzione img {
+
+    width:75px;
+
+    height:75px;
+
+    object-fit:contain;
+
+    margin-bottom:5px;
+
+    transition:0.3s;
+
+}
+
+
+
+.funzione:hover img {
+
+    transform:translateY(-4px);
+
+}
+
+
+
+.funzione h3 {
+
+    margin-top:5px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.funzione p {
+
+    line-height:1.5;
+
+    font-size:15px;
+
+}
+
+
+
+/* SEZIONE CIMITERO */
+
+.cimitero-sezione {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+}
+
+
+
+.cimitero-sezione img {
+
+    width:45%;
+
+    border-radius:16px;
+
+}
+
+
+
+.cimitero-sezione div {
+
+    flex:1;
+
+}
+
+
+
+/* ICONE TITOLI */
+
+.titolo-con-icona {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.titolo-con-icona img {
+
+    width:75px;
+
+    object-fit:contain;
+
+}
+
+
+
+/* GESTIONE FOOTER */
+
+.gestione-sito {
+
+    display:flex;
+
+    justify-content:space-around;
+
+    gap:20px;
+
+    text-align:center;
+
+}
+
+
+
+.gestione-sito div {
+
+    flex:1;
+
+}
+
+
+
+.gestione-sito p {
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+
+
+.gestione-sito strong {
+
+    font-size:15px;
+
+}
+
+
+
+/* FOOTER */
+
+.footer-sito {
+
+    box-sizing:border-box;
+
+    width:100%;
+
+    margin:60px 0 0;
+
+    padding:40px 20px;
+
+    background-image:
+    linear-gradient(
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.15)
+    ),
+    url("../immagini/Tarsia-lago.webp");
+
+    background-size:cover;
+
+    background-position:center;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+
+
+.footer-box {
+
+    background:rgba(49,71,90,0.45);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    padding:18px;
+
+    margin:15px auto;
+
+    width:100%;
+
+    max-width:700px;
+
+    box-sizing:border-box;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.18);
+
+}
+
+
+.footer-box h3 {
+
+    color:white;
+
+    font-size:20px;
+
+    margin-top:0;
+
+}
+
+
+
+.footer-box p {
+
+    line-height:1.4;
+
+}
+
+
+
+.footer-box a {
+
+    color:white;
+
+    text-decoration:underline;
+
+}
+
+
+
+.footer-secondario h3 {
+
+    font-size:16px;
+
+}
+
+
+
+.footer-secondario p,
+
+.footer-secondario a {
+
+    font-size:14px;
+
+    line-height:1.4;
+
+}
+
+/* CONTATTI */
+
+.blocco-contatto {
+
+    margin-top:30px;
+
+    padding:25px;
+
+    background:white;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 5px 18px rgba(0,0,0,0.08);
+
+}
+
+/* PLANIMETRIA */
+
+.planimetria {
+
+    text-align:center;
+
+}
+
+
+
+.planimetria h2 {
+
+    margin-top:25px;
+
+}
+
+
+
+.descrizione-planimetria {
+
+    max-width:700px;
+
+    margin:20px auto 30px;
+
+    line-height:1.6;
+
+}
+
+
+
+.zoom-container {
+
+    width:100%;
+
+    overflow:hidden;
+
+    border-radius:14px;
+
+    background:white;
+
+    touch-action:pinch-zoom;
+
+}
+
+
+
+.zoom-container img {
+
+    width:100%;
+
+    transition:transform 0.2s ease;
+
+    transform-origin:center;
+
+    border-radius:14px;
+
+}
+
+.hero-secondario {
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    background-image:
+    linear-gradient(
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.25)
+    ),
+    url("../immagini/tarsia-alto.webp");
+
+    background-size:cover;
+
+    background-position:center;
+
+    border-radius:18px;
+
+}
+
+.hero-secondario h1 {
+
+    color:white;
+
+    font-size:36px;
+
+    text-shadow:
+    0 3px 10px rgba(0,0,0,0.75);
+
+}
+
+
+
+.hero-secondario p {
+
+    color:white;
+
+    font-size:20px;
+
+    text-shadow:
+    0 3px 10px rgba(0,0,0,0.75);
+
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+
+body {
+
+    padding:15px;
+
+}
+
+
+.hero {
+
+    background-attachment:fixed;
+
+}
+
+
+.hero h1 {
+
+    font-size:32px;
+
+}
+
+
+
+.sottotitolo {
+
+    font-size:18px;
+
+}
+
+
+
+.scheda-contenuto {
+
+    flex-direction:column;
+
+}
+
+
+
+.foto-defunto {
+
+    margin:auto;
+
+}
+
+
+
+.funzioni-home {
+
+    flex-direction:column;
+
+}
+
+
+
+.funzione {
+
+    width:auto;
+
+}
+
+
+
+.cimitero-sezione {
+
+    flex-direction:column;
+
+}
+
+.cimitero-sezione div {
+
+    text-align:center;
+
+}
+
+
+.cimitero-sezione h2 {
+
+    text-align:center;
+
+}
+
+.cimitero-sezione img {
+
+    width:100%;
+
+}
+
+.pulsanti-cimitero {
+
+    flex-direction:column;
+
+}
+
+.gestione-sito {
+
+    flex-direction:column;
+
+}
+
+
+
+.footer-sito {
+
+    padding:35px 15px;
+
+}
+
+
+}
