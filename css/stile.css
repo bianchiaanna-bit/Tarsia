@@ -2,7 +2,7 @@ body {
 
     font-family:"Lato", sans-serif;
 
-    background-color:#F4F0E8;
+    background-color:#E3E9ED;
 
     color:#333333;
 
@@ -890,7 +890,11 @@ a:hover {
 
 }
 
-
+.planimetria .torna {
+    display:block;
+    text-align:left;
+    width:max-content;
+}
 
 .planimetria h2 {
 
@@ -994,8 +998,16 @@ body {
 
     padding:15px;
 
+    width:100%;
+
+    box-sizing:border-box;
+
+    overflow-x:hidden;
+
 }
 
+
+/* HERO */
 
 .hero {
 
@@ -1015,12 +1027,12 @@ body {
 
 }
 
+
 .hero h1 {
 
     font-size:32px;
 
 }
-
 
 
 .sottotitolo {
@@ -1030,19 +1042,74 @@ body {
 }
 
 
+/* HERO SECONDARIO */
+
+.hero-secondario {
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:30px 15px;
+
+}
+
+
+.hero-secondario h1 {
+
+    font-size:30px;
+
+}
+
+
+.hero-secondario p {
+
+    font-size:18px;
+
+}
+
+
+/* SCHEDA DEFUNTO */
+
+#scheda {
+
+    width:100%;
+
+    max-width:700px;
+
+    box-sizing:border-box;
+
+    padding:20px;
+
+    margin:30px auto;
+
+    overflow:hidden;
+
+}
+
 
 .scheda-contenuto {
+
+    width:100%;
+
+    max-width:100%;
 
     flex-direction:column;
 
     gap:25px;
 
+    box-sizing:border-box;
+
 }
 
 
-#scheda {
+.dati-defunto {
 
-    padding:20px;
+    width:100%;
+
+    min-width:0;
+
+    box-sizing:border-box;
 
 }
 
@@ -1053,7 +1120,11 @@ body {
 
     height:250px;
 
+    max-width:100%;
+
     margin:auto;
+
+    box-sizing:border-box;
 
 }
 
@@ -1067,13 +1138,51 @@ body {
 }
 
 
+.foto-mancante {
+
+    width:250px;
+
+    max-width:100%;
+
+    margin:auto;
+
+    box-sizing:border-box;
+
+}
+
+
+.foto-mancante img {
+
+    width:100%;
+
+    max-width:100%;
+
+    height:auto;
+
+    object-fit:contain;
+
+}
+
+
+/* PULSANTI */
+
+.pulsante,
+.scheda-button {
+
+    max-width:100%;
+
+    box-sizing:border-box;
+
+}
+
+
+/* HOME */
 
 .funzioni-home {
 
     flex-direction:column;
 
 }
-
 
 
 .funzione {
@@ -1083,12 +1192,12 @@ body {
 }
 
 
-
 .cimitero-sezione {
 
     flex-direction:column;
 
 }
+
 
 .cimitero-sezione div {
 
@@ -1103,17 +1212,20 @@ body {
 
 }
 
+
 .cimitero-sezione img {
 
     width:100%;
 
 }
 
+
 .pulsanti-cimitero {
 
     flex-direction:column;
 
 }
+
 
 .gestione-sito {
 
@@ -1122,12 +1234,25 @@ body {
 }
 
 
+/* FOOTER */
 
 .footer-sito {
+
+    width:100%;
+
+    box-sizing:border-box;
 
     padding:35px 15px;
 
 }
 
+
+.footer-box {
+
+    width:100%;
+
+    box-sizing:border-box;
+
+}
 
 }
