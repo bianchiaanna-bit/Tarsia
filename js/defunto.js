@@ -190,19 +190,16 @@ creaScheda(`
 
 <div class="foto-mancante">
 
-
-<p>
-Foto non disponibile
-</p>
-
+<img 
+src="immagini/angelo-nuvole.webp"
+alt="Immagine commemorativa">
 
 
 <a href="contatti.html" class="scheda-button">
 
-Richiedi inserimento fotografia
+Proponi una fotografia
 
 </a>
-
 
 
 </div>
@@ -225,15 +222,15 @@ creaScheda(`
 <div class="foto-mancante">
 
 
-<p>
-Foto non disponibile
-</p>
+<img 
+src="immagini/angelo-nuvole.webp"
+alt="Immagine commemorativa">
 
 
 
 <a href="contatti.html" class="scheda-button">
 
-Richiedi inserimento fotografia
+Proponi una fotografia
 
 </a>
 
@@ -259,15 +256,15 @@ creaScheda(`
 <div class="foto-mancante">
 
 
-<p>
-Foto non disponibile
-</p>
+<img 
+src="immagini/angelo-nuvole.webp"
+alt="Immagine commemorativa">
 
 
 
 <a href="contatti.html" class="scheda-button">
 
-Richiedi inserimento fotografia
+Proponi una fotografia
 
 </a>
 
