@@ -85,33 +85,9 @@ function cercaDefunto(){
 
 
 
-            <p> 
+            <p>
             Deceduto:
             ${persona["Anno  (Decesso)"] || ""}
-            </p>
-
-
-            <p>
-            Nato:
-            ${persona["Anno  (Nascita)"] || ""}
-            </p>
-
-
-            <p>
-            Zona:
-            ${persona["Zona "] || ""}
-            </p>
-
-
-            <p>
-            Via:
-            ${persona["Via"] || ""}
-            </p>
-
-
-            <p>
-            Loculo:
-            ${persona["Posizione Loculo"] || ""}
             </p>
 
 
@@ -135,6 +111,9 @@ function cercaDefunto(){
 
 
 }
+
+
+
 document.getElementById("cerca")
 .addEventListener("keypress", function(event){
 
