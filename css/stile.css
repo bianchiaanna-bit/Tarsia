@@ -4,6 +4,31 @@ body {
 
     background-color:#E3E9ED;
 
+    background-image:
+    radial-gradient(
+        ellipse at 15% 15%,
+        rgba(92,118,135,0.18) 0%,
+        rgba(92,118,135,0.08) 25%,
+        transparent 55%
+    ),
+    radial-gradient(
+        ellipse at 85% 25%,
+        rgba(255,255,255,0.35) 0%,
+        rgba(255,255,255,0.15) 30%,
+        transparent 60%
+    ),
+    radial-gradient(
+        ellipse at 75% 80%,
+        rgba(82,110,128,0.14) 0%,
+        rgba(82,110,128,0.06) 30%,
+        transparent 60%
+    ),
+    radial-gradient(
+        ellipse at 20% 85%,
+        rgba(255,255,255,0.30) 0%,
+        transparent 55%
+    );
+
     color:#333333;
 
     margin:0;
@@ -71,7 +96,7 @@ h3 {
 
 .stemma {
 
-    width:100px;
+    width:140px;
 
     margin-bottom:20px;
 
@@ -983,6 +1008,13 @@ a:hover {
 
 }
 
+.collaborazione-comune {
+    display: block;
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
 /* MOBILE */
 
 @media(max-width:700px){
@@ -1248,5 +1280,107 @@ body {
     box-sizing:border-box;
 
 }
+
+ .collaborazione-comune {
+        display:block;
+        width:100%;
+        margin-top:18px;
+        text-align:center;
+        font-size:14px;
+        font-style:italic;
+        font-weight:700;
+        box-sizing:border-box;
+    }
+
+
+}
+
+/* AVVISO HOME - SITO IN AGGIORNAMENTO */
+
+.avviso-costruzione {
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 50px 14px 20px;
+    background:#f1f4f5;
+    border-bottom:1px solid rgba(0,0,0,0.10);
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+    z-index:1000;
+}
+
+.avviso-testo {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:4px;
+    color:#4b555b;
+}
+
+.avviso-testo strong {
+    font-size:16px;
+    font-weight:700;
+}
+
+.avviso-testo span {
+    font-size:14px;
+    line-height:1.4;
+}
+
+#chiudi-avviso {
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:32px;
+    height:32px;
+
+    border:none;
+    background:transparent;
+
+    font-size:26px;
+    line-height:1;
+    color:#59636a;
+
+    cursor:pointer;
+}
+
+#chiudi-avviso:hover {
+    color:#222;
+}
+
+@media(max-width:700px){
+
+    .avviso-costruzione {
+        padding:14px 45px 14px 15px;
+        justify-content:center;
+    }
+
+    .avviso-testo {
+        width:100%;
+        align-items:center;
+        text-align:center;
+    }
+
+    .avviso-testo strong {
+        font-size:15px;
+        text-align:center;
+    }
+
+    .avviso-testo span {
+        font-size:13px;
+        line-height:1.4;
+        text-align:center;
+    }
+
+    #chiudi-avviso {
+        right:8px;
+    }
 
 }
