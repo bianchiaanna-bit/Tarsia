@@ -1,25 +1,34 @@
 let defunti = [];
-let datiCaricati = false;
 
 fetch("dati/defunti.json")
     .then(response => {
         if (!response.ok) {
-            throw new Error("Impossibile caricare defunti.json");
+            throw new Error(
+                "Impossibile caricare defunti.json"
+            );
         }
 
         return response.json();
     })
     .then(dati => {
         defunti = dati;
-        datiCaricati = true;
 
-        console.log("Defunti caricati:", defunti.length);
+        console.log(
+            "Defunti caricati:",
+            defunti.length
+        );
     })
     .catch(error => {
         console.error(
             "Errore nel caricamento dei defunti:",
             error
         );
+
+        document.getElementById("risultati").innerHTML = `
+            <p>
+                Errore nel caricamento dell'archivio.
+            </p>
+        `;
     });
 
 
@@ -42,16 +51,17 @@ function cercaDefunto() {
         .trim();
 
 
-    /*
-       Se l'archivio non è ancora pronto,
-       non eseguiamo la ricerca.
-    */
+    let contenitore =
+        document.getElementById("risultati");
 
-    if (!datiCaricati) {
 
-        document.getElementById("risultati").innerHTML = `
+    contenitore.innerHTML = "";
+
+
+    if (testo === "") {
+        contenitore.innerHTML = `
             <p>
-                Attendere il caricamento dell'archivio...
+                Inserisci un nome o un cognome.
             </p>
         `;
 
@@ -64,20 +74,17 @@ function cercaDefunto() {
         let nome =
             persona["Cognome e Nome"];
 
+
         if (!nome) {
             return false;
         }
 
+
         return nome
             .toLowerCase()
             .includes(testo);
+
     });
-
-
-    let contenitore =
-        document.getElementById("risultati");
-
-    contenitore.innerHTML = "";
 
 
     if (risultati.length === 0) {
@@ -95,6 +102,7 @@ function cercaDefunto() {
     risultati.forEach(persona => {
 
         contenitore.innerHTML += `
+
             <div class="risultato-card">
 
                 <h3>
@@ -116,14 +124,13 @@ function cercaDefunto() {
                 </a>
 
             </div>
+
         `;
+
     });
+
 }
 
-
-/*
-   Ricerca premendo INVIO
-*/
 
 document
     .getElementById("cerca")
