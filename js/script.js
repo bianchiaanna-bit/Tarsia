@@ -1,42 +1,39 @@
 let defunti = [];
 let datiCaricati = false;
 
-// Carica l'archivio dei defunti
 fetch("dati/defunti.json")
     .then(response => {
         if (!response.ok) {
             throw new Error("Impossibile caricare defunti.json");
         }
+
         return response.json();
     })
     .then(dati => {
         defunti = dati;
         datiCaricati = true;
+
         console.log("Defunti caricati:", defunti.length);
     })
     .catch(error => {
-        console.error("Errore nel caricamento dei defunti:", error);
+        console.error(
+            "Errore nel caricamento dei defunti:",
+            error
+        );
     });
 
 
 function nomeFormattato(nome) {
     return nome
         .toLowerCase()
-        .replace(/\b\w/g, lettera => lettera.toUpperCase());
+        .replace(
+            /\b\w/g,
+            lettera => lettera.toUpperCase()
+        );
 }
 
 
 function cercaDefunto() {
-
-    // Controlla che i dati siano stati caricati
-    if (!datiCaricati) {
-        document.getElementById("risultati").innerHTML = `
-            <p>
-                Attendere il caricamento dell'archivio...
-            </p>
-        `;
-        return;
-    }
 
     let testo = document
         .getElementById("cerca")
@@ -44,9 +41,28 @@ function cercaDefunto() {
         .toLowerCase()
         .trim();
 
+
+    /*
+       Se l'archivio non è ancora pronto,
+       non eseguiamo la ricerca.
+    */
+
+    if (!datiCaricati) {
+
+        document.getElementById("risultati").innerHTML = `
+            <p>
+                Attendere il caricamento dell'archivio...
+            </p>
+        `;
+
+        return;
+    }
+
+
     let risultati = defunti.filter(persona => {
 
-        let nome = persona["Cognome e Nome"];
+        let nome =
+            persona["Cognome e Nome"];
 
         if (!nome) {
             return false;
@@ -58,7 +74,8 @@ function cercaDefunto() {
     });
 
 
-    let contenitore = document.getElementById("risultati");
+    let contenitore =
+        document.getElementById("risultati");
 
     contenitore.innerHTML = "";
 
@@ -81,7 +98,9 @@ function cercaDefunto() {
             <div class="risultato-card">
 
                 <h3>
-                    ${nomeFormattato(persona["Cognome e Nome"])}
+                    ${nomeFormattato(
+                        persona["Cognome e Nome"]
+                    )}
                 </h3>
 
                 <p>
@@ -91,7 +110,8 @@ function cercaDefunto() {
 
                 <a
                     href="defunto.html?id=${defunti.indexOf(persona)}"
-                    class="scheda-button">
+                    class="scheda-button"
+                >
                     Visualizza scheda
                 </a>
 
@@ -101,12 +121,19 @@ function cercaDefunto() {
 }
 
 
-// Permette di premere INVIO nel campo di ricerca
-document.getElementById("cerca")
-    .addEventListener("keypress", function(event) {
+/*
+   Ricerca premendo INVIO
+*/
 
-        if (event.key === "Enter") {
-            cercaDefunto();
+document
+    .getElementById("cerca")
+    .addEventListener(
+        "keypress",
+        function(event) {
+
+            if (event.key === "Enter") {
+                cercaDefunto();
+            }
+
         }
-
-    });
+    );
