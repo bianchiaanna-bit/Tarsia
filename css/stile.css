@@ -1,198 +1,181 @@
 body {
+    font-family: "Lato", sans-serif;
 
-    font-family:"Lato", sans-serif;
-
-    background-color:#E3E9ED;
+    background-color: #E3E9ED;
 
     background-image:
-    radial-gradient(
-        ellipse at 15% 15%,
-        rgba(92,118,135,0.18) 0%,
-        rgba(92,118,135,0.08) 25%,
-        transparent 55%
-    ),
-    radial-gradient(
-        ellipse at 85% 25%,
-        rgba(255,255,255,0.35) 0%,
-        rgba(255,255,255,0.15) 30%,
-        transparent 60%
-    ),
-    radial-gradient(
-        ellipse at 75% 80%,
-        rgba(82,110,128,0.14) 0%,
-        rgba(82,110,128,0.06) 30%,
-        transparent 60%
-    ),
-    radial-gradient(
-        ellipse at 20% 85%,
-        rgba(255,255,255,0.30) 0%,
-        transparent 55%
-    );
+        radial-gradient(
+            ellipse at 15% 15%,
+            rgba(92,118,135,0.18) 0%,
+            rgba(92,118,135,0.08) 25%,
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 85% 25%,
+            rgba(255,255,255,0.35) 0%,
+            rgba(255,255,255,0.15) 30%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 75% 80%,
+            rgba(82,110,128,0.14) 0%,
+            rgba(82,110,128,0.06) 30%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 20% 85%,
+            rgba(255,255,255,0.30) 0%,
+            transparent 55%
+        );
 
-    color:#333333;
+    color: #333333;
 
-    margin:0;
+    margin: 0;
 
-    padding:20px;
+    padding: 20px;
 }
 
 
 /* TITOLI */
 
 h1 {
+    text-align: center;
 
-    text-align:center;
-
-    color:#42586B;
+    color: #42586B;
 }
 
 h2 {
+    color: #42586B;
 
-    color:#42586B;
+    font-weight: 700;
 
-    font-weight:700;
-
-    letter-spacing:0.3px;
+    letter-spacing: 0.3px;
 }
 
 h3 {
-
-    color:#42586B;
+    color: #42586B;
 }
 
 
 /* HERO */
 
 .hero {
+    text-align: center;
 
-    text-align:center;
-
-    padding:60px 20px;
+    padding: 60px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.20),
-        rgba(0,0,0,0.20)
-    ),
-    url("../immagini/tarsia-alto.webp");
+        linear-gradient(
+            rgba(0,0,0,0.20),
+            rgba(0,0,0,0.20)
+        ),
+        url("../immagini/tarsia-alto.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    background-attachment:fixed;
+    background-attachment: fixed;
 
-    border-radius:18px;
+    border-radius: 18px;
 }
 
 .stemma {
+    width: 140px;
 
-    width:140px;
+    margin-bottom: 20px;
 
-    margin-bottom:20px;
-
-    filter:drop-shadow(0 4px 8px rgba(244,240,232,0.9));
+    filter: drop-shadow(
+        0 4px 8px rgba(244,240,232,0.9)
+    );
 }
-
 
 .hero h1 {
+    font-size: 40px;
 
-    font-size:40px;
+    margin-bottom: 10px;
 
-    margin-bottom:10px;
-
-    color:white;
+    color: white;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0,0,0,0.75);
 }
 
-
 .sottotitolo {
+    color: white;
 
-    color:white;
-
-    font-size:22px;
+    font-size: 22px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0,0,0,0.75);
 }
 
 
 /* RICERCA */
 
 .area-ricerca {
+    text-align: center;
 
-    text-align:center;
-
-    margin-top:35px;
+    margin-top: 35px;
 }
-
 
 input {
+    width: 90%;
 
-    width:90%;
+    max-width: 500px;
 
-    max-width:500px;
+    padding: 12px;
 
-    padding:12px;
+    font-size: 16px;
 
-    font-size:16px;
+    border: 1px solid #ccc;
 
-    border:1px solid #ccc;
+    border-radius: 8px;
 
-    border-radius:8px;
-
-    text-align:center;
+    text-align: center;
 }
-
 
 button {
+    margin-top: 10px;
 
-    margin-top:10px;
+    padding: 12px 25px;
 
-    padding:12px 25px;
+    background: #31475A;
 
-    background:#31475A;
+    color: white;
 
-    color:white;
+    border: none;
 
-    border:none;
+    border-radius: 8px;
 
-    border-radius:8px;
+    font-size: 16px;
 
-    font-size:16px;
+    cursor: pointer;
 
-    cursor:pointer;
-
-    opacity:0.85;
+    opacity: 0.85;
 }
-
 
 .area-ricerca button {
+    background: transparent;
 
-    background:transparent;
+    color: white;
 
-    color:white;
+    border: 2px solid white;
 
-    border:2px solid white;
+    padding: 12px 35px;
 
-    padding:12px 35px;
-
-    border-radius:25px;
+    border-radius: 25px;
 
     text-shadow:
-    0 2px 5px rgba(0,0,0,0.5);
+        0 2px 5px rgba(0,0,0,0.5);
 
-    transition:0.3s;
+    transition: 0.3s;
 }
 
-
 .area-ricerca button:hover {
+    background: white;
 
-    background:white;
-
-    color:#31475A;
+    color: #31475A;
 }
 
 
@@ -200,980 +183,864 @@ button {
 
 #risultati,
 #scheda {
+    background: #F1F4F5;
 
-    background:#F1F4F5;
+    max-width: 700px;
 
-    max-width:700px;
+    margin: 30px auto;
 
-    margin:30px auto;
+    padding: 25px;
 
-    padding:25px;
-
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0,0,0,0.06);
 }
 
+
+/*
+   I RISULTATI DEVONO ESSERE VISIBILI
+   quando script.js inserisce le schede.
+*/
 
 #risultati {
-
-    display:none;
+    display: block;
 }
-
 
 .risultato-card {
+    background: white;
 
-    background:white;
+    margin: 20px auto;
 
-    margin:20px auto;
+    padding: 20px;
 
-    padding:20px;
-
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 3px 12px rgba(0,0,0,0.06);
+        0 3px 12px rgba(0,0,0,0.06);
 }
 
-
 .risultato-card h3 {
-
-    margin-top:0;
+    margin-top: 0;
 }
 
 
 /* LINK */
 
 a {
+    color: #42586B;
 
-    color:#42586B;
+    text-decoration: none;
 
-    text-decoration:none;
-
-    font-weight:bold;
+    font-weight: bold;
 }
 
-
 a:hover {
-
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 
 /* PULSANTI */
 
 .scheda-button {
+    display: inline-block;
 
-    display:inline-block;
+    margin-top: 15px;
 
-    margin-top:15px;
+    padding: 10px 18px;
 
-    padding:10px 18px;
+    background: #31475A;
 
-    background:#31475A;
+    color: white;
 
-    color:white;
+    border: 2px solid #31475A;
 
-    border:2px solid #31475A;
+    border-radius: 10px;
 
-    border-radius:10px;
+    font-weight: bold;
 
-    font-weight:bold;
+    letter-spacing: 0.2px;
 
-    letter-spacing:0.2px;
-
-    text-decoration:none;
+    text-decoration: none;
 }
-
 
 .pulsante {
+    display: inline-block;
 
-    display:inline-block;
+    margin-top: 20px;
 
-    margin-top:20px;
+    padding: 12px 22px;
 
-    padding:12px 22px;
+    background: #31475A;
 
-    background:#31475A;
+    color: white;
 
-    color:white;
+    border: 2px solid #31475A;
 
-    border:2px solid #31475A;
+    border-radius: 10px;
 
-    border-radius:10px;
+    font-weight: bold;
 
-    font-weight:bold;
+    letter-spacing: 0.2px;
 
-    letter-spacing:0.2px;
-
-    text-decoration:none;
+    text-decoration: none;
 }
-
 
 #scheda > h1 {
+    color: #42586B;
 
-    color:#42586B;
+    font-size: 32px;
 
-    font-size:32px;
-
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
-
 
 .pulsanti-cimitero {
+    display: flex;
 
-    display:flex;
+    gap: 15px;
 
-    gap:15px;
-
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-
 .pulsanti-cimitero .pulsante {
+    margin-top: 0;
 
-    margin-top:0;
+    flex: 1;
 
-    flex:1;
-
-    text-align:center;
+    text-align: center;
 }
 
 
 /* SCHEDA DEFUNTO */
 
 .scheda-contenuto {
+    display: flex;
 
-    display:flex;
+    gap: 40px;
 
-    gap:40px;
-
-    align-items:flex-start;
+    align-items: flex-start;
 }
-
 
 .dati-defunto {
-
-    flex:1;
+    flex: 1;
 }
-
 
 .titolo-posizione {
+    color: #42586B;
 
-    color:#42586B;
+    margin-top: 25px;
 
-    margin-top:25px;
-
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
-
 
 .foto-defunto {
+    width: 300px;
 
-    width:300px;
+    height: 300px;
 
-    height:300px;
+    display: flex;
 
-    display:flex;
+    align-items: center;
 
-    align-items:center;
+    justify-content: center;
 
-    justify-content:center;
-
-    overflow:hidden;
+    overflow: hidden;
 }
 
-
 .foto-defunto img {
+    max-width: 100%;
 
-    max-width:100%;
+    max-height: 100%;
 
-    max-height:100%;
+    object-fit: contain;
 
-    object-fit:contain;
-
-    border-radius:16px;
+    border-radius: 16px;
 }
 
 
 /* FOTO MANCANTE */
 
 .foto-mancante {
+    width: 100%;
 
-    width:100%;
+    max-width: 280px;
 
-    max-width:280px;
+    padding: 30px 20px;
 
-    padding:30px 20px;
+    text-align: center;
 
-    text-align:center;
+    background: white;
 
-    background:white;
+    border: 1px solid #D5DDE2;
 
-    border:1px solid #D5DDE2;
-
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 3px 12px rgba(0,0,0,0.06);
+        0 3px 12px rgba(0,0,0,0.06);
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    color:#555;
+    color: #555;
 }
-
 
 .foto-mancante p {
+    margin: 0 0 20px;
 
-    margin:0 0 20px;
+    font-size: 16px;
 
-    font-size:16px;
-
-    line-height:1.5;
+    line-height: 1.5;
 }
 
-
 .foto-mancante img {
+    width: 72%;
 
-    width:72%;
+    height: auto;
 
-    height:auto;
+    object-fit: contain;
 
-    object-fit:contain;
-
-    filter:drop-shadow(0 3px 8px rgba(0,0,0,0.15));
+    filter:
+        drop-shadow(0 3px 8px rgba(0,0,0,0.15));
 }
 
 
 /* HOME BLOCCHI */
 
 .blocco-home {
+    max-width: 900px;
 
-    max-width:900px;
+    margin: 40px auto;
 
-    margin:40px auto;
+    background: #F1F4F5;
 
-    background:#F1F4F5;
+    padding: 30px;
 
-    padding:30px;
-
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0,0,0,0.06);
 }
-
 
 .blocco-home p {
+    line-height: 1.7;
 
-    line-height:1.7;
-
-    font-size:17px;
+    font-size: 17px;
 }
-
 
 .blocco-home h2 {
+    text-align: left;
 
-    text-align:left;
+    font-size: 28px;
 
-    font-size:28px;
-
-    margin-bottom:25px;
+    margin-bottom: 25px;
 }
-
 
 .cosa-puoi-fare h2 {
-
-    text-align:center;
+    text-align: center;
 }
-
 
 .titolo-centro {
-
-    text-align:center !important;
+    text-align: center !important;
 }
-
 
 .contribuisci {
-
-    text-align:center;
+    text-align: center;
 }
 
-
 .contribuisci h2 {
-
-    text-align:center;
+    text-align: center;
 }
 
 
 /* INTRO HOME */
 
 .intro-home {
+    text-align: center;
 
-    text-align:center;
+    max-width: 650px;
 
-    max-width:650px;
+    margin: 0 auto 35px;
 
-    margin:0 auto 35px;
-
-    line-height:1.6;
+    line-height: 1.6;
 }
 
 
 /* FUNZIONI HOME */
 
 .funzioni-home {
+    display: flex;
 
-    display:flex;
+    justify-content: space-between;
 
-    justify-content:space-between;
-
-    gap:25px;
+    gap: 25px;
 }
-
 
 .funzione {
+    flex: 1;
 
-    flex:1;
+    background: white;
 
-    background:white;
+    padding: 25px 20px;
 
-    padding:25px 20px;
+    border-radius: 14px;
 
-    border-radius:14px;
-
-    text-align:center;
+    text-align: center;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0,0,0,0.06);
 
-    transition:0.3s;
+    transition: 0.3s;
 }
-
 
 .funzione:hover {
-
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 }
-
 
 .funzione img {
+    width: 75px;
 
-    width:75px;
+    height: 75px;
 
-    height:75px;
+    object-fit: contain;
 
-    object-fit:contain;
+    margin-bottom: 5px;
 
-    margin-bottom:5px;
-
-    transition:0.3s;
+    transition: 0.3s;
 }
-
 
 .funzione:hover img {
-
-    transform:translateY(-4px);
+    transform: translateY(-4px);
 }
-
 
 .funzione h3 {
+    margin-top: 5px;
 
-    margin-top:5px;
-
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-
 .funzione p {
+    line-height: 1.5;
 
-    line-height:1.5;
-
-    font-size:15px;
+    font-size: 15px;
 }
 
 
 /* SEZIONE CIMITERO */
 
 .cimitero-sezione {
+    display: flex;
 
-    display:flex;
+    align-items: center;
 
-    align-items:center;
-
-    gap:40px;
+    gap: 40px;
 }
-
 
 .cimitero-sezione img {
+    width: 45%;
 
-    width:45%;
-
-    border-radius:16px;
+    border-radius: 16px;
 }
 
-
 .cimitero-sezione div {
-
-    flex:1;
+    flex: 1;
 }
 
 
 /* ICONE TITOLI */
 
 .titolo-con-icona {
+    display: flex;
 
-    display:flex;
+    align-items: center;
 
-    align-items:center;
-
-    gap:15px;
+    gap: 15px;
 }
 
-
 .titolo-con-icona img {
+    width: 75px;
 
-    width:75px;
-
-    object-fit:contain;
+    object-fit: contain;
 }
 
 
 /* GESTIONE FOOTER */
 
 .gestione-sito {
+    display: flex;
 
-    display:flex;
+    justify-content: space-around;
 
-    justify-content:space-around;
+    gap: 20px;
 
-    gap:20px;
-
-    text-align:center;
+    text-align: center;
 }
-
 
 .gestione-sito div {
-
-    flex:1;
+    flex: 1;
 }
-
 
 .gestione-sito p {
+    margin-bottom: 8px;
 
-    margin-bottom:8px;
-
-    font-size:14px;
+    font-size: 14px;
 }
 
-
 .gestione-sito strong {
-
-    font-size:15px;
+    font-size: 15px;
 }
 
 
 /* COLLABORAZIONE COMUNE */
 
 .collaborazione-comune {
-    display:block;
-    width:100%;
-    margin:22px 0 0;
-    padding-top:12px;
-    text-align:center;
-    font-size:15px;
-    font-style:italic;
-    font-weight:700;
-    box-sizing:border-box;
+    display: block;
+
+    width: 100%;
+
+    margin: 22px 0 0;
+
+    padding-top: 12px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    box-sizing: border-box;
 }
 
 
 /* FOOTER */
 
 .footer-sito {
+    box-sizing: border-box;
 
-    box-sizing:border-box;
+    width: 100%;
 
-    width:100%;
+    margin: 60px 0 0;
 
-    margin:60px 0 0;
-
-    padding:40px 20px;
+    padding: 40px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.15)
-    ),
-    url("../immagini/Tarsia-lago.webp");
+        linear-gradient(
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.15)
+        ),
+        url("../immagini/Tarsia-lago.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    color:white;
+    color: white;
 
-    text-align:center;
+    text-align: center;
 }
-
 
 .footer-box {
+    background: rgba(49,71,90,0.45);
 
-    background:rgba(49,71,90,0.45);
+    border: 1px solid rgba(255,255,255,0.25);
 
-    border:1px solid rgba(255,255,255,0.25);
+    padding: 18px;
 
-    padding:18px;
+    margin: 15px auto;
 
-    margin:15px auto;
+    width: 100%;
 
-    width:100%;
+    max-width: 700px;
 
-    max-width:700px;
+    box-sizing: border-box;
 
-    box-sizing:border-box;
-
-    border-radius:12px;
+    border-radius: 12px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.18);
+        0 4px 15px rgba(0,0,0,0.18);
 }
-
 
 .footer-box h3 {
+    color: white;
 
-    color:white;
+    font-size: 20px;
 
-    font-size:20px;
-
-    margin-top:0;
+    margin-top: 0;
 }
-
 
 .footer-box p {
-
-    line-height:1.4;
+    line-height: 1.4;
 }
-
 
 .footer-box a {
+    color: white;
 
-    color:white;
-
-    text-decoration:underline;
+    text-decoration: underline;
 }
-
 
 .footer-secondario h3 {
-
-    font-size:16px;
+    font-size: 16px;
 }
-
 
 .footer-secondario p,
 .footer-secondario a {
+    font-size: 14px;
 
-    font-size:14px;
-
-    line-height:1.4;
+    line-height: 1.4;
 }
 
 
 /* CONTATTI */
 
 .blocco-contatto {
+    margin-top: 30px;
 
-    margin-top:30px;
+    padding: 25px;
 
-    padding:25px;
+    background: white;
 
-    background:white;
-
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 5px 18px rgba(0,0,0,0.08);
+        0 5px 18px rgba(0,0,0,0.08);
 }
 
 
 /* PLANIMETRIA */
 
 .planimetria {
-
-    text-align:center;
+    text-align: center;
 }
-
 
 .planimetria .torna {
+    display: block;
 
-    display:block;
+    text-align: left;
 
-    text-align:left;
-
-    width:max-content;
+    width: max-content;
 }
-
 
 .planimetria h2 {
-
-    margin-top:25px;
+    margin-top: 25px;
 }
-
 
 .descrizione-planimetria {
+    max-width: 700px;
 
-    max-width:700px;
+    margin: 20px auto 30px;
 
-    margin:20px auto 30px;
-
-    line-height:1.6;
+    line-height: 1.6;
 }
-
 
 .zoom-container {
+    width: 100%;
 
-    width:100%;
+    overflow: hidden;
 
-    overflow:hidden;
+    border-radius: 14px;
 
-    border-radius:14px;
+    background: white;
 
-    background:white;
-
-    touch-action:pinch-zoom;
+    touch-action: pinch-zoom;
 }
 
-
 .zoom-container img {
+    width: 100%;
 
-    width:100%;
+    transition: transform 0.2s ease;
 
-    transition:transform 0.2s ease;
+    transform-origin: center;
 
-    transform-origin:center;
-
-    border-radius:14px;
+    border-radius: 14px;
 }
 
 
 /* HERO SECONDARIO */
 
 .hero-secondario {
+    text-align: center;
 
-    text-align:center;
-
-    padding:35px 20px;
+    padding: 35px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.25),
-        rgba(0,0,0,0.25)
-    ),
-    url("../immagini/tarsia-alto.webp");
+        linear-gradient(
+            rgba(0,0,0,0.25),
+            rgba(0,0,0,0.25)
+        ),
+        url("../immagini/tarsia-alto.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    border-radius:18px;
+    border-radius: 18px;
 }
-
 
 .hero-secondario h1 {
+    color: white;
 
-    color:white;
-
-    font-size:36px;
+    font-size: 36px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0,0,0,0.75);
 }
 
-
 .hero-secondario p {
+    color: white;
 
-    color:white;
-
-    font-size:20px;
+    font-size: 20px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0,0,0,0.75);
 }
 
 
 /* AVVISO HOME - SITO IN AGGIORNAMENTO */
 
 .avviso-costruzione {
+    width: 100%;
 
-    width:100%;
+    box-sizing: border-box;
 
-    box-sizing:border-box;
+    padding: 14px 50px 14px 20px;
 
-    padding:14px 50px 14px 20px;
+    background: #F1F4F5;
 
-    background:#F1F4F5;
-
-    border-bottom:1px solid rgba(0,0,0,0.10);
+    border-bottom: 1px solid rgba(0,0,0,0.10);
 
     box-shadow:
-    0 2px 8px rgba(0,0,0,0.06);
+        0 2px 8px rgba(0,0,0,0.06);
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    position:relative;
+    position: relative;
 
-    z-index:1000;
+    z-index: 1000;
 }
-
 
 .avviso-testo {
+    width: 100%;
 
-    width:100%;
+    display: flex;
 
-    display:flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    align-items: center;
 
-    align-items:center;
+    justify-content: center;
 
-    justify-content:center;
+    text-align: center;
 
-    text-align:center;
+    gap: 4px;
 
-    gap:4px;
-
-    color:#4b555b;
+    color: #4b555b;
 }
-
 
 .avviso-testo strong {
+    font-size: 16px;
 
-    font-size:16px;
+    font-weight: 700;
 
-    font-weight:700;
-
-    text-align:center;
+    text-align: center;
 }
-
 
 .avviso-testo span {
+    font-size: 14px;
 
-    font-size:14px;
+    line-height: 1.4;
 
-    line-height:1.4;
-
-    text-align:center;
+    text-align: center;
 }
-
 
 #chiudi-avviso {
+    position: absolute;
 
-    position:absolute;
+    right: 18px;
 
-    right:18px;
+    top: 50%;
 
-    top:50%;
+    transform: translateY(-50%);
 
-    transform:translateY(-50%);
+    width: 32px;
 
-    width:32px;
+    height: 32px;
 
-    height:32px;
+    border: none;
 
-    border:none;
+    background: transparent;
 
-    background:transparent;
+    font-size: 26px;
 
-    font-size:26px;
+    line-height: 1;
 
-    line-height:1;
+    color: #59636a;
 
-    color:#59636a;
+    cursor: pointer;
 
-    cursor:pointer;
+    margin: 0;
 
-    margin:0;
-
-    padding:0;
+    padding: 0;
 }
 
-
 #chiudi-avviso:hover {
-
-    color:#222;
+    color: #222;
 }
 
 
 /* MOBILE */
 
-@media(max-width:700px){
+@media (max-width: 700px) {
 
     body {
+        padding: 15px;
 
-        padding:15px;
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        overflow-x:hidden;
+        overflow-x: hidden;
     }
 
 
     /* HERO */
 
     .hero {
+        background-attachment: scroll;
 
-        background-attachment:scroll;
+        min-height: 420px;
 
-        min-height:420px;
+        display: flex;
 
-        display:flex;
+        flex-direction: column;
 
-        flex-direction:column;
+        justify-content: center;
 
-        justify-content:center;
+        align-items: center;
 
-        align-items:center;
-
-        background-size:cover;
+        background-size: cover;
     }
 
 
     .stemma {
+        width: 100px;
 
-        width:100px;
-
-        margin-bottom:20px;
+        margin-bottom: 20px;
     }
 
 
     .hero h1 {
-
-        font-size:32px;
+        font-size: 32px;
     }
 
 
     .sottotitolo {
-
-        font-size:18px;
+        font-size: 18px;
     }
 
 
     /* HERO SECONDARIO */
 
     .hero-secondario {
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        padding:30px 15px;
+        padding: 30px 15px;
     }
 
 
     .hero-secondario h1 {
-
-        font-size:30px;
+        font-size: 30px;
     }
 
 
     .hero-secondario p {
-
-        font-size:18px;
+        font-size: 18px;
     }
 
 
     /* SCHEDA DEFUNTO */
 
     #scheda {
+        width: 100%;
 
-        width:100%;
+        max-width: 700px;
 
-        max-width:700px;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
+        padding: 20px;
 
-        padding:20px;
+        margin: 30px auto;
 
-        margin:30px auto;
-
-        overflow:hidden;
+        overflow: hidden;
     }
 
 
     .scheda-contenuto {
+        width: 100%;
 
-        width:100%;
+        max-width: 100%;
 
-        max-width:100%;
+        flex-direction: column;
 
-        flex-direction:column;
+        gap: 25px;
 
-        gap:25px;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     .dati-defunto {
+        width: 100%;
 
-        width:100%;
+        min-width: 0;
 
-        min-width:0;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     .foto-defunto {
+        width: 250px;
 
-        width:250px;
+        height: 250px;
 
-        height:250px;
+        max-width: 100%;
 
-        max-width:100%;
+        margin: auto;
 
-        margin:auto;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     .foto-defunto img {
+        max-width: 100%;
 
-        max-width:100%;
-
-        max-height:100%;
+        max-height: 100%;
     }
 
 
     .foto-mancante {
+        width: 250px;
 
-        width:250px;
+        max-width: 100%;
 
-        max-width:100%;
+        margin: auto;
 
-        margin:auto;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     .foto-mancante img {
+        width: 72%;
 
-        width:72%;
+        max-width: 100%;
 
-        max-width:100%;
+        height: auto;
 
-        height:auto;
-
-        object-fit:contain;
+        object-fit: contain;
     }
 
 
@@ -1181,178 +1048,159 @@ a:hover {
 
     .pulsante,
     .scheda-button {
+        max-width: 100%;
 
-        max-width:100%;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* HOME */
 
     .funzioni-home {
-
-        flex-direction:column;
+        flex-direction: column;
     }
 
 
     .funzione {
-
-        width:auto;
+        width: auto;
     }
 
 
     .cimitero-sezione {
-
-        flex-direction:column;
+        flex-direction: column;
     }
 
 
     .cimitero-sezione div {
-
-        text-align:center;
+        text-align: center;
     }
 
 
     .cimitero-sezione h2 {
-
-        text-align:center;
+        text-align: center;
     }
 
 
     .cimitero-sezione img {
-
-        width:100%;
+        width: 100%;
     }
 
 
     .pulsanti-cimitero {
-
-        flex-direction:column;
+        flex-direction: column;
     }
 
 
     .gestione-sito {
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: center;
 
-        align-items:center;
-
-        width:100%;
+        width: 100%;
     }
 
 
     .gestione-sito div {
+        width: 100%;
 
-        width:100%;
-
-        flex:none;
+        flex: none;
     }
 
 
     /* COLLABORAZIONE COMUNE */
 
     .collaborazione-comune {
+        display: block;
 
-        display:block;
+        width: 100%;
 
-        width:100%;
+        margin: 18px 0 0;
 
-        margin:18px 0 0;
+        text-align: center;
 
-        text-align:center;
+        font-size: 14px;
 
-        font-size:14px;
+        font-style: italic;
 
-        font-style:italic;
+        font-weight: 700;
 
-        font-weight:700;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* FOOTER */
 
     .footer-sito {
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        padding:35px 15px;
+        padding: 35px 15px;
     }
 
 
     .footer-box {
+        width: 100%;
 
-        width:100%;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* AVVISO MOBILE */
 
     .avviso-costruzione {
+        width: 100%;
 
-        width:100%;
+        padding: 14px 45px 14px 15px;
 
-        padding:14px 45px 14px 15px;
+        display: flex;
 
-        display:flex;
+        align-items: center;
 
-        align-items:center;
+        justify-content: center;
 
-        justify-content:center;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     .avviso-testo {
+        width: 100%;
 
-        width:100%;
+        display: flex;
 
-        display:flex;
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: center;
 
-        align-items:center;
+        justify-content: center;
 
-        justify-content:center;
+        text-align: center;
 
-        text-align:center;
-
-        gap:4px;
+        gap: 4px;
     }
 
 
     .avviso-testo strong {
+        font-size: 15px;
 
-        font-size:15px;
-
-        text-align:center;
+        text-align: center;
     }
 
 
     .avviso-testo span {
+        font-size: 13px;
 
-        font-size:13px;
+        line-height: 1.4;
 
-        line-height:1.4;
-
-        text-align:center;
+        text-align: center;
     }
 
 
     #chiudi-avviso {
+        right: 8px;
 
-        right:8px;
+        top: 50%;
 
-        top:50%;
-
-        transform:translateY(-50%);
+        transform: translateY(-50%);
     }
-
 }
