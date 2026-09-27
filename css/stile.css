@@ -1,1052 +1,2650 @@
-body {
-    font-family:"Lato", sans-serif;
+/* =========================================================
+   STILE GENERALE
+   ========================================================= */
 
-    background-color:#E3E9ED;
+body {
+    font-family: "Lato", sans-serif;
+
+    background-color: #E3E9ED;
 
     background-image:
-    radial-gradient(
-        ellipse at 15% 15%,
-        rgba(92,118,135,0.18) 0%,
-        rgba(92,118,135,0.08) 25%,
-        transparent 55%
-    ),
-    radial-gradient(
-        ellipse at 85% 25%,
-        rgba(255,255,255,0.35) 0%,
-        rgba(255,255,255,0.15) 30%,
-        transparent 60%
-    ),
-    radial-gradient(
-        ellipse at 75% 80%,
-        rgba(82,110,128,0.14) 0%,
-        rgba(82,110,128,0.06) 30%,
-        transparent 60%
-    ),
-    radial-gradient(
-        ellipse at 20% 85%,
-        rgba(255,255,255,0.30) 0%,
-        transparent 55%
-    );
+        radial-gradient(
+            ellipse at 15% 15%,
+            rgba(92, 118, 135, 0.18) 0%,
+            rgba(92, 118, 135, 0.08) 25%,
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 85% 25%,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.15) 30%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 75% 80%,
+            rgba(82, 110, 128, 0.14) 0%,
+            rgba(82, 110, 128, 0.06) 30%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 20% 85%,
+            rgba(255, 255, 255, 0.30) 0%,
+            transparent 55%
+        );
 
-    color:#333333;
+    color: #333333;
 
-    margin:0;
+    margin: 0;
 
-    padding:20px;
+    padding: 20px;
 }
 
 
-/* TITOLI */
+/* =========================================================
+   TITOLI
+   ========================================================= */
 
 h1 {
-    text-align:center;
-
-    color:#42586B;
+    text-align: center;
+    color: #42586B;
 }
 
 h2 {
-    color:#42586B;
-
-    font-weight:700;
-
-    letter-spacing:0.3px;
+    color: #42586B;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 h3 {
-    color:#42586B;
+    color: #42586B;
 }
 
 
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
-    text-align:center;
+    text-align: center;
 
-    padding:60px 20px;
+    padding: 60px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.20),
-        rgba(0,0,0,0.20)
-    ),
-    url("../immagini/tarsia-alto.webp");
+        linear-gradient(
+            rgba(0, 0, 0, 0.20),
+            rgba(0, 0, 0, 0.20)
+        ),
+        url("../immagini/tarsia-alto.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    background-attachment:fixed;
+    background-attachment: fixed;
 
-    border-radius:18px;
+    border-radius: 18px;
 }
 
 .stemma {
-    width:140px;
+    width: 140px;
+    margin-bottom: 20px;
 
-    margin-bottom:20px;
-
-    filter:drop-shadow(0 4px 8px rgba(244,240,232,0.9));
+    filter:
+        drop-shadow(
+            0 4px 8px rgba(244, 240, 232, 0.9)
+        );
 }
 
 .hero h1 {
-    font-size:40px;
+    font-size: 40px;
+    margin-bottom: 10px;
 
-    margin-bottom:10px;
-
-    color:white;
+    color: white;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0, 0, 0, 0.75);
 }
 
 .sottotitolo {
-    color:white;
-
-    font-size:22px;
+    color: white;
+    font-size: 22px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0, 0, 0, 0.75);
 }
 
 
-/* RICERCA */
+/* =========================================================
+   RICERCA
+   ========================================================= */
 
 .area-ricerca {
-    text-align:center;
-
-    margin-top:35px;
+    text-align: center;
+    margin-top: 35px;
 }
 
 input {
-    width:90%;
+    width: 90%;
+    max-width: 500px;
 
-    max-width:500px;
+    padding: 12px;
 
-    padding:12px;
+    font-size: 16px;
 
-    font-size:16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 
-    border:1px solid #ccc;
+    text-align: center;
 
-    border-radius:8px;
-
-    text-align:center;
+    box-sizing: border-box;
 }
 
 button {
-    margin-top:10px;
+    margin-top: 10px;
 
-    padding:12px 25px;
+    padding: 12px 25px;
 
-    background:#31475A;
+    background: #31475A;
 
-    color:white;
+    color: white;
 
-    border:none;
+    border: none;
 
-    border-radius:8px;
+    border-radius: 8px;
 
-    font-size:16px;
+    font-size: 16px;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    opacity:0.85;
+    opacity: 0.85;
 }
 
 .area-ricerca button {
-    background:transparent;
+    background: transparent;
 
-    color:white;
+    color: white;
 
-    border:2px solid white;
+    border: 2px solid white;
 
-    padding:12px 35px;
+    padding: 12px 35px;
 
-    border-radius:25px;
+    border-radius: 25px;
 
     text-shadow:
-    0 2px 5px rgba(0,0,0,0.5);
+        0 2px 5px rgba(0, 0, 0, 0.5);
 
-    transition:0.3s;
+    transition: 0.3s;
 }
 
 .area-ricerca button:hover {
-    background:white;
-
-    color:#31475A;
+    background: white;
+    color: #31475A;
 }
 
 
-/* RISULTATI E SCHEDA */
+/* =========================================================
+   RISULTATI E SCHEDA
+   ========================================================= */
 
 #risultati,
 #scheda {
-    background:#F1F4F5;
+    background: #F1F4F5;
 
-    max-width:700px;
+    max-width: 700px;
 
-    margin:30px auto;
+    margin: 30px auto;
 
-    padding:25px;
+    padding: 25px;
 
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 #risultati {
-    display:none;
+    display: block;
+}
+
+#risultati:empty {
+    display: none;
 }
 
 .risultato-card {
-    background:white;
+    background: white;
 
-    margin:20px auto;
+    margin: 20px auto;
 
-    padding:20px;
+    padding: 20px;
 
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 3px 12px rgba(0,0,0,0.06);
+        0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .risultato-card h3 {
-    margin-top:0;
+    margin-top: 0;
 }
 
 
-/* LINK */
+/* =========================================================
+   LINK
+   ========================================================= */
 
 a {
-    color:#42586B;
+    color: #42586B;
 
-    text-decoration:none;
+    text-decoration: underline;
 
-    font-weight:bold;
-}
-
-a:hover {
-    text-decoration:underline;
+    font-weight: bold;
 }
 
 
-/* PULSANTI */
+/* =========================================================
+   PULSANTI
+   ========================================================= */
 
 .scheda-button {
-    display:inline-block;
+    display: inline-block;
 
-    margin-top:15px;
+    margin-top: 15px;
 
-    padding:10px 18px;
+    padding: 10px 18px;
 
-    background:#31475A;
+    background: #31475A;
 
-    color:white;
+    color: white;
 
-    border:2px solid #31475A;
+    border: 2px solid #31475A;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    letter-spacing:0.2px;
+    letter-spacing: 0.2px;
 
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .pulsante {
-    display:inline-block;
+    display: inline-block;
 
-    margin-top:20px;
+    margin-top: 20px;
 
-    padding:12px 22px;
+    padding: 12px 22px;
 
-    background:#31475A;
+    background: #31475A;
 
-    color:white;
+    color: white;
 
-    border:2px solid #31475A;
+    border: 2px solid #31475A;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    letter-spacing:0.2px;
+    letter-spacing: 0.2px;
 
-    text-decoration:none;
+    text-decoration: none;
 }
 
 #scheda > h1 {
-    color:#42586B;
+    color: #42586B;
 
-    font-size:32px;
+    font-size: 32px;
 
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 
 .pulsanti-cimitero {
-    display:flex;
+    display: flex;
 
-    gap:15px;
+    gap: 15px;
 
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .pulsanti-cimitero .pulsante {
-    margin-top:0;
+    margin-top: 0;
 
-    flex:1;
+    flex: 1;
 
-    text-align:center;
+    text-align: center;
 }
 
 
-/* SCHEDA DEFUNTO */
+/* =========================================================
+   SCHEDA DEFUNTO
+   ========================================================= */
 
 .scheda-contenuto {
-    display:flex;
+    display: flex;
 
-    gap:40px;
+    gap: 40px;
 
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 .dati-defunto {
-    flex:1;
+    flex: 1;
 }
 
 .titolo-posizione {
-    color:#42586B;
+    color: #42586B;
 
-    margin-top:25px;
+    margin-top: 25px;
 
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
 
 .foto-defunto {
-    width:300px;
+    width: 300px;
 
-    height:300px;
+    height: 300px;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .foto-defunto img {
-    max-width:100%;
+    max-width: 100%;
 
-    max-height:100%;
+    max-height: 100%;
 
-    object-fit:contain;
+    object-fit: contain;
 
-    border-radius:16px;
+    border-radius: 16px;
 }
 
 
-/* FOTO MANCANTE */
+/* =========================================================
+   FOTO MANCANTE
+   ========================================================= */
 
 .foto-mancante {
-    width:100%;
+    width: 100%;
 
-    max-width:280px;
+    max-width: 280px;
 
-    padding:30px 20px;
+    padding: 30px 20px;
 
-    text-align:center;
+    text-align: center;
 
-    background:white;
+    background: white;
 
-    border:1px solid #D5DDE2;
+    border: 1px solid #D5DDE2;
 
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 3px 12px rgba(0,0,0,0.06);
+        0 3px 12px rgba(0, 0, 0, 0.06);
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    color:#555;
+    color: #555;
 }
 
 .foto-mancante p {
-    margin:0 0 20px;
+    margin: 0 0 20px;
 
-    font-size:16px;
+    font-size: 16px;
 
-    line-height:1.5;
+    line-height: 1.5;
 }
 
 .foto-mancante img {
-    width:72%;
+    width: 72%;
 
-    height:auto;
+    height: auto;
 
-    object-fit:contain;
+    object-fit: contain;
 
-    filter:drop-shadow(0 3px 8px rgba(0,0,0,0.15));
+    filter:
+        drop-shadow(
+            0 3px 8px rgba(0, 0, 0, 0.15)
+        );
 }
 
 
-/* HOME BLOCCHI */
+/* =========================================================
+   HOME BLOCCHI
+   ========================================================= */
 
 .blocco-home {
-    max-width:900px;
+    max-width: 900px;
 
-    margin:40px auto;
+    margin: 40px auto;
 
-    background:#F1F4F5;
+    background: #F1F4F5;
 
-    padding:30px;
+    padding: 30px;
 
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 .blocco-home p {
-    line-height:1.7;
+    line-height: 1.7;
 
-    font-size:17px;
+    font-size: 17px;
 }
 
 .blocco-home h2 {
-    text-align:left;
+    text-align: left;
 
-    font-size:28px;
+    font-size: 28px;
 
-    margin-bottom:25px;
+    margin-bottom: 25px;
 }
 
 .cosa-puoi-fare h2 {
-    text-align:center;
+    text-align: center;
 }
 
 .titolo-centro {
-    text-align:center !important;
+    text-align: center !important;
 }
 
 .contribuisci {
-    text-align:center;
+    text-align: center;
 }
 
 .contribuisci h2 {
-    text-align:center;
+    text-align: center;
 }
 
 
-/* INTRO HOME */
+/* =========================================================
+   INTRO HOME
+   ========================================================= */
 
 .intro-home {
-    text-align:center;
+    text-align: center;
 
-    max-width:650px;
+    max-width: 650px;
 
-    margin:0 auto 35px;
+    margin: 0 auto 35px;
 
-    line-height:1.6;
+    line-height: 1.6;
 }
 
 
-/* FUNZIONI HOME */
+/* =========================================================
+   FUNZIONI HOME
+   ========================================================= */
 
 .funzioni-home {
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    gap:25px;
+    gap: 25px;
 }
 
 .funzione {
-    flex:1;
+    flex: 1;
 
-    background:white;
+    background: white;
 
-    padding:25px 20px;
+    padding: 25px 20px;
 
-    border-radius:14px;
+    border-radius: 14px;
 
-    text-align:center;
+    text-align: center;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.06);
+        0 4px 15px rgba(0, 0, 0, 0.06);
 
-    transition:0.3s;
+    transition: 0.3s;
 }
 
 .funzione:hover {
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .funzione img {
-    width:75px;
+    width: 75px;
 
-    height:75px;
+    height: 75px;
 
-    object-fit:contain;
+    object-fit: contain;
 
-    margin-bottom:5px;
+    margin-bottom: 5px;
 
-    transition:0.3s;
+    transition: 0.3s;
 }
 
 .funzione:hover img {
-    transform:translateY(-4px);
+    transform: translateY(-4px);
 }
 
 .funzione h3 {
-    margin-top:5px;
+    margin-top: 5px;
 
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .funzione p {
-    line-height:1.5;
+    line-height: 1.5;
 
-    font-size:15px;
+    font-size: 15px;
 }
 
 
-/* SEZIONE CIMITERO */
+/* =========================================================
+   SEZIONE CIMITERO
+   ========================================================= */
 
 .cimitero-sezione {
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:40px;
+    gap: 40px;
 }
 
 .cimitero-sezione img {
-    width:45%;
+    width: 45%;
 
-    border-radius:16px;
+    border-radius: 16px;
 }
 
 .cimitero-sezione div {
-    flex:1;
+    flex: 1;
 }
 
 
-/* ICONE TITOLI */
+/* =========================================================
+   ICONE TITOLI
+   ========================================================= */
 
 .titolo-con-icona {
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:15px;
+    gap: 15px;
 }
 
 .titolo-con-icona img {
-    width:75px;
+    width: 75px;
 
-    object-fit:contain;
+    object-fit: contain;
 }
 
 
-/* GESTIONE FOOTER */
+/* =========================================================
+   GESTIONE FOOTER
+   ========================================================= */
 
 .gestione-sito {
-    display:flex;
+    display: flex;
 
-    justify-content:space-around;
+    justify-content: space-around;
 
-    gap:20px;
+    gap: 20px;
 
-    text-align:center;
+    text-align: center;
 }
 
 .gestione-sito div {
-    flex:1;
+    flex: 1;
 }
 
 .gestione-sito p {
-    margin-bottom:8px;
+    margin-bottom: 8px;
 
-    font-size:14px;
+    font-size: 14px;
 }
 
 .gestione-sito strong {
-    font-size:15px;
+    font-size: 15px;
 }
 
 
-/* COLLABORAZIONE COMUNE */
+/* =========================================================
+   COLLABORAZIONE COMUNE
+   ========================================================= */
 
 .collaborazione-comune {
-    display:block;
+    display: block;
 
-    width:100%;
+    width: 100%;
 
-    margin:22px 0 0;
+    margin: 22px 0 0;
 
-    padding-top:12px;
+    padding-top: 12px;
 
-    text-align:center;
+    text-align: center;
 
-    font-size:15px;
+    font-size: 15px;
 
-    font-style:italic;
+    font-style: italic;
 
-    font-weight:700;
+    font-weight: 700;
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .footer-sito {
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    width:100%;
+    width: 100%;
 
-    margin:60px 0 0;
+    margin: 60px 0 0;
 
-    padding:40px 20px;
+    padding: 40px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.15)
-    ),
-    url("../immagini/Tarsia-lago.webp");
+        linear-gradient(
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15)
+        ),
+        url("../immagini/Tarsia-lago.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    color:white;
+    color: white;
 
-    text-align:center;
+    text-align: center;
 }
 
 .footer-box {
-    background:rgba(49,71,90,0.45);
+    background: rgba(49, 71, 90, 0.45);
 
-    border:1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
-    padding:18px;
+    padding: 18px;
 
-    margin:15px auto;
+    margin: 15px auto;
 
-    width:100%;
+    width: 100%;
 
-    max-width:700px;
+    max-width: 700px;
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    border-radius:12px;
+    border-radius: 12px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,0.18);
+        0 4px 15px rgba(0, 0, 0, 0.18);
 }
 
 .footer-box h3 {
-    color:white;
+    color: white;
 
-    font-size:20px;
+    font-size: 20px;
 
-    margin-top:0;
+    margin-top: 0;
 }
 
 .footer-box p {
-    line-height:1.4;
+    line-height: 1.4;
 }
 
 .footer-box a {
-    color:white;
+    color: white;
 
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 .footer-secondario h3 {
-    font-size:16px;
+    font-size: 16px;
 }
 
 .footer-secondario p,
 .footer-secondario a {
-    font-size:14px;
+    font-size: 14px;
 
-    line-height:1.4;
+    line-height: 1.4;
 }
 
 
-/* CONTATTI */
+/* =========================================================
+   CONTATTI
+   ========================================================= */
 
 .blocco-contatto {
-    margin-top:30px;
+    margin-top: 30px;
 
-    padding:25px;
+    padding: 25px;
 
-    background:white;
+    background: white;
 
-    border-radius:14px;
+    border-radius: 14px;
 
     box-shadow:
-    0 5px 18px rgba(0,0,0,0.08);
+        0 5px 18px rgba(0, 0, 0, 0.08);
 }
 
 
-/* PLANIMETRIA */
+/* =========================================================
+   PLANIMETRIA
+   ========================================================= */
 
 .planimetria {
-    text-align:center;
+    text-align: center;
 }
 
 .planimetria .torna {
-    display:block;
+    display: block;
 
-    text-align:left;
+    text-align: left;
 
-    width:max-content;
+    width: max-content;
 }
 
 .planimetria h2 {
-    margin-top:25px;
+    margin-top: 25px;
 }
 
 .descrizione-planimetria {
-    max-width:700px;
+    max-width: 700px;
 
-    margin:20px auto 30px;
+    margin: 20px auto 30px;
 
-    line-height:1.6;
+    line-height: 1.6;
 }
 
 .zoom-container {
-    width:100%;
+    width: 100%;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    border-radius:14px;
+    border-radius: 14px;
 
-    background:white;
+    background: white;
 
-    touch-action:pinch-zoom;
+    touch-action: pinch-zoom;
 }
 
 .zoom-container img {
-    width:100%;
+    width: 100%;
 
-    transition:transform 0.2s ease;
+    transition: transform 0.2s ease;
 
-    transform-origin:center;
+    transform-origin: center;
 
-    border-radius:14px;
+    border-radius: 14px;
 }
 
 
-/* HERO SECONDARIO */
+/* =========================================================
+   HERO SECONDARIO
+   ========================================================= */
 
 .hero-secondario {
-    text-align:center;
+    text-align: center;
 
-    padding:35px 20px;
+    padding: 35px 20px;
 
     background-image:
-    linear-gradient(
-        rgba(0,0,0,0.25),
-        rgba(0,0,0,0.25)
-    ),
-    url("../immagini/tarsia-alto.webp");
+        linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.25)
+        ),
+        url("../immagini/tarsia-alto.webp");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    border-radius:18px;
+    border-radius: 18px;
 }
 
 .hero-secondario h1 {
-    color:white;
+    color: white;
 
-    font-size:36px;
+    font-size: 36px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0, 0, 0, 0.75);
 }
 
 .hero-secondario p {
-    color:white;
+    color: white;
 
-    font-size:20px;
+    font-size: 20px;
 
     text-shadow:
-    0 3px 10px rgba(0,0,0,0.75);
+        0 3px 10px rgba(0, 0, 0, 0.75);
 }
 
 
-/* AVVISO HOME - SITO IN AGGIORNAMENTO */
+/* =========================================================
+   AVVISO HOME - SITO IN AGGIORNAMENTO
+   ========================================================= */
 
 .avviso-costruzione {
-    width:100%;
+    width: 100%;
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    padding:14px 50px 14px 20px;
+    padding: 14px 50px 14px 20px;
 
-    background:#F1F4F5;
+    background: #F1F4F5;
 
-    border-bottom:1px solid rgba(0,0,0,0.10);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
 
     box-shadow:
-    0 2px 8px rgba(0,0,0,0.06);
+        0 2px 8px rgba(0, 0, 0, 0.06);
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    position:relative;
+    position: relative;
 
-    z-index:1000;
+    z-index: 1000;
 }
 
 .avviso-testo {
-    width:100%;
+    width: 100%;
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    text-align:center;
+    text-align: center;
 
-    gap:4px;
+    gap: 4px;
 
-    color:#4b555b;
+    color: #4b555b;
 }
 
 .avviso-testo strong {
-    font-size:16px;
+    font-size: 16px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    text-align:center;
+    text-align: center;
 }
 
 .avviso-testo span {
-    font-size:14px;
+    font-size: 14px;
 
-    line-height:1.4;
+    line-height: 1.4;
 
-    text-align:center;
+    text-align: center;
 }
 
 #chiudi-avviso {
-    position:absolute;
+    position: absolute;
 
-    right:18px;
+    right: 18px;
 
-    top:50%;
+    top: 50%;
 
-    transform:translateY(-50%);
+    transform: translateY(-50%);
 
-    width:32px;
+    width: 32px;
 
-    height:32px;
+    height: 32px;
 
-    border:none;
+    border: none;
 
-    background:transparent;
+    background: transparent;
 
-    font-size:26px;
+    font-size: 26px;
 
-    line-height:1;
+    line-height: 1;
 
-    color:#59636a;
+    color: #222;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    margin:0;
+    margin: 0;
 
-    padding:0;
+    padding: 0;
 }
 
-#chiudi-avviso:hover {
-    color:#222;
+/* =========================================================
+   SCHERMATA DI ACCESSO ADMIN / OPERATORE
+========================================================= */
+
+body:has(.admin-login) {
+    background: #eef2f4;
+}
+
+body:has(.admin-login) .admin-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+body:has(.admin-login) .admin-login {
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+    padding: 35px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #d5dde2;
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   AREA AMMINISTRATIVA
+   ========================================================= */
+
+.admin-container {
+    max-width: 1400px;
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+}
+
+.admin-login {
+    max-width: 500px;
+
+    margin: 0 auto 40px;
+
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.admin-login h1 {
+    margin-top: 0;
+}
+
+.admin-login label {
+    display: block;
+
+    margin: 0 0 6px;
+
+    color: #42586B;
+
+    font-weight: 700;
+}
+
+.admin-login input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    margin-bottom: 16px;
+
+    border: 1px solid #cbd4da;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #333;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    text-align: left;
+}
+
+.admin-login input:focus {
+    outline: none;
+
+    border-color: #6d8496;
+
+    box-shadow:
+        0 0 0 3px rgba(66, 88, 107, 0.10);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 1rem;
+}
+
+.admin-login button {
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+}
+
+#admin-area {
+    overflow-x: auto;
 }
 
 
-/* MOBILE */
+/* =========================================================
+   INTESTAZIONE AREA AMMINISTRATORE
+   ========================================================= */
 
-@media(max-width:700px){
+.admin-intestazione {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+    padding: 22px 25px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+}
+
+.admin-intestazione h2 {
+    margin: 0 0 6px;
+
+    color: #42586B;
+
+    font-size: 26px;
+}
+
+.admin-intestazione p {
+    margin: 0;
+
+    color: #66737d;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PULSANTE ESCI ADMIN
+   ========================================================= */
+
+.bottone-esci {
+    flex: 0 0 auto;
+
+    margin: 0;
+
+    padding: 10px 20px;
+
+    background: #6f3939;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+.bottone-esci:hover {
+    background: #5a2e2e;
+}
+
+
+/* =========================================================
+TABELLA ARCHIVIO AMMINISTRATIVO
+========================================================= */
+
+#archivio {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+#archivio table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border: 1px solid #d5dde2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    table-layout: fixed;
+}
+
+#archivio thead {
+    background: #42586B;
+    color: white;
+}
+
+#archivio th {
+    padding: 14px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 2px solid #31475A;
+    white-space: nowrap;
+}
+
+#archivio td {
+    padding: 12px;
+    color: #42586B;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #e1e6e9;
+    overflow-wrap: anywhere;
+}
+
+#archivio tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+#archivio tbody tr:nth-child(even) {
+    background: #f3f7f9;
+}
+
+#archivio tbody tr:hover {
+    background: #e8f0f4;
+}
+
+#archivio tbody tr td {
+    border-bottom: none;
+}
+
+/* =========================================================
+LARGHEZZA E ALLINEAMENTO COLONNE ARCHIVIO
+========================================================= */
+
+/* ID */
+#archivio th:nth-child(1),
+#archivio td:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+
+/* Cognome e Nome */
+#archivio th:nth-child(2),
+#archivio td:nth-child(2) {
+    width: 24%;
+    text-align: left;
+}
+
+/* Anno decesso */
+#archivio th:nth-child(3),
+#archivio td:nth-child(3) {
+    width: 14%;
+    text-align: center;
+}
+
+/* Posizione */
+#archivio th:nth-child(4),
+#archivio td:nth-child(4) {
+    width: 12%;
+    text-align: center;
+}
+
+/* Note */
+#archivio th:nth-child(5),
+#archivio td:nth-child(5) {
+    width: 24%;
+    text-align: left;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+/* Pubblicato */
+#archivio th:nth-child(6),
+#archivio td:nth-child(6) {
+    width: 10%;
+    text-align: center;
+}
+
+/* Azioni */
+#archivio th:nth-child(7),
+#archivio td:nth-child(7) {
+    width: 10%;
+    text-align: center;
+}
+
+
+/* =========================================================
+   PULSANTI ARCHIVIO
+========================================================= */
+
+#archivio button {
+    display: inline-block;
+
+    min-width: 82px;
+
+    margin: 3px;
+
+    padding: 8px 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    text-align: center;
+
+    opacity: 1;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+#archivio button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* MODIFICA */
+
+#archivio .bottone-modifica {
+    background: #31475A;
+}
+
+#archivio .bottone-modifica:hover {
+    background: #42586B;
+}
+
+
+/* ELIMINA */
+
+#archivio .bottone-elimina {
+    background: #6f3939;
+}
+
+#archivio .bottone-elimina:hover {
+    background: #5a2e2e;
+}
+
+
+/* =========================================================
+   RICERCA AMMINISTRATIVA
+   ========================================================= */
+
+.admin-ricerca {
+    margin: 20px 0 22px;
+
+    padding: 18px 20px;
+
+    background: rgba(255, 255, 255, 0.90);
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 18px rgba(57, 73, 84, 0.08);
+
+    box-sizing: border-box;
+}
+
+.admin-ricerca-titolo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+
+    color: #42586B;
+}
+
+.admin-ricerca-titolo strong {
+    display: block;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.admin-ricerca-titolo small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #73808a;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+.admin-ricerca-icona {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 38px;
+
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    background: #e7eef2;
+
+    color: #50697b;
+
+    border-radius: 10px;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.admin-ricerca-campo {
+    position: relative;
+
+    width: 100%;
+}
+
+.admin-ricerca-campo input {
+    width: 100%;
+
+    max-width: none;
+
+    box-sizing: border-box;
+
+    padding: 13px 48px 13px 15px;
+
+    margin: 0;
+
+    border: 1px solid #cbd6dc;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    color: #334854;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    text-align: left;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-ricerca-campo input:focus {
+    outline: none;
+
+    border-color: #6d8496;
+
+    box-shadow:
+        0 0 0 3px rgba(109, 132, 150, 0.15);
+}
+
+#cancella-ricerca {
+    position: absolute;
+
+    top: 50%;
+
+    right: 10px;
+
+    transform: translateY(-50%);
+
+    width: 32px;
+
+    height: 32px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #71808a;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+#cancella-ricerca:hover {
+    background: #edf2f5;
+
+    color: #42586B;
+}
+
+
+/* =========================================================
+   FINESTRA MODIFICA / INSERIMENTO ADMIN
+   ========================================================= */
+
+#modifica-defunto {
+    display: none;
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 94%;
+
+    max-width: 900px;
+
+    max-height: 92vh;
+
+    padding: 0;
+
+    background: #f7f9fa;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.25);
+
+    overflow-y: auto;
+
+    z-index: 1000;
+
+    box-sizing: border-box;
+}
+
+
+/* CONTENUTO INTERNO */
+
+.contenuto-modifica {
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* TITOLO */
+
+#modifica-defunto h2 {
+    margin: 0;
+
+    padding: 24px 65px 22px 30px;
+
+    background: #42586B;
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    border-radius: 18px 18px 0 0;
+}
+
+
+/* X */
+
+#chiudi-modifica {
+    position: absolute;
+
+    top: 13px;
+
+    right: 15px;
+
+    width: 42px;
+
+    height: 42px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.30);
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 1002;
+}
+
+#chiudi-modifica:hover {
+    background: rgba(255, 255, 255, 0.40);
+}
+
+
+/* =========================================================
+   FORM ADMIN
+   ========================================================= */
+
+#form-defunto {
+    padding: 25px 30px 30px;
+
+    box-sizing: border-box;
+}
+
+#form-defunto label {
+    display: block;
+
+    margin: 0 0 6px;
+
+    color: #42586B;
+
+    font-weight: 700;
+
+    font-size: 14px;
+}
+
+#form-defunto input,
+#form-defunto textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 1px solid #cbd4da;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #333;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    margin-bottom: 16px;
+
+    outline: none;
+}
+
+#form-defunto input:focus,
+#form-defunto textarea:focus {
+    border-color: #6d8496;
+
+    box-shadow:
+        0 0 0 3px rgba(66, 88, 107, 0.10);
+}
+
+#form-defunto textarea {
+    min-height: 100px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* ETA */
+
+#form-defunto #eta {
+    background: #edf2f5;
+
+    color: #42586B;
+
+    font-weight: 700;
+}
+
+
+/* OSSERVAZIONI */
+
+#form-defunto #osservazioni {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+/* NOTE INTERNE */
+
+#form-defunto #note {
+    min-height: 110px;
+
+    resize: vertical;
+
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   FOTO - ADMIN
+   ========================================================= */
+
+.blocco-foto-admin {
+    margin: 8px 0 20px;
+
+    padding: 18px;
+
+    background: #edf2f5;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+.blocco-foto-admin label {
+    margin-bottom: 8px;
+}
+
+.blocco-foto-admin input[type="file"] {
+    width: 100%;
+
+    margin: 0 0 8px;
+
+    padding: 9px;
+
+    background: white;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.blocco-foto-admin small {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #66737d;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+.anteprima-foto {
+    display: none;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 12px;
+
+    background: white;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+.anteprima-foto img {
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 300px;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+#form-defunto .checkbox-admin {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 10px 0 20px;
+
+    padding: 14px 16px;
+
+    background: #edf4f7;
+
+    border: 1px solid #cbd9e0;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+#form-defunto .checkbox-admin input[type="checkbox"] {
+    width: 20px;
+
+    height: 20px;
+
+    margin: 0;
+
+    padding: 0;
+
+    flex: 0 0 auto;
+
+    cursor: pointer;
+
+    accent-color: #42586B;
+}
+
+
+/* =========================================================
+   PULSANTE SALVA ADMIN
+   ========================================================= */
+
+#form-defunto button[type="submit"] {
+    margin: 0;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #31475A;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+#form-defunto button[type="submit"]:hover {
+    background: #42586B;
+}
+
+
+/* =========================================================
+   AZIONI PRINCIPALI ADMIN
+   ========================================================= */
+
+.admin-azioni-principali {
+    margin: 15px 0 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.admin-azioni-principali button {
+    margin: 0;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #31475A;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+.admin-azioni-principali button:hover {
+    background: #42586B;
+}
+
+
+/* =========================================================
+   ELENCO ELIMINATI
+   ========================================================= */
+
+.archivio-cancellati {
+    margin-top: 35px;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 12px;
+}
+
+.titolo-cancellati h2 {
+    margin: 0 0 8px;
+
+    color: #42586B;
+
+    font-size: 22px;
+}
+
+.titolo-cancellati p {
+    margin: 0 0 20px;
+
+    color: #66737d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FINESTRA ELENCO ELIMINATI
+   ========================================================= */
+
+.finestra-cancellati {
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(30, 45, 55, 0.55);
+
+    z-index: 2000;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+.contenuto-cancellati {
+    position: relative;
+
+    width: 94%;
+
+    max-width: 1000px;
+
+    max-height: 90vh;
+
+    margin: 5vh auto;
+
+    padding: 30px;
+
+    background: #f7f9fa;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.25);
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+.contenuto-cancellati h2 {
+    margin: 0 0 8px;
+
+    padding-right: 50px;
+
+    color: #42586B;
+
+    font-size: 25px;
+}
+
+.descrizione-cancellati {
+    margin: 0 0 25px;
+
+    color: #66737d;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.chiudi-cancellati {
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 42px;
+
+    height: 42px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #31475A;
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.chiudi-cancellati:hover {
+    background: #42586B;
+}
+
+#cancellati {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+#cancellati table {
+    width: 100%;
+
+    min-width: 700px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    background: white;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+#cancellati thead {
+    background: #42586B;
+
+    color: white;
+}
+
+#cancellati th {
+    padding: 12px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+#cancellati td {
+    padding: 11px 12px;
+
+    color: #42586B;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #e1e6e9;
+
+    text-align: center;
+
+    font-weight: 700;
+}
+
+#cancellati tbody tr:nth-child(even) {
+    background: #f3f7f9;
+}
+
+#cancellati tbody tr td {
+    border-bottom: none;
+}
+
+#cancellati button {
+    margin: 0;
+
+    padding: 8px 14px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #31475A;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#cancellati button:hover {
+    background: #42586B;
+}
+
+
+/* =========================================================
+   AREA OPERATORE
+   ========================================================= */
+
+#operatore-area {
+    max-width: 900px;
+
+    margin: 0 auto 40px;
+
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+}
+
+#operatore-area h2 {
+    margin-top: 0;
+
+    margin-bottom: 8px;
+
+    text-align: left;
+}
+
+#operatore-area > p {
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    color: #66737d;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MODULO OPERATORE
+   ========================================================= */
+
+.form-operatore {
+    padding: 25px;
+
+    background: #f7f9fa;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+.form-operatore h3 {
+    margin: 0 0 8px;
+
+    color: #42586B;
+
+    font-size: 22px;
+}
+
+.descrizione-operatore {
+    margin: 0 0 25px;
+
+    color: #66737d;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+#form-defunto-operatore {
+    width: 100%;
+}
+
+#form-defunto-operatore label {
+    display: block;
+
+    margin: 0 0 6px;
+
+    color: #42586B;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+#form-defunto-operatore input,
+#form-defunto-operatore textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    margin-bottom: 17px;
+
+    border: 1px solid #cbd4da;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #333;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+#form-defunto-operatore input:focus,
+#form-defunto-operatore textarea:focus {
+    border-color: #6d8496;
+
+    box-shadow:
+        0 0 0 3px rgba(66, 88, 107, 0.10);
+}
+
+#form-defunto-operatore textarea {
+    min-height: 100px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOTO OPERATORE
+   ========================================================= */
+
+#form-defunto-operatore .blocco-foto-admin {
+    margin-top: 8px;
+}
+
+#operatore-foto {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   OSSERVAZIONI OPERATORE
+   ========================================================= */
+
+#operatore-osservazioni {
+    min-height: 110px;
+}
+
+
+/* =========================================================
+   NOTE OPERATORE
+   ========================================================= */
+
+#operatore-note {
+    min-height: 110px;
+
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   PULSANTE INSERIMENTO
+   ========================================================= */
+
+#form-defunto-operatore button[type="submit"] {
+    margin: 5px 0 0;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #31475A;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+#form-defunto-operatore button[type="submit"]:hover {
+    background: #42586B;
+}
+
+
+/* =========================================================
+   MESSAGGIO OPERATORE
+   ========================================================= */
+
+#operatore-form-messaggio {
+    margin: 18px 0 0;
+
+    color: #42586B;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RICHIESTA MODIFICA OPERATORE
+   ========================================================= */
+
+.richiesta-modifica-operatore {
+    margin-top: 25px;
+
+    padding: 22px 25px;
+
+    background: white;
+
+    border: 1px solid #d5dde2;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+.richiesta-modifica-operatore h3 {
+    margin: 0 0 8px;
+
+    color: #42586B;
+
+    font-size: 19px;
+}
+
+.richiesta-modifica-operatore p {
+    margin: 0 0 15px;
+
+    color: #66737d;
+
+    line-height: 1.5;
+}
+
+#richiedi-modifica {
+    margin: 0;
+
+    padding: 11px 20px;
+
+    background: #31475A;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+#richiedi-modifica:hover {
+    background: #42586B;
+}
+
+
+/* =========================================================
+   LOGOUT OPERATORE
+   ========================================================= */
+
+#logout-operatore {
+    margin-top: 20px;
+
+    padding: 10px 20px;
+
+    background: #6f3939;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    opacity: 1;
+}
+
+#logout-operatore:hover {
+    background: #5a2e2e;
+}
+
+
+
+/* =========================================================
+   LINK AREA AMMINISTRATIVA NEL FOOTER
+========================================================= */
+
+.footer-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: fit-content;
+    margin: 18px auto 0;
+    padding: 8px 14px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 7px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.footer-admin-icona {
+    width: 23px;
+    height: 23px;
+    min-width: 28px;
+    flex: 0 0 28px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-admin:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
 
     body {
+        padding: 15px;
 
-        padding:15px;
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        overflow-x:hidden;
+        overflow-x: hidden;
     }
 
 
     /* HERO */
 
     .hero {
+        background-attachment: scroll;
 
-        background-attachment:scroll;
+        min-height: 420px;
 
-        min-height:420px;
+        display: flex;
 
-        display:flex;
+        flex-direction: column;
 
-        flex-direction:column;
+        justify-content: center;
 
-        justify-content:center;
+        align-items: center;
 
-        align-items:center;
-
-        background-size:cover;
+        background-size: cover;
     }
-
 
     .stemma {
+        width: 100px;
 
-        width:100px;
-
-        margin-bottom:20px;
+        margin-bottom: 20px;
     }
-
 
     .hero h1 {
-
-        font-size:32px;
+        font-size: 32px;
     }
 
-
     .sottotitolo {
-
-        font-size:18px;
+        font-size: 18px;
     }
 
 
     /* HERO SECONDARIO */
 
     .hero-secondario {
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        padding:30px 15px;
+        padding: 30px 15px;
     }
-
 
     .hero-secondario h1 {
-
-        font-size:30px;
+        font-size: 30px;
     }
 
-
     .hero-secondario p {
-
-        font-size:18px;
+        font-size: 18px;
     }
 
 
     /* SCHEDA DEFUNTO */
 
     #scheda {
+        width: 100%;
 
-        width:100%;
+        max-width: 700px;
 
-        max-width:700px;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
+        padding: 20px;
 
-        padding:20px;
+        margin: 30px auto;
 
-        margin:30px auto;
-
-        overflow:hidden;
+        overflow: hidden;
     }
-
 
     .scheda-contenuto {
+        width: 100%;
 
-        width:100%;
+        max-width: 100%;
 
-        max-width:100%;
+        flex-direction: column;
 
-        flex-direction:column;
+        gap: 25px;
 
-        gap:25px;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
-
 
     .dati-defunto {
+        width: 100%;
 
-        width:100%;
+        min-width: 0;
 
-        min-width:0;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
-
 
     .foto-defunto {
+        width: 250px;
 
-        width:250px;
+        height: 250px;
 
-        height:250px;
+        max-width: 100%;
 
-        max-width:100%;
+        margin: auto;
 
-        margin:auto;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
-
 
     .foto-defunto img {
+        max-width: 100%;
 
-        max-width:100%;
-
-        max-height:100%;
+        max-height: 100%;
     }
-
 
     .foto-mancante {
+        width: 250px;
 
-        width:250px;
+        max-width: 100%;
 
-        max-width:100%;
+        margin: auto;
 
-        margin:auto;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
-
     .foto-mancante img {
+        width: 72%;
 
-        width:72%;
+        max-width: 100%;
 
-        max-width:100%;
+        height: auto;
 
-        height:auto;
-
-        object-fit:contain;
+        object-fit: contain;
     }
 
 
@@ -1054,177 +2652,859 @@ a:hover {
 
     .pulsante,
     .scheda-button {
+        max-width: 100%;
 
-        max-width:100%;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* HOME */
 
     .funzioni-home {
-
-        flex-direction:column;
+        flex-direction: column;
     }
-
 
     .funzione {
-
-        width:auto;
+        width: auto;
     }
-
 
     .cimitero-sezione {
-
-        flex-direction:column;
+        flex-direction: column;
     }
-
 
     .cimitero-sezione div {
-
-        text-align:center;
+        text-align: center;
     }
-
 
     .cimitero-sezione h2 {
-
-        text-align:center;
+        text-align: center;
     }
-
 
     .cimitero-sezione img {
-
-        width:100%;
+        width: 100%;
     }
-
 
     .pulsanti-cimitero {
-
-        flex-direction:column;
+        flex-direction: column;
     }
-
 
     .gestione-sito {
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: center;
 
-        align-items:center;
-
-        width:100%;
+        width: 100%;
     }
 
-
     .gestione-sito div {
+        width: 100%;
 
-        width:100%;
-
-        flex:none;
+        flex: none;
     }
 
 
     /* COLLABORAZIONE COMUNE */
 
     .collaborazione-comune {
+        display: block;
 
-        display:block;
+        width: 100%;
 
-        width:100%;
+        margin: 18px 0 0;
 
-        margin:18px 0 0;
+        text-align: center;
 
-        text-align:center;
+        font-size: 14px;
 
-        font-size:14px;
+        font-style: italic;
 
-        font-style:italic;
+        font-weight: 700;
 
-        font-weight:700;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* FOOTER */
 
     .footer-sito {
+        width: 100%;
 
-        width:100%;
+        box-sizing: border-box;
 
-        box-sizing:border-box;
-
-        padding:35px 15px;
+        padding: 35px 15px;
     }
 
-
     .footer-box {
+        width: 100%;
 
-        width:100%;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
 
 
     /* AVVISO MOBILE */
 
     .avviso-costruzione {
+        width: 100%;
 
-        width:100%;
+        padding: 14px 45px 14px 15px;
 
-        padding:14px 45px 14px 15px;
+        display: flex;
 
-        display:flex;
+        align-items: center;
 
-        align-items:center;
+        justify-content: center;
 
-        justify-content:center;
-
-        box-sizing:border-box;
+        box-sizing: border-box;
     }
-
 
     .avviso-testo {
+        width: 100%;
 
-        width:100%;
+        display: flex;
 
-        display:flex;
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: center;
 
-        align-items:center;
+        justify-content: center;
 
-        justify-content:center;
+        text-align: center;
 
-        text-align:center;
-
-        gap:4px;
+        gap: 4px;
     }
-
 
     .avviso-testo strong {
+        font-size: 15px;
 
-        font-size:15px;
-
-        text-align:center;
+        text-align: center;
     }
-
 
     .avviso-testo span {
+        font-size: 13px;
 
-        font-size:13px;
+        line-height: 1.4;
 
-        line-height:1.4;
-
-        text-align:center;
+        text-align: center;
     }
-
 
     #chiudi-avviso {
+        right: 8px;
 
-        right:8px;
+        top: 50%;
 
-        top:50%;
-
-        transform:translateY(-50%);
+        transform: translateY(-50%);
     }
+
+
+    /* =====================================================
+       AREA ADMIN MOBILE
+       ===================================================== */
+
+    .admin-container {
+        padding: 0 10px;
+    }
+
+    .admin-login {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 22px;
+    }
+
+    #modifica-defunto {
+        width: 96%;
+
+        max-height: 94vh;
+
+        border-radius: 14px;
+    }
+
+    #modifica-defunto h2 {
+        padding: 20px 55px 18px 20px;
+
+        font-size: 21px;
+
+        border-radius: 14px 14px 0 0;
+    }
+
+    #form-defunto {
+        padding: 20px;
+    }
+
+    #chiudi-modifica {
+        top: 10px;
+
+        right: 10px;
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 27px;
+    }
+
+    .admin-azioni-principali {
+        flex-direction: column;
+    }
+
+    .admin-azioni-principali button {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       RICERCA ADMIN MOBILE
+       ===================================================== */
+
+    .admin-ricerca {
+        padding: 16px;
+    }
+
+    .admin-ricerca-titolo {
+        align-items: flex-start;
+    }
+
+    .admin-ricerca-icona {
+        width: 34px;
+
+        height: 34px;
+
+        flex-basis: 34px;
+
+        font-size: 21px;
+    }
+
+    .admin-ricerca-campo input {
+        font-size: 16px;
+    }
+
+
+    /* =====================================================
+       FOTO MOBILE
+       ===================================================== */
+
+    .blocco-foto-admin {
+        padding: 15px;
+    }
+
+    .anteprima-foto img {
+        max-height: 240px;
+    }
+
+
+    /* =====================================================
+       OPERATORE MOBILE
+       ===================================================== */
+
+    #operatore-area {
+        width: 100%;
+
+        margin: 0 auto 25px;
+
+        padding: 20px;
+
+        border-radius: 12px;
+    }
+
+    #operatore-area h2 {
+        font-size: 23px;
+    }
+
+    .form-operatore {
+        padding: 18px;
+
+        border-radius: 10px;
+    }
+
+    .form-operatore h3 {
+        font-size: 20px;
+    }
+
+    #form-defunto-operatore input,
+    #form-defunto-operatore textarea {
+        font-size: 16px;
+    }
+
+    #form-defunto-operatore button[type="submit"] {
+        width: 100%;
+    }
+
+    .richiesta-modifica-operatore {
+        padding: 18px;
+    }
+
+    #richiedi-modifica {
+        width: 100%;
+    }
+
+    #logout-operatore {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       ELENCO ELIMINATI MOBILE
+       ===================================================== */
+
+    .contenuto-cancellati {
+        width: 96%;
+
+        max-height: 94vh;
+
+        margin: 3vh auto;
+
+        padding: 20px;
+
+        border-radius: 14px;
+    }
+
+    .contenuto-cancellati h2 {
+        font-size: 21px;
+    }
+
+    .chiudi-cancellati {
+        top: 10px;
+
+        right: 10px;
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 27px;
+    }
+
+    #cancellati table {
+        min-width: 700px;
+    }
+
+    .archivio-cancellati {
+        padding: 20px;
+    }
+
+
+    /* =====================================================
+       TABELLA ADMIN MOBILE
+       ===================================================== */
+
+    #archivio {
+        margin-top: 15px;
+
+        overflow-x: auto;
+    }
+
+    #archivio table {
+        min-width: 900px;
+    }
+
+    #archivio th,
+    #archivio td {
+        padding: 10px 8px;
+
+        font-size: 13px;
+    }
+
+
+    /* INTESTAZIONE ADMIN MOBILE */
+
+    .admin-intestazione {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 20px;
+    }
+
+    .admin-intestazione h2 {
+        font-size: 23px;
+    }
+
+    .bottone-esci {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   PULSANTE ELIMINA - AREA ADMIN
+   ===================================================== */
+
+.bottone-elimina {
+    background: #6f3939;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bottone-elimina:hover {
+    background: #5a2e2e;
+}
+
+/* =====================================================
+   FINESTRA AVVISI AREA ADMIN
+===================================================== */
+
+.finestra-avviso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(20, 30, 40, 0.55);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.avviso-admin {
+    width: 100%;
+    max-width: 440px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 30px 30px 25px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    border-top: 5px solid #31475A;
+}
+
+.avviso-icona {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f1ec;
+    color: #486b5a;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.avviso-admin h3 {
+    margin: 0 0 12px;
+
+    color: #31475A;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.avviso-admin p {
+    margin: 0;
+
+    color: #4c5963;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.avviso-azioni {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.avviso-bottone {
+    min-width: 100px;
+
+    padding: 10px 22px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.avviso-bottone.conferma {
+    background: #31475A;
+    color: white;
+}
+
+.avviso-bottone.conferma:hover {
+    background: #42586B;
+}
+
+.avviso-bottone.annulla {
+    background: #6f3939;
+    color: white;
+}
+
+.avviso-bottone.annulla:hover {
+    background: #5a2e2e;
+}
+
+
+/* =====================================================
+   TIPI DI AVVISO
+===================================================== */
+
+.avviso-admin.successo {
+    border-top-color: #486b5a;
+}
+
+.avviso-admin.successo .avviso-icona {
+    background: #e8f1ec;
+    color: #486b5a;
+}
+
+.avviso-admin.attenzione {
+    border-top-color: #a17b38;
+}
+
+.avviso-admin.attenzione .avviso-icona {
+    background: #f5efe2;
+    color: #a17b38;
+}
+
+.avviso-admin.errore {
+    border-top-color: #6f3939;
+}
+
+.avviso-admin.errore .avviso-icona {
+    background: #f3e7e7;
+    color: #6f3939;
+}
+
+.avviso-admin.conferma {
+    border-top-color: #31475A;
+}
+
+.avviso-admin.conferma .avviso-icona {
+    background: #e8edf1;
+    color: #31475A;
+}
+
+/* =====================================================
+   IMPORTAZIONE MASSIVA EXCEL
+===================================================== */
+
+.riquadro-importa {
+    max-width: 850px;
+    margin: 20px 0 30px;
+    padding: 25px 28px;
+
+    background: #f8fafb;
+    border: 1px solid #d5dde3;
+    border-left: 5px solid #31475A;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+}
+
+.riquadro-importa h3 {
+    margin: 0 0 15px;
+
+    color: #31475A;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.riquadro-importa p {
+    margin: 8px 0;
+
+    color: #4d5b65;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.riquadro-importa p strong {
+    color: #6f3939;
+}
+
+
+/* -----------------------------------------------------
+   SELEZIONE FILE
+----------------------------------------------------- */
+
+.riquadro-importa label {
+    display: block;
+
+    margin-top: 22px;
+    margin-bottom: 8px;
+
+    color: #31475A;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#file-importa-nuovi {
+    display: block;
+
+    width: 100%;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    border: 1px solid #c7d0d7;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    color: #4d5b65;
+
+    cursor: pointer;
+}
+
+#file-importa-nuovi:hover {
+    border-color: #31475A;
+}
+
+
+/* -----------------------------------------------------
+   PULSANTI IMPORTAZIONE
+----------------------------------------------------- */
+
+.azioni-importa {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 22px;
+    padding-top: 20px;
+
+    border-top: 1px solid #d9e0e5;
+}
+
+.azioni-importa button {
+    margin: 0;
+
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.azioni-importa button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* Anteprima */
+
+#anteprima-importa-nuovi {
+    background: #31475A;
+    color: white;
+}
+
+#anteprima-importa-nuovi:hover {
+    background: #42586B;
+}
+
+
+/* Conferma */
+
+#conferma-importa-nuovi {
+    background: #486b5a;
+    color: white;
+}
+
+#conferma-importa-nuovi:hover {
+    background: #3d5b4c;
+}
+
+
+/* Annulla */
+
+#annulla-importa-nuovi {
+    background: #6f3939;
+    color: white;
+}
+
+#annulla-importa-nuovi:hover {
+    background: #5a2e2e;
+}
+
+
+/* -----------------------------------------------------
+   RISULTATO IMPORTAZIONE
+----------------------------------------------------- */
+
+.risultato-importa {
+    margin-top: 20px;
+
+    padding: 15px 18px;
+
+    background: white;
+
+    border: 1px solid #d5dde3;
+    border-radius: 8px;
+
+    color: #4d5b65;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    box-sizing: border-box;
+}
+
+.risultato-importa:empty {
+    display: none;
+}
+
+
+/* -----------------------------------------------------
+   ADATTAMENTO TELEFONO
+----------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .riquadro-importa {
+        padding: 20px;
+    }
+
+    .azioni-importa {
+        flex-direction: column;
+    }
+
+    .azioni-importa button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   LARGHEZZA COMPLETA MODULI INSERIMENTO
+========================================================= */
+
+#form-inserimento-operatore,
+#form-defunto-operatore,
+.contenuto-modifica,
+#form-defunto {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+#form-defunto-operatore input,
+#form-defunto-operatore textarea,
+#form-defunto input,
+#form-defunto textarea {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PULSANTE VAI AL SITO
+========================================================= */
+
+.bottone-vai-sito {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 35px;
+    box-sizing: border-box;
+
+    padding: 0;
+
+    background: transparent;
+    color: #31475A;
+
+    border: 1px solid #31475A;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.bottone-vai-sito:hover {
+    background: #31475A;
+    color: white;
+}
+
+/* =========================================================
+   PULSANTI VAI AL SITO + ESCI
+   Posizionamento indipendente dall'impaginazione
+========================================================= */
+.admin-intestazione {
+    position: relative;
+}
+
+.admin-intestazione .bottone-esci {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+}
+
+.admin-intestazione .bottone-vai-sito {
+    position: absolute;
+    top: 50%;
+    right: 105px;
+    transform: translateY(-50%);
+}
+
+/* Allineamento Vai al sito - Area Operatore */
+
+#operatore-area .bottone-vai-sito {
+    top: calc(52% + 18px);
 }

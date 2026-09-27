@@ -1,0 +1,126 @@
+let defunti = [];
+
+
+fetch("http://localhost:3000/api/defunti")
+.then(response => response.json())
+.then(dati => {
+
+    defunti = dati;
+
+    console.log("Defunti caricati:", defunti.length);
+
+});
+
+
+
+function nomeFormattato(nome){
+
+    return nome
+    .toLowerCase()
+    .replace(/\b\w/g, lettera => lettera.toUpperCase());
+
+}
+
+
+
+function cercaDefunto(){
+
+
+    let testo = document
+    .getElementById("cerca")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+
+    let risultati = defunti.filter(persona =>
+
+        persona["Cognome e Nome"]
+        .toLowerCase()
+        .includes(testo)
+
+    );
+
+
+
+    let contenitore =
+    document.getElementById("risultati");
+
+
+
+    contenitore.innerHTML = "";
+
+
+
+    if(risultati.length === 0){
+
+        contenitore.innerHTML = `
+
+        <p>
+        Nessun defunto trovato.
+        </p>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    risultati.forEach(persona => {
+
+
+
+        contenitore.innerHTML += `
+
+
+        <div class="risultato-card">
+
+
+            <h3>
+            ${nomeFormattato(persona["Cognome e Nome"])}
+            </h3>
+
+
+
+            <p>
+            Deceduto:
+            ${persona["Anno  (Decesso)"] || ""}
+            </p>
+
+
+
+            <a 
+            href="defunto.html?id=${persona["ID"]}"
+            class="scheda-button">
+
+            Visualizza scheda
+
+            </a>
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+}
+
+
+
+document.getElementById("cerca")
+.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
+
+        cercaDefunto();
+
+    }
+
+});

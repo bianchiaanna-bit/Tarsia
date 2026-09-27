@@ -1,291 +1,206 @@
-fetch("dati/defunti.json")
-
-.then(response => response.json())
-
-.then(defunti => {
-
-
 let parametri = new URLSearchParams(window.location.search);
 
 let id = parametri.get("id");
 
+fetch(`https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`)
 
-let persona = defunti[id];
+    .then(response => {
 
+        if (!response.ok) {
+            throw new Error("Defunto non trovato");
+        }
 
-let scheda = document.getElementById("scheda");
+        return response.json();
 
+    })
 
-// nome corretto
+    .then(risposta => {
 
-let nomeCompleto = persona["Cognome e Nome"]
-.toLowerCase()
-.replace(/\b\w/g, letter => letter.toUpperCase());
+        let persona = risposta.defunto;
 
+        let scheda =
+            document.getElementById("scheda");
 
 
-// funzione creazione scheda
+        // --------------------------------------
+        // NOME CORRETTO
+        // --------------------------------------
 
-function creaScheda(foto) {
+        let nomeCompleto =
+            persona.cognome_nome
+                .toLowerCase()
+                .replace(
+                    /\b\w/g,
+                    lettera => lettera.toUpperCase()
+                );
 
 
-scheda.innerHTML = `
+        // --------------------------------------
+        // FUNZIONE CREAZIONE SCHEDA
+        // --------------------------------------
 
+        function creaScheda(foto) {
 
-<a href="index.html" class="torna">
-← Torna alla ricerca
-</a>
+            scheda.innerHTML = `
 
+            <a href="index.html" class="torna">
+                ← Torna alla ricerca
+            </a>
 
+            <h2>${nomeCompleto}</h2>
 
-<h2>${nomeCompleto}</h2>
+            <div class="scheda-contenuto">
 
+                <div class="dati-defunto">
 
+                    <p>
+                        Sesso:
+                        ${
+                            persona.sesso === "M"
+                            ? "Maschio"
+                            : persona.sesso === "F"
+                            ? "Femmina"
+                            : "—"
+                        }
+                    </p>
 
+                    <p>
+                        Nato:
+                        ${persona.giorno_mese_nascita || "—"}
+                        ${persona.anno_nascita || ""}
+                    </p>
 
-<div class="scheda-contenuto">
+                    <p>
+                        Deceduto:
+                        ${persona.giorno_mese_decesso || "—"}
+                        ${persona.anno_decesso || ""}
+                    </p>
 
+                    <p>
+                        Età:
+                        ${
+                            persona.eta
+                            ? `${persona.eta} anni`
+                            : "—"
+                        }
+                    </p>
 
 
-<div class="dati-defunto">
+                    <h3 class="titolo-posizione">
+                        Posizione nel cimitero
+                    </h3>
 
+                    <p>
+                        Zona:
+                        ${persona.zona || "—"}
+                    </p>
 
+                    <p>
+                        Via:
+                        ${persona.via || "—"}
+                    </p>
 
-<p>
-Libro Archivio:
-${persona["Libro Archivio"] || ""}
-</p>
+                    <p>
+                        Loculo:
+                        ${persona.posizione_loculo || "—"}
+                    </p>
 
 
+                    ${
+                        persona.osservazioni
+                        ? `
+                        <p>
+                            <strong>Osservazioni:</strong>
+                            ${persona.osservazioni}
+                        </p>
+                        `
+                        : ""
+                    }
 
-<p>
-Sesso:
-${persona["Sesso"] === "M" ? "Maschio" : persona["Sesso"] === "F" ? "Femmina" : ""}
-</p>
 
+                    <a
+                        href="planimetria.html"
+                        class="pulsante">
+                        Visualizza posizione sulla mappa
+                    </a>
 
+                </div>
 
-<p>
-Nato:
-${persona["gg/mm  (Nascita)"] || ""}
-${persona["Anno  (Nascita)"] || ""}
-</p>
 
+                <div class="foto-defunto">
 
+                    ${foto}
 
-<p>
-Deceduto:
-${persona["gg/mm  (Decesso)"] || ""}
-${persona["Anno  (Decesso)"] || ""}
-</p>
+                </div>
 
+            </div>
 
+            `;
+        }
 
-<p>
-Età:
-${persona["Età "] || ""} anni
-</p>
 
+        // --------------------------------------
+        // GESTIONE FOTO
+        // --------------------------------------
 
+        if (persona.foto) {
 
+            creaScheda(`
 
+                <img
+                    src="https://cimitero-worker.cimiteroditarsia.workers.dev/api/foto/${encodeURIComponent(persona.foto)}"
+                    alt="${nomeCompleto}">
 
-<h3 class="titolo-posizione">
-Posizione nel cimitero
-</h3>
+            `);
 
+        } else {
 
+            creaScheda(`
 
+                <div class="foto-mancante">
 
-<p>
-Zona:
-${persona["Zona "] || ""}
-</p>
+                    <img
+                        src="immagini/angelo-nuvole.webp"
+                        alt="Immagine commemorativa">
 
+                    <a
+                        href="contatti.html"
+                        class="scheda-button">
+                        Proponi una fotografia
+                    </a>
 
+                </div>
 
-<p>
-Via:
-${persona["Via"] || ""}
-</p>
+            `);
 
+        }
 
+    })
 
-<p>
-Loculo:
-${persona["Posizione Loculo"] || ""}
-</p>
 
+// --------------------------------------
+// ERRORE CARICAMENTO
+// --------------------------------------
 
+.catch(errore => {
 
+    console.error(
+        "Errore caricamento defunto:",
+        errore
+    );
 
-<a href="planimetria.html" class="pulsante">
-Visualizza posizione sulla mappa
-</a>
+    document.getElementById("scheda").innerHTML = `
 
+        <p>
+            Defunto non trovato.
+        </p>
 
+        <a
+            href="index.html"
+            class="torna">
+            ← Torna alla ricerca
+        </a>
 
-</div>
-
-
-
-
-<div class="foto-defunto">
-
-${foto}
-
-</div>
-
-
-
-</div>
-
-
-
-`;
-
-
-
-}
-
-
-
-
-// gestione foto
-
-
-if(persona["Codice Foto"]) {
-
-
-let percorsoFoto = 
-`immagini/foto/${persona["Codice Foto"]}.webp`;
-
-
-
-fetch(percorsoFoto)
-
-.then(response => {
-
-
-if(response.ok){
-
-
-creaScheda(`
-
-
-<img 
-src="${percorsoFoto}"
-alt="${nomeCompleto}">
-
-
-`);
-
-
-
-}else{
-
-
-creaScheda(`
-
-
-<div class="foto-mancante">
-
-<img 
-src="immagini/angelo-nuvole.webp"
-alt="Immagine commemorativa">
-
-
-<a href="contatti.html" class="scheda-button">
-
-Proponi una fotografia
-
-</a>
-
-
-</div>
-
-
-`);
-
-
-}
-
-
-})
-
-.catch(() => {
-
-
-creaScheda(`
-
-
-<div class="foto-mancante">
-
-
-<img 
-src="immagini/angelo-nuvole.webp"
-alt="Immagine commemorativa">
-
-
-
-<a href="contatti.html" class="scheda-button">
-
-Proponi una fotografia
-
-</a>
-
-
-
-</div>
-
-
-`);
-
-
-});
-
-
-
-} else {
-
-
-
-creaScheda(`
-
-
-<div class="foto-mancante">
-
-
-<img 
-src="immagini/angelo-nuvole.webp"
-alt="Immagine commemorativa">
-
-
-
-<a href="contatti.html" class="scheda-button">
-
-Proponi una fotografia
-
-</a>
-
-
-
-</div>
-
-
-`);
-
-
-
-}
-
-
-
-})
-
-
-.catch(error => {
-
-console.error("Errore caricamento dati:", error);
+    `;
 
 });

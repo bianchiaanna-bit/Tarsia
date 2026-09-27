@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Area amministrativa - Cimitero di Tarsia</title>
+
+    <link
+        rel="stylesheet"
+        href="css/stile.css"
+    >
+
+</head>
+
+
+<body>
+
+<main class="admin-container">
+
+
+    <!-- ================================================= -->
+    <!-- LOGIN -->
+    <!-- ================================================= -->
+
+    <section class="admin-login">
+
+        <h1>Area amministrativa</h1>
+
+        <p>
+            Accesso riservato agli amministratori e agli operatori autorizzati.
+        </p>
+
+        <form id="login-form">
+
+            <label for="username">
+                Nome utente
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                required
+            >
+
+            <button type="submit">
+                Accedi
+            </button>
+
+        </form>
+
+        <p
+            id="login-messaggio"
+            class="messaggio"
+        ></p>
+
+    </section>
+
+
+
+    <!-- ================================================= -->
+    <!-- AREA AMMINISTRATORE -->
+    <!-- ================================================= -->
+
+    <section
+        id="admin-area"
+        style="display: none;"
+    >
+
+
+        <!-- INTESTAZIONE -->
+
+        <div class="admin-intestazione">
+
+            <div>
+
+                <h2>
+                    Area amministratore
+                </h2>
+
+                <p>
+                    Gestione completa dell'archivio del cimitero.
+                </p>
+
+            </div>
+
+            <a
+                href="index.html"
+                class="bottone-vai-sito"
+            >
+                ← Vai al sito
+            </a>
+
+
+            <button
+                type="button"
+                id="logout-admin"
+                class="bottone-esci"
+            >
+                Esci
+            </button>
+
+        </div>
+
+
+
+        <!-- AZIONI PRINCIPALI -->
+
+        <div class="admin-azioni-principali">
+
+            <button
+                type="button"
+                id="nuovo-defunto"
+            >
+                + Inserisci nuovo defunto
+            </button>
+
+             <button
+                type="button"
+                id="apri-importa-nuovi"
+            >
+                Importa nuovi nominativi
+            </button>
+
+            <button
+                type="button"
+                id="apri-cancellati"
+            >
+                Elenco eliminati
+            </button>
+
+        
+
+            <button
+                type="button"
+                id="esporta-archivio-excel"
+            >
+                Esporta archivio Excel
+            </button>
+
+        </div>
+
+<div
+    id="importa-nuovi"
+    class="riquadro-importa"
+    style="display: none;"
+>
+
+    <h3>Importa nuovi nominativi</h3>
+
+    <p>
+        Questa funzione permette di aggiungere nuovi nominativi
+        all'archivio tramite un file Excel.
+    </p>
+
+    <p>
+        <strong>Attenzione:</strong> l'importazione non modifica
+        e non cancella i nominativi già presenti.
+        Gli ID vengono generati automaticamente dal sistema.
+    </p>
+
+    <label for="file-importa-nuovi">
+        Seleziona il file Excel:
+    </label>
+
+    <input
+        type="file"
+        id="file-importa-nuovi"
+        accept=".xlsx,.xls"
+    >
+
+    <div class="azioni-importa">
+
+        <button
+            type="button"
+            id="anteprima-importa-nuovi"
+        >
+            Anteprima importazione
+        </button>
+
+        <button
+            type="button"
+            id="conferma-importa-nuovi"
+            style="display: none;"
+        >
+            Conferma importazione
+        </button>
+
+        <button
+            type="button"
+            id="annulla-importa-nuovi"
+        >
+            Annulla
+        </button>
+
+    </div>
+
+    <div
+        id="risultato-importa-nuovi"
+        class="risultato-importa"
+    ></div>
+
+</div>
+
+        <!-- ARCHIVIO -->
+
+        <div id="archivio">
+
+            <!-- Caricato da admin.js -->
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- MODULO MODIFICA ADMIN -->
+        <!-- ================================================= -->
+
+        <div
+            id="modifica-defunto"
+            class="modifica-defunto"
+        >
+
+            <div class="contenuto-modifica">
+
+
+                <button
+                    type="button"
+                    id="chiudi-modifica"
+                    class="chiudi-modifica"
+                >
+                    ×
+                </button>
+
+
+                <h2 id="titolo-modifica">
+                    Inserisci nuovo defunto
+                </h2>
+
+
+
+                <form id="form-defunto">
+
+
+                    <input
+                        type="hidden"
+                        id="defunto-id"
+                    >
+
+
+
+                    <!-- COGNOME E NOME -->
+
+                    <label for="cognome-nome">
+                        Cognome e Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cognome-nome"
+                        required
+                    >
+
+
+
+                    <!-- SESSO -->
+
+                    <label for="sesso">
+                        Sesso
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sesso"
+                    >
+
+
+
+                    <!-- DECESSO -->
+
+                    <label for="giorno-mese-decesso">
+                        Giorno e mese di decesso
+                    </label>
+
+                    <input
+                        type="text"
+                        id="giorno-mese-decesso"
+                        placeholder="es. 09/08"
+                    >
+
+
+                    <label for="anno-decesso">
+                        Anno di decesso
+                    </label>
+
+                    <input
+                        type="number"
+                        id="anno-decesso"
+                    >
+
+
+
+                    <!-- NASCITA -->
+
+                    <label for="giorno-mese-nascita">
+                        Giorno e mese di nascita
+                    </label>
+
+                    <input
+                        type="text"
+                        id="giorno-mese-nascita"
+                        placeholder="es. 15/03"
+                    >
+
+
+                    <label for="anno-nascita">
+                        Anno di nascita
+                    </label>
+
+                    <input
+                        type="number"
+                        id="anno-nascita"
+                    >
+
+
+
+                    <!-- ETA -->
+
+                    <label for="eta">
+                        Età
+                    </label>
+
+                    <input
+                        type="number"
+                        id="eta"
+                        readonly
+                    >
+
+
+
+                    <!-- POSIZIONE -->
+
+                    <label for="posizione-loculo">
+                        Posizione loculo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="posizione-loculo"
+                    >
+
+
+                    <label for="zona">
+                        Zona
+                    </label>
+
+                    <input
+                        type="text"
+                        id="zona"
+                    >
+
+
+                    <label for="via">
+                        Via
+                    </label>
+
+                    <input
+                        type="text"
+                        id="via"
+                    >
+
+
+
+                    <!-- ================================================= -->
+                    <!-- FOTO -->
+                    <!-- ================================================= -->
+
+                    <div class="blocco-foto-admin">
+
+                        <label for="foto">
+                            Fotografia della sepoltura
+                        </label>
+
+                        <input
+                            type="file"
+                            id="foto"
+                            accept="image/jpeg,image/png,image/webp"
+                        >
+
+                        <small>
+                            Formati consentiti: JPG, PNG, WEBP. Dimensione massima 10 MB.
+                        </small>
+
+                        <div
+                            id="anteprima-foto"
+                            class="anteprima-foto"
+                        >
+
+                            <img
+                                id="immagine-anteprima"
+                                src=""
+                                alt="Anteprima fotografia"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OSSERVAZIONI -->
+
+                    <label for="osservazioni">
+                        Osservazioni
+                    </label>
+
+                    <textarea
+                        id="osservazioni"
+                        rows="4"
+                    ></textarea>
+
+
+
+                    <!-- NOTE -->
+
+                    <label for="note">
+                        Note
+                    </label>
+
+                    <textarea
+                        id="note"
+                        rows="4"
+                    ></textarea>
+
+
+
+                    <!-- PUBBLICAZIONE -->
+
+                    <label class="checkbox-admin">
+
+                        <input
+                            type="checkbox"
+                            id="pubblicato"
+                        >
+
+                        Da pubblicare
+
+                    </label>
+
+
+
+                    <button type="submit">
+                        Salva
+                    </button>
+
+
+                </form>
+
+
+                <p
+                    id="form-messaggio"
+                    class="messaggio"
+                ></p>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================================= -->
+    <!-- AREA OPERATORE -->
+    <!-- ================================================= -->
+
+    <section
+        id="operatore-area"
+        style="display: none;"
+    >
+
+        <div class="admin-intestazione">
+
+            <div>
+
+                <h2>
+                    Area operatore
+                </h2>
+
+                <p>
+                    Inserimento di nuovi nominativi nell'archivio.
+                </p>
+
+            </div>
+
+                <a
+                    href="index.html"
+                    class="bottone-vai-sito"
+                >
+                    ← Vai al sito
+                </a>
+
+            <button
+                type="button"
+                id="logout-operatore"
+                class="bottone-esci"
+            >
+                Esci
+            </button>
+
+        </div>
+
+
+
+        <!-- MODULO OPERATORE -->
+
+        <div
+            id="form-inserimento-operatore"
+            class="form-operatore"
+        >
+
+            <h3>
+                Inserisci nuovo defunto
+            </h3>
+
+            <p class="descrizione-operatore">
+                Compila i dati del nuovo nominativo.
+                Il record inserito dall'operatore verrà pubblicato automaticamente.
+            </p>
+
+
+
+            <form id="form-defunto-operatore">
+
+
+                <label for="operatore-cognome-nome">
+                    Cognome e Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-cognome-nome"
+                    required
+                >
+
+
+
+                <label for="operatore-sesso">
+                    Sesso
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-sesso"
+                >
+
+
+
+                <label for="operatore-giorno-mese-decesso">
+                    Giorno e mese di decesso
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-giorno-mese-decesso"
+                    placeholder="es. 09/08"
+                >
+
+
+                <label for="operatore-anno-decesso">
+                    Anno di decesso
+                </label>
+
+                <input
+                    type="number"
+                    id="operatore-anno-decesso"
+                >
+
+
+
+                <label for="operatore-giorno-mese-nascita">
+                    Giorno e mese di nascita
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-giorno-mese-nascita"
+                    placeholder="es. 15/03"
+                >
+
+
+                <label for="operatore-anno-nascita">
+                    Anno di nascita
+                </label>
+
+                <input
+                    type="number"
+                    id="operatore-anno-nascita"
+                >
+
+
+
+                <label for="operatore-eta">
+                    Età
+                </label>
+
+                <input
+                    type="number"
+                    id="operatore-eta"
+                    readonly
+                >
+
+
+
+                <label for="operatore-posizione-loculo">
+                    Posizione loculo
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-posizione-loculo"
+                >
+
+
+                <label for="operatore-zona">
+                    Zona
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-zona"
+                >
+
+
+                <label for="operatore-via">
+                    Via
+                </label>
+
+                <input
+                    type="text"
+                    id="operatore-via"
+                >
+
+
+
+                <!-- FOTO OPERATORE -->
+
+                <div class="blocco-foto-admin">
+
+                    <label for="operatore-foto">
+                        Fotografia della sepoltura
+                    </label>
+
+                    <input
+                        type="file"
+                        id="operatore-foto"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                    <small>
+                        Formati consentiti: JPG, PNG, WEBP. Dimensione massima 10 MB.
+                    </small>
+
+                    <div
+                        id="anteprima-foto-operatore"
+                        class="anteprima-foto"
+                    >
+
+                        <img
+                            id="immagine-anteprima-operatore"
+                            src=""
+                            alt="Anteprima fotografia"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <label for="operatore-osservazioni">
+                    Osservazioni
+                </label>
+
+                <textarea
+                    id="operatore-osservazioni"
+                    rows="4"
+                ></textarea>
+
+
+
+                <label for="operatore-note">
+                    Note
+                </label>
+
+                <textarea
+                    id="operatore-note"
+                    rows="4"
+                ></textarea>
+
+
+
+                <button type="submit">
+                    Inserisci nell'archivio
+                </button>
+
+
+            </form>
+
+
+
+            <p
+                id="operatore-form-messaggio"
+                class="messaggio"
+            ></p>
+
+
+        </div>
+
+
+
+        <!-- RICHIESTA MODIFICA -->
+
+        <div class="richiesta-modifica-operatore">
+
+            <h3>
+                Richiedi una modifica
+            </h3>
+
+            <p>
+                Se è necessario modificare un dato già presente
+                nell'archivio, invia una richiesta all'amministratore.
+            </p>
+
+            <button
+                type="button"
+                id="richiedi-modifica"
+            >
+                Richiedi modifica all'amministratore
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================================================= -->
+<!-- ELENCO ELIMINATI -->
+<!-- ================================================= -->
+
+<div
+    id="finestra-cancellati"
+    class="finestra-cancellati"
+>
+
+    <div class="contenuto-cancellati">
+
+        <button
+            type="button"
+            id="chiudi-cancellati"
+            class="chiudi-cancellati"
+        >
+            ×
+        </button>
+
+        <h2>
+            Elenco eliminati
+        </h2>
+
+        <p class="descrizione-cancellati">
+            In questa sezione sono conservati i record eliminati dall'archivio principale.
+        </p>
+
+        <div id="cancellati">
+
+            <!-- Record cancellati -->
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FINESTRA AVVISI ADMIN
+===================================================== -->
+
+<div
+    id="finestra-avviso"
+    class="finestra-avviso"
+    style="display: none;"
+>
+    <div class="avviso-admin">
+
+        <div
+            id="avviso-icona"
+            class="avviso-icona"
+        >
+            ✓
+        </div>
+
+        <h3 id="avviso-titolo">
+            Operazione completata
+        </h3>
+
+        <p id="avviso-messaggio">
+            Operazione eseguita correttamente.
+        </p>
+
+        <div class="avviso-azioni">
+
+            <button
+                type="button"
+                id="avviso-annulla"
+                class="avviso-bottone annulla"
+                style="display: none;"
+            >
+                Annulla
+            </button>
+
+            <button
+                type="button"
+                id="avviso-conferma"
+                class="avviso-bottone conferma"
+            >
+                OK
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+
+</html>

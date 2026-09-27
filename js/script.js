@@ -1,146 +1,100 @@
 let defunti = [];
 
-fetch("dati/defunti.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(
-                "Impossibile caricare defunti.json"
-            );
-        }
-
-        return response.json();
-    })
-    .then(dati => {
-        defunti = dati;
-
-        console.log(
-            "Defunti caricati:",
-            defunti.length
-        );
-    })
-    .catch(error => {
-        console.error(
-            "Errore nel caricamento dei defunti:",
-            error
-        );
-
-        document.getElementById("risultati").innerHTML = `
-            <p>
-                Errore nel caricamento dell'archivio.
-            </p>
-        `;
-    });
-
-
 function nomeFormattato(nome) {
     return nome
         .toLowerCase()
-        .replace(
-            /\b\w/g,
-            lettera => lettera.toUpperCase()
-        );
+        .replace(/\b\w/g, lettera => lettera.toUpperCase());
 }
-
 
 function cercaDefunto() {
 
     let testo = document
         .getElementById("cerca")
         .value
-        .toLowerCase()
         .trim();
-
 
     let contenitore =
         document.getElementById("risultati");
 
-
     contenitore.innerHTML = "";
 
-
     if (testo === "") {
-        contenitore.innerHTML = `
-            <p>
-                Inserisci un nome o un cognome.
-            </p>
-        `;
-
         return;
     }
 
+    fetch(
+    `https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/cerca?q=${encodeURIComponent(testo)}`
+)
+    .then(response => {
 
-    let risultati = defunti.filter(persona => {
-
-        let nome =
-            persona["Cognome e Nome"];
-
-
-        if (!nome) {
-            return false;
+        if (!response.ok) {
+            throw new Error("Errore nella ricerca");
         }
 
+        return response.json();
 
-        return nome
-            .toLowerCase()
-            .includes(testo);
+    })
+    .then(risultati => {
 
-    });
+        if (risultati.defunti.length === 0) {
 
+            contenitore.innerHTML = `
+                <p>Nessun defunto trovato.</p>
+            `;
 
-    if (risultati.length === 0) {
+            return;
+        }
+
+        risultati.defunti.forEach(persona => {
+
+            contenitore.innerHTML += `
+
+                <div class="risultato-card">
+
+                    <h3>
+                        ${nomeFormattato(persona.cognome_nome)}
+                    </h3>
+
+                    <p>
+                        Deceduto:
+                        ${persona.anno_decesso || ""}
+                    </p>
+
+                    <a
+                        href="defunto.html?id=${persona.id}"
+                        class="scheda-button">
+                        Visualizza scheda
+                    </a>
+
+                </div>
+
+            `;
+
+        });
+
+    })
+    .catch(errore => {
+
+        console.error(
+            "Errore ricerca defunto:",
+            errore
+        );
 
         contenitore.innerHTML = `
             <p>
-                Nessun defunto trovato.
+            Si è verificato un errore nella ricerca.
             </p>
         `;
 
-        return;
-    }
-
-
-    risultati.forEach(persona => {
-
-        contenitore.innerHTML += `
-
-            <div class="risultato-card">
-
-                <h3>
-                    ${nomeFormattato(
-                        persona["Cognome e Nome"]
-                    )}
-                </h3>
-
-                <p>
-                    Deceduto:
-                    ${persona["Anno  (Decesso)"] || ""}
-                </p>
-
-                <a
-                    href="defunto.html?id=${defunti.indexOf(persona)}"
-                    class="scheda-button"
-                >
-                    Visualizza scheda
-                </a>
-
-            </div>
-
-        `;
-
     });
-
 }
-
 
 document
     .getElementById("cerca")
-    .addEventListener(
-        "keypress",
-        function(event) {
+    .addEventListener("keypress", function(event) {
 
-            if (event.key === "Enter") {
-                cercaDefunto();
-            }
-
+        if (event.key === "Enter") {
+            cercaDefunto();
         }
-    );
+
+    });
