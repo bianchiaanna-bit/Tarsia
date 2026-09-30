@@ -2,7 +2,9 @@ let parametri = new URLSearchParams(window.location.search);
 
 let id = parametri.get("id");
 
-fetch(`https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`)
+fetch(
+    `https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`
+)
 
     .then(response => {
 
@@ -33,6 +35,68 @@ fetch(`https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`)
                     /\b\w/g,
                     lettera => lettera.toUpperCase()
                 );
+
+
+        // --------------------------------------
+        // VISUALIZZAZIONE ANNO DECESSO
+        // --------------------------------------
+
+        function visualizzaAnnoDecesso(anno) {
+
+            if (!anno) {
+                return "";
+            }
+
+            // Caso: intervallo di anni, es. 1940/1969
+            if (/^\d{4}\/\d{4}$/.test(anno)) {
+
+                let [annoInizio, annoFine] = anno.split("/");
+
+                return `tra il ${annoInizio} e il ${annoFine}`;
+
+            }
+
+            // Caso normale, es. 1987
+            return anno;
+
+        }
+
+
+        // --------------------------------------
+        // NORMALIZZAZIONE ZONA
+        // --------------------------------------
+
+        
+
+        // --------------------------------------
+        // DETERMINAZIONE VIA DA ZONA + LOCULO
+        // --------------------------------------
+
+        
+
+        // --------------------------------------
+        // DETERMINAZIONE ZONA E VIA DA MOSTRARE
+        // --------------------------------------
+
+        const zonaDaMostrare =
+            normalizzaZonaCimitero(persona.zona);
+
+
+        let viaDaMostrare =
+            persona.via || "";
+
+
+        // Se la Via non è presente nel database,
+        // la ricaviamo automaticamente da Zona + Loculo.
+        if (!viaDaMostrare) {
+
+            viaDaMostrare =
+                determinaViaDaLoculo(
+                    zonaDaMostrare,
+                    persona.posizione_loculo
+                );
+
+        }
 
 
         // --------------------------------------
@@ -73,7 +137,7 @@ fetch(`https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`)
                     <p>
                         Deceduto:
                         ${persona.giorno_mese_decesso || "—"}
-                        ${persona.anno_decesso || ""}
+                        ${visualizzaAnnoDecesso(persona.anno_decesso) || ""}
                     </p>
 
                     <p>
@@ -90,15 +154,18 @@ fetch(`https://cimitero-worker.cimiteroditarsia.workers.dev/api/defunti/${id}`)
                         Posizione nel cimitero
                     </h3>
 
+
                     <p>
                         Zona:
-                        ${persona.zona || "—"}
+                        ${zonaDaMostrare || "—"}
                     </p>
+
 
                     <p>
                         Via:
-                        ${persona.via || "—"}
+                        ${viaDaMostrare || "—"}
                     </p>
+
 
                     <p>
                         Loculo:

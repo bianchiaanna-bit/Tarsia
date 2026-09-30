@@ -1,4 +1,7 @@
-const API = "";
+const API = "https://cimitero-worker.cimiteroditarsia.workers.dev";
+
+// Foto da rimuovere durante la modifica del defunto
+let rimuoviFotoRichiesta = false;
 
 // =====================================================
 // ELEMENTI PRINCIPALI
@@ -16,7 +19,762 @@ const adminArea =
 const operatoreArea =
     document.getElementById("operatore-area");
 
+// =========================================================
+// MAPPATURA LOCULO + ZONA → VIA
+// =========================================================
 
+const MAPPATURA_LOCULI_VIE = {
+
+    "Lato A": {
+        "1": "via Reggio C.",
+        "2": "via Reggio C.",
+        "3": "via Reggio C.",
+        "4": "via Reggio C.",
+        "5": "via Reggio C.",
+        "6": "via Reggio C.",
+        "7": "via Reggio C.",
+        "8": "via Reggio C.",
+        "9": "via Reggio C.",
+        "10": "via Reggio C.",
+        "11": "via Reggio C.",
+        "12": "via Reggio C.",
+        "13": "via Reggio C.",
+        "14": "via Reggio C.",
+        "15": "via Reggio C.",
+        "16": "via Reggio C.",
+        "17": "via Reggio C.",
+        "18": "via Reggio C.",
+
+        "19": "via Foggia",
+        "20": "via Foggia",
+        "21": "via Foggia",
+        "22": "via Foggia",
+        "23": "via Foggia",
+        "23 BIS": "via Foggia",
+        "24": "via Foggia",
+        "24 BIS": "via Foggia",
+        "25": "via Foggia",
+        "26": "via Foggia",
+        "27": "via Foggia",
+        "28": "via Foggia",
+        "29": "via Foggia",
+
+        "30": "via Salerno",
+        "31": "via Salerno",
+        "32": "via Salerno",
+        "33": "via Salerno",
+        "34": "via Salerno",
+        "35": "via Salerno",
+        "36": "via Salerno",
+        "37": "via Salerno",
+
+        "38": "via Pisa",
+        "38 BIS": "via Pisa",
+        "39": "via Pisa",
+        "40": "via Pisa",
+
+        "41": "via Sassari",
+        "42": "via Sassari",
+        "43": "via Sassari",
+        "44": "via Sassari",
+        "44 BIS": "via Sassari",
+
+        "45": "via Reggio C.",
+
+        "46": "via Sassari",
+        "47": "via Sassari",
+        "48": "via Sassari",
+        "49": "via Sassari",
+        "50": "via Sassari",
+        "51": "via Sassari",
+
+        "52": "via Ragusa",
+        "53": "via Ragusa",
+        "54": "via Ragusa",
+
+        "55": "via Foggia",
+
+        "56": "via Ragusa",
+        "56 BIS": "via Reggio C.",
+        "57": "via Ragusa",
+        "58": "via Ragusa",
+        "59": "via Ragusa",
+        "60": "via Ragusa",
+
+        "61": "via Como",
+        "61 BIS": "via Como",
+        "62": "via Como",
+        "63": "via Como",
+        "64": "via Como",
+        "65": "via Como",
+        "66": "via Como",
+        "67": "via Reggio C.",
+        "67 BIS": "via Reggio C.",
+        "68": "via Como",
+        "69": "via Como",
+        "70": "via Como",
+        "71": "via Como",
+        "72": "via Como",
+        "73": "via Como",
+
+        "74": "via Salerno",
+        "74 BIS": "via Salerno",
+        "75": "via Salerno",
+        "76": "via Salerno",
+        "77": "via Salerno",
+        "78": "via Salerno",
+        "79": "via Salerno",
+
+        "0A": "via Salerno",
+        "0B": "via Reggio C.",
+        "0C": "via Reggio C."
+    },
+
+    "Lato B": {
+        "80": "via Brescia",
+        "80 BIS": "via Brescia",
+        "81": "via Brescia",
+        "82": "via Brescia",
+        "83": "via Brescia",
+        "84": "via Brescia",
+        "85": "via Brescia",
+        "86": "via Brescia",
+        "87": "via Brescia",
+        "88": "via Brescia",
+        "89": "via Brescia",
+        "90": "via Brescia",
+        "91": "via Brescia",
+        "92": "via Brescia",
+        "93": "via Brescia",
+        "94": "via Brescia",
+        "95": "via Brescia",
+        "96": "via Brescia",
+        "97": "via Brescia",
+
+        "98": "via Ferrara",
+        "99": "via Ferrara",
+        "100": "via Ferrara",
+        "101": "via Ferrara",
+        "102": "via Ferrara",
+        "103": "via Ferrara",
+        "104": "via Ferrara",
+        "105": "via Ferrara",
+        "106": "via Ferrara",
+        "107": "via Ferrara",
+        "108": "via Ferrara",
+        "109": "via Ferrara",
+        "110": "via Ferrara",
+        "111": "via Ferrara",
+        "112": "via Ferrara",
+
+        "112 BIS": "via Bergamo",
+
+        "113": "via Bergamo",
+        "114": "via Bergamo",
+        "115": "via Bergamo",
+        "116": "via Bergamo",
+        "117": "via Bergamo",
+        "117 BIS": "via Bergamo",
+        "118": "via Bergamo",
+        "119": "via Bergamo",
+        "120": "via Bergamo",
+        "121": "via Bergamo",
+        "122": "via Bergamo",
+        "123": "via Bergamo",
+        "124": "via Bergamo",
+        "125": "via Bergamo",
+        "126": "via Bergamo",
+        "127": "via Bergamo",
+
+        "128": "via Catania",
+        "129": "via Catania",
+        "130": "via Catania",
+
+        "131": "via Ferrara",
+        "132": "via Ferrara",
+        "133": "via Ferrara",
+        "134": "via Ferrara",
+        "135": "via Ferrara",
+        "136": "via Ferrara",
+
+        "137": "via Enna",
+        "138": "via Enna",
+        "139": "via Enna",
+        "140": "via Enna",
+        "141": "via Enna",
+        "142": "via Enna",
+        "143": "via Enna",
+        "144": "via Enna",
+
+        "145": "via Varese",
+        "146": "via Varese",
+        "147": "via Varese",
+        "148": "via Varese",
+        "149": "via Varese",
+        "150": "via Varese",
+        "151": "via Varese",
+        "152": "via Varese",
+
+        "153": "via Belluno",
+        "154": "via Belluno",
+        "155": "via Belluno",
+        "156": "via Belluno",
+        "157": "via Belluno",
+        "158": "via Belluno",
+        "159": "via Belluno",
+        "160": "via Belluno",
+
+        "161": "via Ancona",
+        "162": "via Ancona",
+        "163": "via Ancona",
+        "164": "via Ancona",
+        "165": "via Ancona",
+        "166": "via Ancona",
+        "167": "via Ancona",
+        "168": "via Ancona",
+
+        "169": "via Catania",
+        "169 BIS": "via Catania",
+        "170": "via Catania"
+    },
+
+    "Centrale": {
+        "1": "via Napoli",
+        "2": "via Napoli",
+        "3": "via Napoli",
+        "4": "via Napoli",
+        "5": "via Napoli",
+        "5 BIS": "via Napoli",
+        "6": "via Napoli",
+        "7": "via Napoli",
+        "8": "via Napoli",
+        "9": "via Napoli",
+        "9A": "via Napoli",
+        "9B": "via Napoli",
+        "9C": "via Napoli",
+
+        "10": "via Cagliari",
+        "11": "via Cagliari",
+        "12": "via Cagliari",
+        "13": "via Cagliari",
+        "14": "via Cagliari",
+        "15": "via Cagliari",
+        "16": "via Cagliari",
+        "17": "via Cagliari",
+        "18": "via Cagliari",
+        "19": "via Cagliari",
+        "20": "via Cagliari",
+        "21": "via Cagliari",
+        "22": "via Cagliari",
+        "23": "via Cagliari",
+
+        "24": "via Firenze",
+        "25": "via Firenze",
+        "26": "via Firenze",
+        "27": "via Firenze",
+        "28": "via Firenze",
+        "29": "via Firenze",
+        "30": "via Firenze",
+        "31": "via Firenze",
+        "32": "via Firenze",
+        "33": "via Firenze",
+        "34": "via Firenze",
+        "35": "via Firenze",
+        "36": "via Firenze",
+        "37": "via Firenze",
+        "38": "via Firenze",
+
+        "39": "via Roma",
+        "40": "via Roma",
+        "41": "via Roma",
+
+        "42": "via Milano",
+        "42 BIS": "via Milano",
+
+        "43": "via Roma",
+        "44": "via Roma",
+        "45": "via Roma",
+        "46": "via Roma",
+        "47": "via Roma",
+
+        "48": "via Napoli",
+        "49": "via Napoli",
+        "50": "via Napoli",
+        "51": "via Napoli",
+        "52": "via Napoli",
+        "53": "via Napoli",
+        "54": "via Napoli",
+        "55": "via Napoli",
+        "56": "via Napoli",
+        "57": "via Napoli",
+        "58": "via Napoli",
+        "59": "via Napoli",
+        "60": "via Napoli",
+
+        "61": "via Cagliari",
+        "62": "via Cagliari",
+        "63": "via Cagliari",
+        "64": "via Cagliari",
+        "65": "via Cagliari",
+        "66": "via Cagliari",
+        "67": "via Cagliari",
+        "68": "via Cagliari",
+        "69": "via Cagliari",
+        "70": "via Cagliari",
+        "71": "via Cagliari",
+
+        "72": "via Milano",
+        "73": "via Milano",
+        "74": "via Milano",
+
+        "75": "via Messina",
+        "76": "via Messina",
+        "77": "via Messina",
+        "78": "via Messina",
+        "79": "via Messina",
+        "80": "via Messina",
+        "81": "via Messina",
+        "82": "via Messina",
+        "83": "via Messina",
+        "84": "via Messina",
+        "85": "via Messina",
+        "86": "via Messina",
+        "87": "via Messina",
+        "88": "via Messina",
+        "89": "via Messina",
+        "90": "via Messina",
+        "91": "via Messina",
+        "92": "via Messina",
+        "93": "via Messina",
+
+        "94": "via Milano",
+        "95": "via Milano",
+        "96": "via Milano",
+
+        "97": "via Trento",
+        "98": "via Trento",
+        "99": "via Trento",
+        "100": "via Trento",
+        "101": "via Trento",
+        "102": "via Trento",
+        "103": "via Trento",
+        "104": "via Trento",
+        "105": "via Trento",
+        "106": "via Trento",
+
+        "107": "via Napoli",
+
+        "108": "via Trento",
+        "109": "via Trento",
+        "110": "via Trento",
+        "111": "via Trento",
+        "112": "via Trento",
+        "113": "via Trento",
+        "114": "via Trento",
+        "115": "via Trento",
+
+        "116": "via Milano",
+        "117": "via Milano",
+        "118": "via Milano",
+
+        "119": "via Padova",
+        "120": "via Padova",
+        "121": "via Padova",
+        "122": "via Padova",
+        "123": "via Padova",
+        "124": "via Padova",
+        "125": "via Padova",
+        "126": "via Padova",
+
+        "127": "via Milano",
+        "128": "via Milano",
+        "129": "via Milano",
+        "130": "via Milano",
+        "131": "via Milano",
+        "132": "via Milano",
+        "133": "via Milano",
+        "134": "via Milano",
+        "135": "via Milano",
+
+        "136": "via Bologna",
+        "137": "via Bologna",
+        "138": "via Bologna",
+        "139": "via Bologna",
+        "140": "via Bologna",
+        "141": "via Bologna",
+        "142": "via Bologna",
+        "143": "via Bologna",
+        "144": "via Bologna",
+        "145": "via Bologna",
+        "146": "via Bologna",
+        "147": "via Bologna",
+        "148": "via Bologna",
+        "149": "via Bologna",
+        "150": "via Bologna",
+        "151": "via Bologna",
+        "152": "via Bologna",
+        "153": "via Bologna",
+        "154": "via Bologna",
+        "155": "via Bologna",
+        "156": "via Bologna",
+
+        "157": "via Arezzo",
+        "158": "via Arezzo",
+        "159": "via Arezzo",
+        "160": "via Arezzo",
+        "161": "via Arezzo",
+        "162": "via Arezzo",
+        "163": "via Arezzo",
+        "164": "via Arezzo",
+        "165": "via Arezzo",
+        "166": "via Arezzo",
+        "167": "via Arezzo",
+        "168": "via Arezzo",
+        "169": "via Arezzo",
+
+        "170": "via Firenze",
+        "171": "via Firenze",
+        "172": "via Firenze",
+        "173": "via Firenze",
+        "174": "via Firenze",
+        "175": "via Firenze",
+        "176": "via Firenze",
+        "177": "via Firenze",
+        "178": "via Firenze",
+        "179": "via Firenze",
+        "180": "via Firenze",
+        "181": "via Firenze",
+        "182": "via Firenze",
+        "183": "via Firenze",
+        "184": "via Firenze",
+        "185": "via Firenze",
+
+        "186": "via Roma",
+        "187": "via Roma",
+
+        "188": "via Verona",
+        "189": "via Verona",
+        "190": "via Verona",
+        "191": "via Verona",
+        "192": "via Verona",
+        "193": "via Verona",
+        "194": "via Verona",
+        "195": "via Verona",
+        "196": "via Verona",
+        "197": "via Verona",
+
+        "198": "via Cosenza",
+        "199": "via Cosenza",
+        "200": "via Cosenza",
+        "201": "via Cosenza",
+        "202": "via Cosenza",
+        "203": "via Cosenza",
+        "204": "via Cosenza",
+        "205": "via Cosenza",
+        "206": "via Cosenza",
+        "207": "via Cosenza",
+        "208": "via Cosenza",
+        "209": "via Cosenza",
+        "210": "via Cosenza",
+        "211": "via Cosenza",
+        "212": "via Cosenza",
+        "213": "via Cosenza",
+        "214": "via Cosenza",
+        "215": "via Cosenza",
+
+        "216": "via Venezia",
+        "217": "via Venezia",
+        "218": "via Venezia",
+        "219": "via Venezia",
+        "220": "via Venezia",
+        "221": "via Venezia",
+        "222": "via Venezia",
+        "223": "via Venezia",
+        "224": "via Venezia",
+        "225": "via Venezia",
+
+        "226": "via Roma",
+        "227": "via Roma",
+        "228": "via Roma",
+        "229": "via Roma",
+        "230": "via Roma",
+
+        "231": "via Torino",
+        "232": "via Torino",
+        "233": "via Torino",
+        "234": "via Torino",
+        "235": "via Torino",
+        "236": "via Torino",
+        "237": "via Torino",
+        "238": "via Torino",
+        "239": "via Torino",
+        "240": "via Torino",
+        "241": "via Torino",
+        "242": "via Torino",
+        "243": "via Torino",
+        "244": "via Torino",
+        "245": "via Torino",
+        "246": "via Torino",
+        "247": "via Torino",
+        "248": "via Torino",
+        "249": "via Torino",
+        "250": "",
+        "251": "via Torino",
+        "252": "via Torino",
+        "253": "via Torino",
+        "254": "via Torino",
+        "255": "via Torino",
+        "256": "via Torino",
+        "257": "via Torino",
+        "258": "via Torino",
+        "259": "via Torino",
+        "260": "via Torino",
+        "261": "via Torino",
+        "262": "via Torino",
+        "263": "via Torino",
+        "264": "via Torino",
+
+        "265": "via Roma",
+        "266": "via Roma",
+        "267": "via Roma",
+
+        "268": "via Genova",
+        "269": "via Genova",
+        "270": "via Genova",
+        "271": "via Genova",
+        "272": "via Genova",
+        "273": "via Genova",
+        "274": "via Genova",
+        "275": "via Genova",
+        "276": "via Genova",
+        "277": "via Genova",
+        "278": "via Genova",
+        "279": "via Genova",
+        "280": "via Genova",
+        "281": "via Genova",
+        "282": "via Genova",
+        "283": "via Genova",
+
+        "284": "via Cosenza",
+
+        "285": "via Genova",
+        "286": "via Genova",
+        "287": "via Genova",
+        "288": "via Genova",
+        "289": "via Genova",
+        "290": "via Genova",
+        "291": "via Genova",
+        "292": "via Genova",
+        "293": "via Genova",
+        "294": "via Genova",
+
+        "295": "via Roma",
+        "296": "via Roma",
+        "297": "via Roma",
+        "298": "via Roma",
+
+        "299": "via Aosta",
+        "300": "via Aosta",
+        "300 BIS": "via Genova",
+        "301": "via Aosta",
+        "302": "via Aosta",
+        "303": "via Aosta",
+        "304": "via Aosta",
+        "305": "via Aosta",
+        "306": "via Aosta",
+        "307": "via Aosta",
+        "308": "via Aosta",
+        "309": "via Aosta",
+        "310": "via Aosta",
+        "311": "via Aosta",
+        "312": "via Aosta",
+
+        "313": "via Roma",
+        "314": "via Roma",
+        "315": "via Roma",
+        "316": "via Roma",
+
+        "317": "via Bari",
+        "318": "via Bari",
+        "319": "via Bari",
+        "320": "via Bari",
+        "321": "via Bari",
+        "322": "via Bari",
+        "323": "via Bari",
+        "324": "via Bari",
+        "325": "via Bari",
+        "326": "via Bari",
+        "327": "via Bari",
+        "327 BIS": "via Bari",
+        "328": "via Bari",
+        "329": "via Bari",
+        "330": "via Bari",
+        "331": "via Bari",
+        "332": "via Bari",
+        "333": "via Bari",
+
+        "334": "via Roma",
+
+        "335": "via Verona",
+        "336": "via Verona",
+        "337": "via Verona",
+        "338": "via Verona",
+        "339": "via Verona",
+        "340": "via Verona",
+        "341": "via Verona",
+        "342": "via Verona",
+        "343": "via Verona",
+
+        "344": "via Cosenza",
+        "345": "via Cosenza",
+        "346": "via Cosenza",
+        "347": "via Cosenza",
+        "348": "via Cosenza",
+        "349": "via Cosenza",
+        "350": "via Cosenza",
+        "351": "via Cosenza",
+
+        "352": "via Venezia",
+        "353": "via Venezia",
+        "354": "via Venezia",
+        "355": "via Venezia",
+        "356": "via Venezia",
+        "357": "via Venezia",
+        "358": "via Venezia",
+        "359": "via Venezia",
+        "360": "via Venezia",
+        "361": "via Venezia",
+        "362": "via Venezia",
+        "363": "via Venezia",
+        "364": "via Venezia",
+        "365": ["via Venezia", "via Palermo"],
+        "366": "via Aosta"
+    }
+};
+
+
+// =========================================================
+// NORMALIZZAZIONE LOCULO
+// =========================================================
+
+function normalizzaLoculo(valore) {
+    return String(valore || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, " ");
+}
+
+
+// =========================================================
+// AGGIORNAMENTO AUTOMATICO DELLA VIA
+// =========================================================
+
+function aggiornaViaDaLoculo(zonaId, loculoId, viaId) {
+
+    const zona = document.getElementById(zonaId);
+    const loculo = document.getElementById(loculoId);
+    const via = document.getElementById(viaId);
+
+    if (!zona || !loculo || !via) {
+        return;
+    }
+
+    const zonaValore = zona.value.trim();
+    const loculoValore = normalizzaLoculo(loculo.value);
+
+    if (!zonaValore || !loculoValore) {
+        return;
+    }
+
+    const mappaZona = MAPPATURA_LOCULI_VIE[zonaValore];
+
+    if (!mappaZona) {
+        return;
+    }
+
+    const risultato = mappaZona[loculoValore];
+
+    // Nessuna corrispondenza
+    if (risultato === undefined) {
+        return;
+    }
+
+    // Loculo senza via
+    if (risultato === "") {
+        via.value = "";
+        return;
+    }
+
+    // Più vie possibili: lascia scegliere manualmente
+    if (Array.isArray(risultato)) {
+        return;
+    }
+
+    // Corrispondenza unica
+    via.value = risultato;
+}
+
+
+// =========================================================
+// COLLEGAMENTO AUTOMATICO DEI CAMPI
+// =========================================================
+
+function inizializzaMappaturaLoculi() {
+
+    const configurazioni = [
+        {
+            zona: "zona",
+            loculo: "posizione-loculo",
+            via: "via"
+        },
+        {
+            zona: "operatore-zona",
+            loculo: "operatore-posizione-loculo",
+            via: "operatore-via"
+        }
+    ];
+
+    configurazioni.forEach(config => {
+
+        const zona = document.getElementById(config.zona);
+        const loculo = document.getElementById(config.loculo);
+
+        if (!zona || !loculo) {
+            return;
+        }
+
+        zona.addEventListener("change", () => {
+            aggiornaViaDaLoculo(
+                config.zona,
+                config.loculo,
+                config.via
+            );
+        });
+
+        loculo.addEventListener("change", () => {
+            aggiornaViaDaLoculo(
+                config.zona,
+                config.loculo,
+                config.via
+            );
+        });
+
+        loculo.addEventListener("blur", () => {
+            aggiornaViaDaLoculo(
+                config.zona,
+                config.loculo,
+                config.via
+            );
+        });
+    });
+}
+
+
+// Avvio automatico
+document.addEventListener("DOMContentLoaded", () => {
+    inizializzaMappaturaLoculi();
+});
+    
 // =====================================================
 // CALCOLO ETÀ
 // =====================================================
@@ -428,6 +1186,70 @@ collegaAnteprimaFoto(
 
 
 // =====================================================
+// RIMOZIONE FOTO ADMIN
+// =====================================================
+
+const pulsanteRimuoviFoto =
+    document.getElementById("rimuovi-foto");
+
+if (pulsanteRimuoviFoto) {
+
+    pulsanteRimuoviFoto.addEventListener(
+        "click",
+        function () {
+
+            mostraAvviso(
+                "conferma",
+                "Rimuovere la fotografia?",
+                "La fotografia verrà rimossa dalla scheda del defunto.",
+                function () {
+
+                    rimuoviFotoRichiesta = true;
+
+                    pulsanteRimuoviFoto.style.display =
+                        "none";
+
+                    const anteprima =
+                        document.getElementById(
+                            "anteprima-foto"
+                        );
+
+                    const immagine =
+                        document.getElementById(
+                            "anteprima-foto-img"
+                        );
+
+                    const nomeFotoAttuale =
+                        document.getElementById(
+                            "nome-foto-attuale"
+                        );
+
+                    if (anteprima) {
+                        anteprima.style.display =
+                            "none";
+                    }
+
+                    if (immagine) {
+                        immagine.src = "";
+                    }
+
+                    if (nomeFotoAttuale) {
+                        nomeFotoAttuale.textContent =
+                            "";
+
+                        nomeFotoAttuale.style.display =
+                            "none";
+                    }
+
+                }
+            );
+
+        }
+    );
+}
+
+
+// =====================================================
 // LOGIN
 // =====================================================
 
@@ -824,7 +1646,7 @@ function mostraArchivio(defunti) {
             <div class="admin-ricerca-campo">
 
                 <input
-                    type="search"
+                    type="text"
                     id="cerca-archivio"
                     placeholder="Inserisci ID, cognome o nome..."
                     autocomplete="off"
@@ -1105,7 +1927,7 @@ function mostraArchivio(defunti) {
                     pulsanteCancella.style.opacity =
                         campoRicerca.value
                             ? "1"
-                            : "0.35";
+                            : "0.5";
                 }
             }
         );
@@ -1115,7 +1937,7 @@ function mostraArchivio(defunti) {
     if (pulsanteCancella) {
 
         pulsanteCancella.style.opacity =
-            "0.35";
+            "0.5";
 
         pulsanteCancella.addEventListener(
             "click",
@@ -1129,7 +1951,7 @@ function mostraArchivio(defunti) {
                 campoRicerca.focus();
 
                 pulsanteCancella.style.opacity =
-                    "0.35";
+                    "0.5";
             }
         );
     }
@@ -1438,7 +2260,6 @@ if (nuovoDefunto) {
             ).checked =
                 true;
 
-
             const anteprima =
                 document.getElementById(
                     "anteprima-foto"
@@ -1449,6 +2270,18 @@ if (nuovoDefunto) {
                     "anteprima-foto-img"
                 );
 
+            const pulsanteRimuoviFoto =
+                document.getElementById(
+                    "rimuovi-foto"
+                );
+
+            const nomeFotoAttuale =
+                document.getElementById(
+                    "nome-foto-attuale"
+                );
+
+            rimuoviFotoRichiesta =
+                false;
 
             if (anteprima) {
                 anteprima.style.display =
@@ -1460,9 +2293,20 @@ if (nuovoDefunto) {
                     "";
             }
 
+            if (pulsanteRimuoviFoto) {
+                pulsanteRimuoviFoto.style.display =
+                    "none";
+            }
+
+            if (nomeFotoAttuale) {
+                nomeFotoAttuale.textContent =
+                    "";
+
+                nomeFotoAttuale.style.display =
+                    "none";
+            }
 
             aggiornaEtaAdmin();
-
 
             document.getElementById(
                 "modifica-defunto"
@@ -1473,18 +2317,19 @@ if (nuovoDefunto) {
 }
 
 
+
 // =====================================================
-// CHIUSURA MODULO ADMIN
+// CHIUDI MODIFICA DEFUNTO
 // =====================================================
 
-const chiudiModifica =
+const pulsanteChiudiModifica =
     document.getElementById(
         "chiudi-modifica"
     );
 
-if (chiudiModifica) {
+if (pulsanteChiudiModifica) {
 
-    chiudiModifica.addEventListener(
+    pulsanteChiudiModifica.addEventListener(
         "click",
         function () {
 
@@ -1492,6 +2337,12 @@ if (chiudiModifica) {
                 "modifica-defunto"
             ).style.display =
                 "none";
+
+            document.getElementById(
+                "form-messaggio"
+            ).textContent =
+                "";
+
         }
     );
 }
@@ -1576,16 +2427,45 @@ async function modificaDefunto(id) {
             defunto.posizione_loculo || "";
 
 
+        // =============================================
+        // ZONA
+        // =============================================
+
+        const zonaNormalizzata =
+            normalizzaZonaCimitero(
+                defunto.zona
+            );
+
         document.getElementById(
             "zona"
         ).value =
-            defunto.zona || "";
+            zonaNormalizzata;
+
+
+        // =============================================
+        // VIA
+        // =============================================
+
+        let viaDaMostrare =
+            defunto.via || "";
+
+
+        // Se la Via non è presente nel database,
+        // viene suggerita in base a Zona + Loculo.
+        if (!viaDaMostrare) {
+
+            viaDaMostrare =
+                determinaViaDaLoculo(
+                    zonaNormalizzata,
+                    defunto.posizione_loculo
+                );
+        }
 
 
         document.getElementById(
             "via"
         ).value =
-            defunto.via || "";
+            viaDaMostrare;
 
 
         document.getElementById(
@@ -1627,11 +2507,24 @@ async function modificaDefunto(id) {
                 "anteprima-foto-img"
             );
 
+        const pulsanteRimuoviFoto =
+            document.getElementById(
+                "rimuovi-foto"
+            );
+
+        const nomeFotoAttuale =
+            document.getElementById(
+                "nome-foto-attuale"
+            );
+
 
         if (campoFoto) {
             campoFoto.value =
                 "";
         }
+
+        rimuoviFotoRichiesta =
+            false;
 
 
         if (
@@ -1646,6 +2539,22 @@ async function modificaDefunto(id) {
             anteprima.style.display =
                 "block";
 
+            if (pulsanteRimuoviFoto) {
+                pulsanteRimuoviFoto.style.display =
+                    "inline-block";
+            }
+
+            if (nomeFotoAttuale) {
+                nomeFotoAttuale.textContent =
+                    "Foto attuale: " +
+                    defunto.foto
+                        .split("/")
+                        .pop();
+
+                nomeFotoAttuale.style.display =
+                    "block";
+            }
+
         } else {
 
             if (anteprima) {
@@ -1656,6 +2565,19 @@ async function modificaDefunto(id) {
             if (immagine) {
                 immagine.src =
                     "";
+            }
+
+            if (pulsanteRimuoviFoto) {
+                pulsanteRimuoviFoto.style.display =
+                    "none";
+            }
+
+            if (nomeFotoAttuale) {
+                nomeFotoAttuale.textContent =
+                    "";
+
+                nomeFotoAttuale.style.display =
+                    "none";
             }
         }
 
@@ -1844,6 +2766,18 @@ if (formDefunto) {
             }
 
 
+            if (
+                id &&
+                rimuoviFotoRichiesta
+            ) {
+
+                dati.append(
+                    "rimuovi_foto",
+                    "1"
+                );
+            }
+
+
             try {
 
                 let risposta;
@@ -1944,6 +2878,7 @@ if (formDefunto) {
         }
     );
 }
+
 
 
 // =====================================================
@@ -2383,68 +3318,68 @@ async function ripristinaDefunto(
     idCancellazione
 ) {
 
-    const conferma =
-        confirm(
-            "Vuoi ripristinare questo defunto nell'archivio principale?"
-        );
+    mostraAvviso(
+        "conferma",
+        "Ripristinare il defunto?",
+        "Il record verrà reinserito nell'archivio principale.",
+        async function () {
+
+            try {
+
+                const risposta =
+                    await fetch(
+                        `${API}/api/admin/defunti-cancellati/${idCancellazione}/ripristina`,
+                        {
+                            method: "PUT",
+                            headers:
+                                headersAutorizzazione()
+                        }
+                    );
 
 
-    if (!conferma) {
-        return;
-    }
+                const risultato =
+                    await risposta.json();
 
 
-    try {
+                if (!risposta.ok) {
 
-        const risposta =
-            await fetch(
-                `${API}/api/admin/defunti-cancellati/${idCancellazione}/ripristina`,
-                {
-                    method: "PUT",
+                    mostraAvviso(
+                        "errore",
+                        "Errore",
+                        risultato.errore ||
+                        "Errore durante il ripristino."
+                    );
 
-                    headers:
-                        headersAutorizzazione()
+                    return;
                 }
-            );
 
 
-        const risultato =
-            await risposta.json();
+                await caricaCancellati();
+
+                await caricaArchivio();
 
 
-        if (!risposta.ok) {
+                mostraAvviso(
+                    "successo",
+                    "Ripristino completato",
+                    risultato.messaggio ||
+                    "Il defunto è stato ripristinato correttamente."
+                );
 
-            alert(
-                risultato.errore ||
-                "Errore durante il ripristino."
-            );
+            }
 
-            return;
+            catch (errore) {
+
+                console.error(errore);
+
+                mostraAvviso(
+                    "errore",
+                    "Errore di collegamento",
+                    "Non è stato possibile completare il ripristino."
+                );
+            }
         }
-
-
-        alert(
-            risultato.messaggio ||
-            "Defunto ripristinato correttamente."
-        );
-
-
-        await caricaCancellati();
-
-        await caricaArchivio();
-
-    }
-
-    catch (errore) {
-
-        console.error(
-            errore
-        );
-
-        alert(
-            "Errore di collegamento con il server."
-        );
-    }
+    );
 }
 
 
@@ -2454,68 +3389,67 @@ async function ripristinaDefunto(
 
 async function eliminaDefunto(id) {
 
-    const conferma =
-        confirm(
-            "Sei sicuro di voler eliminare questo defunto?"
-        );
+    mostraAvviso(
+        "conferma",
+        "Eliminare il defunto?",
+        "Il record verrà spostato nell'elenco dei defunti eliminati e potrà essere ripristinato.",
+        async function () {
+
+            try {
+
+                const risposta =
+                    await fetch(
+                        `${API}/api/admin/defunti/${id}`,
+                        {
+                            method: "DELETE",
+                            headers:
+                                headersAutorizzazione()
+                        }
+                    );
 
 
-    if (!conferma) {
-        return;
-    }
+                const risultato =
+                    await risposta.json();
 
 
-    try {
+                if (!risposta.ok) {
 
-        const risposta =
-            await fetch(
-                `${API}/api/admin/defunti/${id}`,
-                {
-                    method: "DELETE",
+                    mostraAvviso(
+                        "errore",
+                        "Errore",
+                        risultato.errore ||
+                        "Errore durante l'eliminazione."
+                    );
 
-                    headers:
-                        headersAutorizzazione()
+                    return;
                 }
-            );
 
 
-        const risultato =
-            await risposta.json();
+                await caricaArchivio();
 
 
-        if (!risposta.ok) {
+                mostraAvviso(
+                    "successo",
+                    "Eliminazione completata",
+                    risultato.messaggio ||
+                    "Il defunto è stato eliminato correttamente."
+                );
 
-            alert(
-                risultato.errore ||
-                "Errore durante l'eliminazione."
-            );
+            }
 
-            return;
+            catch (errore) {
+
+                console.error(errore);
+
+                mostraAvviso(
+                    "errore",
+                    "Errore di collegamento",
+                    "Non è stato possibile completare l'eliminazione."
+                );
+            }
         }
-
-
-        alert(
-            risultato.messaggio ||
-            "Defunto eliminato correttamente."
-        );
-
-
-        await caricaArchivio();
-
-    }
-
-    catch (errore) {
-
-        console.error(
-            errore
-        );
-
-        alert(
-            "Errore di collegamento con il server."
-        );
-    }
+    );
 }
-
 
 // =====================================================
 // RICHIESTA MODIFICA OPERATORE
@@ -2785,7 +3719,7 @@ if (pulsanteAnteprimaImportaNuovi) {
 
                 const dati =
                     await risposta.json();
-                    riquadroImportaNuovi.style.display = "block";
+
 
                 if (!risposta.ok) {
 
@@ -2796,8 +3730,12 @@ if (pulsanteAnteprimaImportaNuovi) {
                 }
 
 
+                // -------------------------------------------------
+                // CONSERVA IL FILE ORIGINALE
+                // -------------------------------------------------
+
                 fileImportazionePronto =
-                    dati.file;
+                    file;
 
 
                 // -------------------------------------------------
@@ -2915,10 +3853,11 @@ if (pulsanteAnteprimaImportaNuovi) {
 if (pulsanteConfermaImportaNuovi) {
 
     pulsanteConfermaImportaNuovi.addEventListener(
-    "click",
-    async (evento) => {
+        "click",
+        async (evento) => {
 
-        evento.preventDefault();
+            evento.preventDefault();
+
 
             if (!fileImportazionePronto) {
 
@@ -2942,6 +3881,19 @@ if (pulsanteConfermaImportaNuovi) {
 
             try {
 
+                // -------------------------------------------------
+                // INVIA NUOVAMENTE IL FILE AL WORKER
+                // -------------------------------------------------
+
+                const formData =
+                    new FormData();
+
+                formData.append(
+                    "file",
+                    fileImportazionePronto
+                );
+
+
                 const risposta =
                     await fetch(
                         `${API}/api/admin/importa-nuovi/conferma`,
@@ -2949,17 +3901,11 @@ if (pulsanteConfermaImportaNuovi) {
                             method: "POST",
 
                             headers: {
-                                "Content-Type":
-                                    "application/json",
-
                                 Authorization:
                                     `Bearer ${sessionStorage.getItem("token")}`
                             },
 
-                            body: JSON.stringify({
-                                file:
-                                    fileImportazionePronto
-                            })
+                            body: formData
                         }
                     );
 
@@ -3039,7 +3985,7 @@ if (pulsanteConfermaImportaNuovi) {
                     "function"
                 ) {
 
-                    caricaArchivio();
+                    await caricaArchivio();
 
                 }
 
@@ -3064,9 +4010,7 @@ if (pulsanteConfermaImportaNuovi) {
 
             } catch (errore) {
 
-                console.error(
-                    errore
-                );
+                console.error(errore);
 
 
                 risultatoImportaNuovi.innerHTML =
@@ -3091,8 +4035,6 @@ if (pulsanteConfermaImportaNuovi) {
     );
 
 }
-
-
 
 // =====================================================
 // SISTEMA AVVISI AREA ADMIN

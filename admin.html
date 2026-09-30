@@ -83,9 +83,6 @@
         style="display: none;"
     >
 
-
-        <!-- INTESTAZIONE -->
-
         <div class="admin-intestazione">
 
             <div>
@@ -106,7 +103,6 @@
             >
                 ← Vai al sito
             </a>
-
 
             <button
                 type="button"
@@ -131,7 +127,7 @@
                 + Inserisci nuovo defunto
             </button>
 
-             <button
+            <button
                 type="button"
                 id="apri-importa-nuovi"
             >
@@ -145,8 +141,6 @@
                 Elenco eliminati
             </button>
 
-        
-
             <button
                 type="button"
                 id="esporta-archivio-excel"
@@ -156,67 +150,71 @@
 
         </div>
 
-<div
-    id="importa-nuovi"
-    class="riquadro-importa"
-    style="display: none;"
->
 
-    <h3>Importa nuovi nominativi</h3>
+        <!-- IMPORTA NUOVI -->
 
-    <p>
-        Questa funzione permette di aggiungere nuovi nominativi
-        all'archivio tramite un file Excel.
-    </p>
-
-    <p>
-        <strong>Attenzione:</strong> l'importazione non modifica
-        e non cancella i nominativi già presenti.
-        Gli ID vengono generati automaticamente dal sistema.
-    </p>
-
-    <label for="file-importa-nuovi">
-        Seleziona il file Excel:
-    </label>
-
-    <input
-        type="file"
-        id="file-importa-nuovi"
-        accept=".xlsx,.xls"
-    >
-
-    <div class="azioni-importa">
-
-        <button
-            type="button"
-            id="anteprima-importa-nuovi"
-        >
-            Anteprima importazione
-        </button>
-
-        <button
-            type="button"
-            id="conferma-importa-nuovi"
+        <div
+            id="importa-nuovi"
+            class="riquadro-importa"
             style="display: none;"
         >
-            Conferma importazione
-        </button>
 
-        <button
-            type="button"
-            id="annulla-importa-nuovi"
-        >
-            Annulla
-        </button>
+            <h3>Importa nuovi nominativi</h3>
 
-    </div>
+            <p>
+                Questa funzione permette di aggiungere nuovi nominativi
+                all'archivio tramite un file Excel.
+            </p>
 
-    <div
-        id="risultato-importa-nuovi"
-        class="risultato-importa"
-    ></div>
+            <p>
+                <strong>Attenzione:</strong> l'importazione non modifica
+                e non cancella i nominativi già presenti.
+                Gli ID vengono generati automaticamente dal sistema.
+            </p>
 
-</div>
+            <label for="file-importa-nuovi">
+                Seleziona il file Excel:
+            </label>
+
+            <input
+                type="file"
+                id="file-importa-nuovi"
+                accept=".xlsx,.xls"
+            >
+
+            <div class="azioni-importa">
+
+                <button
+                    type="button"
+                    id="anteprima-importa-nuovi"
+                >
+                    Anteprima importazione
+                </button>
+
+                <button
+                    type="button"
+                    id="conferma-importa-nuovi"
+                    style="display: none;"
+                >
+                    Conferma importazione
+                </button>
+
+                <button
+                    type="button"
+                    id="annulla-importa-nuovi"
+                >
+                    Annulla
+                </button>
+
+            </div>
+
+            <div
+                id="risultato-importa-nuovi"
+                class="risultato-importa"
+            ></div>
+
+        </div>
+
 
         <!-- ARCHIVIO -->
 
@@ -354,7 +352,9 @@
 
 
 
+                    <!-- ================================================= -->
                     <!-- POSIZIONE -->
+                    <!-- ================================================= -->
 
                     <label for="posizione-loculo">
                         Posizione loculo
@@ -363,6 +363,7 @@
                     <input
                         type="text"
                         id="posizione-loculo"
+                        placeholder="es. 42, 42 Bis, 9A, 0B"
                     >
 
 
@@ -370,20 +371,162 @@
                         Zona
                     </label>
 
-                    <input
-                        type="text"
-                        id="zona"
-                    >
+                    <select id="zona">
+
+                        <option value="">
+                            Seleziona zona
+                        </option>
+
+                        <option value="Centrale">
+                            Centrale
+                        </option>
+
+                        <option value="Lato A">
+                            Lato A
+                        </option>
+
+                        <option value="Lato B">
+                            Lato B
+                        </option>
+
+                    </select>
 
 
                     <label for="via">
                         Via
                     </label>
 
-                    <input
-                        type="text"
-                        id="via"
-                    >
+                    <select id="via">
+
+                        <option value="">
+                            Seleziona via
+                        </option>
+
+                        <option value="via Ancona">
+                            via Ancona
+                        </option>
+
+                        <option value="via Arezzo">
+                            via Arezzo
+                        </option>
+
+                        <option value="via Bari">
+                            via Bari
+                        </option>
+
+                        <option value="via Belluno">
+                            via Belluno
+                        </option>
+
+                        <option value="via Bergamo">
+                            via Bergamo
+                        </option>
+
+                        <option value="via Bologna">
+                            via Bologna
+                        </option>
+
+                        <option value="via Brescia">
+                            via Brescia
+                        </option>
+
+                        <option value="via Cagliari">
+                            via Cagliari
+                        </option>
+
+                        <option value="via Catania">
+                            via Catania
+                        </option>
+
+                        <option value="via Como">
+                            via Como
+                        </option>
+
+                        <option value="via Cosenza">
+                            via Cosenza
+                        </option>
+
+                        <option value="via Enna">
+                            via Enna
+                        </option>
+
+                        <option value="via Ferrara">
+                            via Ferrara
+                        </option>
+
+                        <option value="via Firenze">
+                            via Firenze
+                        </option>
+
+                        <option value="via Foggia">
+                            via Foggia
+                        </option>
+
+                        <option value="via Genova">
+                            via Genova
+                        </option>
+
+                        <option value="via Milano">
+                            via Milano
+                        </option>
+
+                        <option value="via Messina">
+                            via Messina
+                        </option>
+
+                        <option value="via Napoli">
+                            via Napoli
+                        </option>
+
+                        <option value="via Padova">
+                            via Padova
+                        </option>
+
+                        <option value="via Palermo">
+                            via Palermo
+                        </option>
+
+                        <option value="via Pisa">
+                            via Pisa
+                        </option>
+
+                        <option value="via Ragusa">
+                            via Ragusa
+                        </option>
+
+                        <option value="via Reggio C.">
+                            via Reggio C.
+                        </option>
+
+                        <option value="via Roma">
+                            via Roma
+                        </option>
+
+                        <option value="via Salerno">
+                            via Salerno
+                        </option>
+
+                        <option value="via Sassari">
+                            via Sassari
+                        </option>
+
+                        <option value="via Trento">
+                            via Trento
+                        </option>
+
+                        <option value="via Varese">
+                            via Varese
+                        </option>
+
+                        <option value="via Venezia">
+                            via Venezia
+                        </option>
+
+                        <option value="via Verona">
+                            via Verona
+                        </option>
+
+                    </select>
 
 
 
@@ -394,7 +537,7 @@
                     <div class="blocco-foto-admin">
 
                         <label for="foto">
-                            Fotografia della sepoltura
+                            Fotografia
                         </label>
 
                         <input
@@ -404,8 +547,24 @@
                         >
 
                         <small>
-                            Formati consentiti: JPG, PNG, WEBP. Dimensione massima 10 MB.
+                            Formati consentiti: JPG, PNG, WEBP.
+                            Dimensione massima 10 MB.
                         </small>
+
+                        <div
+                            id="nome-foto-attuale"
+                            class="nome-foto-attuale"
+                            style="display: none;"
+                        ></div>
+
+                        <button
+                            type="button"
+                            id="rimuovi-foto"
+                            class="bottone-rimuovi-foto"
+                            style="display: none;"
+                        >
+                            Rimuovi foto
+                        </button>
 
                         <div
                             id="anteprima-foto"
@@ -413,7 +572,7 @@
                         >
 
                             <img
-                                id="immagine-anteprima"
+                                id="anteprima-foto-img"
                                 src=""
                                 alt="Anteprima fotografia"
                             >
@@ -510,12 +669,12 @@
 
             </div>
 
-                <a
-                    href="index.html"
-                    class="bottone-vai-sito"
-                >
-                    ← Vai al sito
-                </a>
+            <a
+                href="index.html"
+                class="bottone-vai-sito"
+            >
+                ← Vai al sito
+            </a>
 
             <button
                 type="button"
@@ -629,6 +788,10 @@
 
 
 
+                <!-- ================================================= -->
+                <!-- POSIZIONE OPERATORE -->
+                <!-- ================================================= -->
+
                 <label for="operatore-posizione-loculo">
                     Posizione loculo
                 </label>
@@ -636,6 +799,7 @@
                 <input
                     type="text"
                     id="operatore-posizione-loculo"
+                    placeholder="es. 42, 42 Bis, 9A, 0B"
                 >
 
 
@@ -643,20 +807,162 @@
                     Zona
                 </label>
 
-                <input
-                    type="text"
-                    id="operatore-zona"
-                >
+                <select id="operatore-zona">
+
+                    <option value="">
+                        Seleziona zona
+                    </option>
+
+                    <option value="Centrale">
+                        Centrale
+                    </option>
+
+                    <option value="Lato A">
+                        Lato A
+                    </option>
+
+                    <option value="Lato B">
+                        Lato B
+                    </option>
+
+                </select>
 
 
                 <label for="operatore-via">
                     Via
                 </label>
 
-                <input
-                    type="text"
-                    id="operatore-via"
-                >
+                <select id="operatore-via">
+
+                    <option value="">
+                        Seleziona via
+                    </option>
+
+                    <option value="via Ancona">
+                        via Ancona
+                    </option>
+
+                    <option value="via Arezzo">
+                        via Arezzo
+                    </option>
+
+                    <option value="via Bari">
+                        via Bari
+                    </option>
+
+                    <option value="via Belluno">
+                        via Belluno
+                    </option>
+
+                    <option value="via Bergamo">
+                        via Bergamo
+                    </option>
+
+                    <option value="via Bologna">
+                        via Bologna
+                    </option>
+
+                    <option value="via Brescia">
+                        via Brescia
+                    </option>
+
+                    <option value="via Cagliari">
+                        via Cagliari
+                    </option>
+
+                    <option value="via Catania">
+                        via Catania
+                    </option>
+
+                    <option value="via Como">
+                        via Como
+                    </option>
+
+                    <option value="via Cosenza">
+                        via Cosenza
+                    </option>
+
+                    <option value="via Enna">
+                        via Enna
+                    </option>
+
+                    <option value="via Ferrara">
+                        via Ferrara
+                    </option>
+
+                    <option value="via Firenze">
+                        via Firenze
+                    </option>
+
+                    <option value="via Foggia">
+                        via Foggia
+                    </option>
+
+                    <option value="via Genova">
+                        via Genova
+                    </option>
+
+                    <option value="via Milano">
+                        via Milano
+                    </option>
+
+                    <option value="via Messina">
+                        via Messina
+                    </option>
+
+                    <option value="via Napoli">
+                        via Napoli
+                    </option>
+
+                    <option value="via Padova">
+                        via Padova
+                    </option>
+
+                    <option value="via Palermo">
+                        via Palermo
+                    </option>
+
+                    <option value="via Pisa">
+                        via Pisa
+                    </option>
+
+                    <option value="via Ragusa">
+                        via Ragusa
+                    </option>
+
+                    <option value="via Reggio C.">
+                        via Reggio C.
+                    </option>
+
+                    <option value="via Roma">
+                        via Roma
+                    </option>
+
+                    <option value="via Salerno">
+                        via Salerno
+                    </option>
+
+                    <option value="via Sassari">
+                        via Sassari
+                    </option>
+
+                    <option value="via Trento">
+                        via Trento
+                    </option>
+
+                    <option value="via Varese">
+                        via Varese
+                    </option>
+
+                    <option value="via Venezia">
+                        via Venezia
+                    </option>
+
+                    <option value="via Verona">
+                        via Verona
+                    </option>
+
+                </select>
 
 
 
@@ -675,16 +981,17 @@
                     >
 
                     <small>
-                        Formati consentiti: JPG, PNG, WEBP. Dimensione massima 10 MB.
+                        Formati consentiti: JPG, PNG, WEBP.
+                        Dimensione massima 10 MB.
                     </small>
 
                     <div
-                        id="anteprima-foto-operatore"
+                        id="operatore-anteprima-foto"
                         class="anteprima-foto"
                     >
 
                         <img
-                            id="immagine-anteprima-operatore"
+                            id="operatore-anteprima-foto-img"
                             src=""
                             alt="Anteprima fotografia"
                         >
@@ -804,15 +1111,17 @@
 </div>
 
 
-<!-- =====================================================
-     FINESTRA AVVISI ADMIN
-===================================================== -->
+
+<!-- ================================================= -->
+<!-- FINESTRA AVVISI ADMIN -->
+<!-- ================================================= -->
 
 <div
     id="finestra-avviso"
     class="finestra-avviso"
     style="display: none;"
 >
+
     <div class="avviso-admin">
 
         <div
@@ -852,8 +1161,11 @@
         </div>
 
     </div>
+
 </div>
 
+
+<script src="js/vie-cimitero.js"></script>
 <script src="js/admin.js"></script>
 
 </body>
