@@ -74,9 +74,6 @@
 
     if (rendering) {
       renderRichiesto = true;
-      if (renderTask) {
-        try { renderTask.cancel(); } catch (_) {}
-      }
       return;
     }
 
@@ -89,17 +86,21 @@
         scale: scalaBase * pixelRatio * scala
       });
 
-      canvas.width = Math.max(1, Math.round(viewport.width));
-      canvas.height = Math.max(1, Math.round(viewport.height));
+      const nuovaLarghezza = Math.max(1, Math.round(viewport.width));
+      const nuovaAltezza = Math.max(1, Math.round(viewport.height));
+
+      canvas.width = nuovaLarghezza;
+      canvas.height = nuovaAltezza;
       canvas.style.width = `${larghezza}px`;
       canvas.style.height = `${altezza}px`;
 
-      renderTask = pagina.render({
+      const task = pagina.render({
         canvasContext: contesto,
         viewport
       });
+      renderTask = task;
 
-      await renderTask.promise;
+      await task.promise;
     } catch (e) {
       if (e?.name !== "RenderingCancelledException") {
         console.error("Errore nel rendering della planimetria:", e);
@@ -107,6 +108,7 @@
     } finally {
       renderTask = null;
       rendering = false;
+
       if (renderRichiesto) {
         renderRichiesto = false;
         programmaRender();
