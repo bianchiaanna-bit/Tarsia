@@ -1,0 +1,444 @@
+(() => {
+  "use strict";
+
+  const viewer = document.getElementById("visualizzatore-planimetria");
+  if (!viewer) return;
+
+  const meno = document.getElementById("zoom-meno");
+  const piu = document.getElementById("zoom-piu");
+  const reset = document.getElementById("zoom-reset");
+  const fullscreen = document.getElementById("zoom-fullscreen");
+  const livello = document.getElementById("zoom-livello");
+
+  if (!meno || !piu || !reset || !fullscreen || !livello) return;
+
+  const PDF_URL = "immagini/planimetria.pdf";
+  const MIN = 1;
+  const MAX = 8;
+
+  let pdfPage;
+  let fitScale = 1;
+  let zoom = 1;
+  let pageWidth = 0;
+  let pageHeight = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+  let baseX = 0;
+  let baseY = 0;
+  let fitMode = "page";
+  let renderTask = null;
+  let renderPending = false;
+  let renderFrame = 0;
+  let renderRatio = 1;
+  let pointers = new Map();
+  let drag = null;
+  let pinch = null;
+  let resizeTimer = null;
+
+  const canvas = document.createElement("canvas");
+  canvas.id = "planimetria-canvas";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute(
+    "aria-label",
+    "Planimetria del cimitero comunale di Tarsia"
+  );
+  canvas.style.cssText = [
+    "position:absolute",
+    "display:block",
+    "pointer-events:none",
+    "transform-origin:0 0",
+    "max-width:none",
+    "margin:0",
+    "padding:0",
+    "border:0"
+  ].join(";");
+
+  const ctx = canvas.getContext("2d", { alpha: false });
+  const oldImage = document.getElementById("planimetria");
+  if (oldImage) oldImage.remove();
+  viewer.appendChild(canvas);
+
+  function dimensions() {
+    return {
+      width: viewer.clientWidth,
+      height: viewer.clientHeight
+    };
+  }
+
+  function clampPosition() {
+    const { width, height } = dimensions();
+    const scaledWidth = pageWidth * zoom;
+    const scaledHeight = pageHeight * zoom;
+
+    let left = baseX * zoom + offsetX;
+    let top = baseY * zoom + offsetY;
+
+    if (scaledWidth <= width) {
+      left = (width - scaledWidth) / 2;
+    } else {
+      left = Math.min(0, Math.max(width - scaledWidth, left));
+    }
+
+    if (scaledHeight <= height) {
+      top = (height - scaledHeight) / 2;
+    } else {
+      top = Math.min(0, Math.max(height - scaledHeight, top));
+    }
+
+    offsetX = left - baseX * zoom;
+    offsetY = top - baseY * zoom;
+  }
+
+  function updateView(redraw = false) {
+    clampPosition();
+
+    canvas.style.transform =
+      `translate3d(${offsetX}px, ${offsetY}px, 0) scale(${zoom})`;
+
+    livello.textContent = `${Math.round(zoom * 100)}%`;
+    meno.disabled = zoom <= MIN;
+    piu.disabled = zoom >= MAX;
+
+    viewer.classList.toggle("zoom-attivo", zoom > MIN);
+    viewer.style.cursor = zoom > MIN ? "grab" : "default";
+
+    if (redraw) scheduleRender();
+  }
+
+  function scheduleRender() {
+    renderPending = true;
+
+    if (renderTask) {
+      try {
+        renderTask.cancel();
+      } catch (_) {}
+    }
+
+    if (renderFrame) cancelAnimationFrame(renderFrame);
+
+    renderFrame = requestAnimationFrame(() => {
+      renderFrame = 0;
+      renderPDF();
+    });
+  }
+
+  async function renderPDF() {
+    if (!pdfPage || !renderPending || renderTask) return;
+
+    renderPending = false;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    const visibleWidth = Math.max(1, pageWidth * zoom);
+    const visibleHeight = Math.max(1, pageHeight * zoom);
+
+    const maxPixels = 36000000;
+    const maxSide = 16000;
+
+    const safeRatio = Math.min(
+      dpr,
+      maxSide / visibleWidth,
+      maxSide / visibleHeight,
+      Math.sqrt(maxPixels / (visibleWidth * visibleHeight))
+    );
+
+    renderRatio = Math.max(0.25, safeRatio);
+
+    const viewport = pdfPage.getViewport({
+      scale: fitScale * zoom * renderRatio
+    });
+
+    canvas.width = Math.max(1, Math.round(viewport.width));
+    canvas.height = Math.max(1, Math.round(viewport.height));
+
+    canvas.style.width = `${pageWidth}px`;
+    canvas.style.height = `${pageHeight}px`;
+    canvas.style.left = `${baseX}px`;
+    canvas.style.top = `${baseY}px`;
+
+    const task = pdfPage.render({
+      canvasContext: ctx,
+      viewport
+    });
+
+    renderTask = task;
+
+    try {
+      await task.promise;
+    } catch (error) {
+      if (error?.name !== "RenderingCancelledException") {
+        console.error("Errore nel rendering PDF:", error);
+      }
+    } finally {
+      if (renderTask === task) renderTask = null;
+
+      if (renderPending) scheduleRender();
+    }
+  }
+
+  function fit(mode = "page") {
+    if (!pdfPage) return;
+
+    fitMode = mode;
+
+    const original = pdfPage.getViewport({ scale: 1 });
+    const { width, height } = dimensions();
+
+    if (!width || !height) return;
+
+    fitScale = mode === "width"
+      ? width / original.width
+      : Math.min(width / original.width, height / original.height);
+
+    pageWidth = original.width * fitScale;
+    pageHeight = original.height * fitScale;
+
+    baseX = (width - pageWidth) / 2;
+    baseY = (height - pageHeight) / 2;
+
+    zoom = 1;
+    offsetX = 0;
+    offsetY = 0;
+    drag = null;
+    pinch = null;
+
+    updateView(true);
+  }
+
+  function zoomAt(nextZoom, clientX, clientY) {
+    nextZoom = Math.max(MIN, Math.min(MAX, nextZoom));
+
+    const rect = viewer.getBoundingClientRect();
+    const px = clientX - rect.left;
+    const py = clientY - rect.top;
+
+    const currentLeft = baseX * zoom + offsetX;
+    const currentTop = baseY * zoom + offsetY;
+
+    const imageX = (px - currentLeft) / zoom;
+    const imageY = (py - currentTop) / zoom;
+
+    zoom = nextZoom;
+
+    offsetX = px - imageX * zoom - baseX * zoom;
+    offsetY = py - imageY * zoom - baseY * zoom;
+
+    updateView(true);
+  }
+
+  function zoomCenter(factor) {
+    const rect = viewer.getBoundingClientRect();
+    zoomAt(
+      zoom * factor,
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2
+    );
+  }
+
+  meno.addEventListener("click", () => zoomCenter(1 / 1.25));
+  piu.addEventListener("click", () => zoomCenter(1.25));
+  reset.addEventListener("click", () => fit("page"));
+
+  viewer.addEventListener("wheel", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
+
+    event.preventDefault();
+    zoomAt(
+      zoom * (event.deltaY < 0 ? 1.15 : 1 / 1.15),
+      event.clientX,
+      event.clientY
+    );
+  }, { passive: false });
+
+  viewer.addEventListener("dblclick", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
+
+    event.preventDefault();
+    zoomAt(
+      zoom > 1 ? 1 : 2,
+      event.clientX,
+      event.clientY
+    );
+  });
+
+  function pointDistance(a, b) {
+    return Math.hypot(b.x - a.x, b.y - a.y);
+  }
+
+  function pointCenter(a, b) {
+    return {
+      x: (a.x + b.x) / 2,
+      y: (a.y + b.y) / 2
+    };
+  }
+
+  viewer.addEventListener("pointerdown", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+
+    try {
+      viewer.setPointerCapture(event.pointerId);
+    } catch (_) {}
+
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY
+    });
+
+    if (pointers.size === 1) {
+      drag = {
+        id: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        offsetX,
+        offsetY
+      };
+      pinch = null;
+    } else if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      pinch = {
+        distance: Math.max(1, pointDistance(a, b)),
+        zoom,
+        center: pointCenter(a, b)
+      };
+      drag = null;
+    }
+  });
+
+  viewer.addEventListener("pointermove", event => {
+    if (!pointers.has(event.pointerId)) return;
+
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY
+    });
+
+    if (pointers.size >= 2 && pinch) {
+      const [a, b] = [...pointers.values()];
+      const distance = pointDistance(a, b);
+      const center = pointCenter(a, b);
+
+      zoomAt(
+        pinch.zoom * distance / pinch.distance,
+        pinch.center.x,
+        pinch.center.y
+      );
+
+      offsetX += center.x - pinch.center.x;
+      offsetY += center.y - pinch.center.y;
+      updateView();
+      return;
+    }
+
+    if (drag && drag.id === event.pointerId) {
+      offsetX = drag.offsetX + event.clientX - drag.startX;
+      offsetY = drag.offsetY + event.clientY - drag.startY;
+      updateView();
+    }
+  });
+
+  function endPointer(event) {
+    pointers.delete(event.pointerId);
+
+    if (pointers.size === 1) {
+      const [id, point] = [...pointers.entries()][0];
+      drag = {
+        id,
+        startX: point.x,
+        startY: point.y,
+        offsetX,
+        offsetY
+      };
+    } else {
+      drag = null;
+    }
+
+    if (pointers.size < 2) pinch = null;
+  }
+
+  viewer.addEventListener("pointerup", endPointer);
+  viewer.addEventListener("pointercancel", endPointer);
+  viewer.addEventListener("lostpointercapture", endPointer);
+
+  async function toggleFullscreen() {
+    const fallback = viewer.classList.contains("planimetria-fullscreen-attiva");
+    const native = document.fullscreenElement === viewer;
+
+    try {
+      if (fallback || native) {
+        if (fallback) viewer.classList.remove("planimetria-fullscreen-attiva");
+        else if (document.exitFullscreen) await document.exitFullscreen();
+      } else if (viewer.requestFullscreen) {
+        await viewer.requestFullscreen();
+      } else {
+        viewer.classList.add("planimetria-fullscreen-attiva");
+      }
+    } catch (error) {
+      viewer.classList.toggle("planimetria-fullscreen-attiva");
+    }
+
+    syncFullscreen();
+    requestAnimationFrame(() => fit(fitMode));
+  }
+
+  function syncFullscreen() {
+    const active =
+      document.fullscreenElement === viewer ||
+      viewer.classList.contains("planimetria-fullscreen-attiva");
+
+    fullscreen.textContent = active ? "×" : "⛶";
+    fullscreen.title = active ? "Esci dallo schermo intero" : "Schermo intero";
+    fullscreen.setAttribute(
+      "aria-label",
+      active ? "Esci dallo schermo intero" : "Apri planimetria a schermo intero"
+    );
+
+    document.body.classList.toggle(
+      "planimetria-blocco-scroll",
+      viewer.classList.contains("planimetria-fullscreen-attiva")
+    );
+  }
+
+  fullscreen.addEventListener("click", toggleFullscreen);
+
+  document.addEventListener("fullscreenchange", () => {
+    syncFullscreen();
+    requestAnimationFrame(() => fit(fitMode));
+  });
+
+  document.addEventListener("keydown", event => {
+    if (
+      event.key === "Escape" &&
+      viewer.classList.contains("planimetria-fullscreen-attiva")
+    ) {
+      viewer.classList.remove("planimetria-fullscreen-attiva");
+      syncFullscreen();
+      fit(fitMode);
+    }
+  });
+
+  const observer = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (pdfPage) fit(fitMode);
+    }, 150);
+  });
+
+  observer.observe(viewer);
+
+  async function init() {
+    try {
+      const pdfjs = await import("./vendor/pdfjs/pdf.mjs");
+      pdfjs.GlobalWorkerOptions.workerSrc = "./js/vendor/pdfjs/pdf.worker.mjs";
+
+      const documentPDF = await pdfjs.getDocument(PDF_URL).promise;
+      pdfPage = await documentPDF.getPage(1);
+      fit("page");
+      syncFullscreen();
+    } catch (error) {
+      console.error("Impossibile caricare il PDF:", error);
+      livello.textContent = "Errore PDF";
+    }
+  }
+
+  init();
+})();

@@ -1,388 +1,444 @@
 (() => {
   "use strict";
 
-  const contenitore = document.getElementById("visualizzatore-planimetria");
+  const viewer = document.getElementById("visualizzatore-planimetria");
+  if (!viewer) return;
+
   const meno = document.getElementById("zoom-meno");
   const piu = document.getElementById("zoom-piu");
   const reset = document.getElementById("zoom-reset");
   const fullscreen = document.getElementById("zoom-fullscreen");
   const livello = document.getElementById("zoom-livello");
 
-  if (!contenitore || !meno || !piu || !reset || !livello || !fullscreen) return;
+  if (!meno || !piu || !reset || !fullscreen || !livello) return;
 
+  const PDF_URL = "immagini/planimetria.pdf";
   const MIN = 1;
   const MAX = 8;
-  const PDF_URL = "immagini/planimetria.pdf";
 
-  let pagina = null;
-  let scala = 1;
-  let scalaBase = 1;
-  let x = 0;
-  let y = 0;
-  let larghezza = 0;
-  let altezza = 0;
-  let rendering = false;
-  let renderRichiesto = false;
+  let pdfPage;
+  let fitScale = 1;
+  let zoom = 1;
+  let pageWidth = 0;
+  let pageHeight = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+  let baseX = 0;
+  let baseY = 0;
+  let fitMode = "page";
   let renderTask = null;
-  let frameRender = 0;
-  let trascinamento = null;
-  let puntatori = new Map();
+  let renderPending = false;
+  let renderFrame = 0;
+  let renderRatio = 1;
+  let pointers = new Map();
+  let drag = null;
   let pinch = null;
+  let resizeTimer = null;
 
   const canvas = document.createElement("canvas");
   canvas.id = "planimetria-canvas";
   canvas.setAttribute("role", "img");
-  canvas.setAttribute("aria-label", "Planimetria del cimitero comunale di Tarsia");
-  canvas.style.cssText =
-    "position:absolute;left:0;top:0;display:block;pointer-events:none;" +
-    "transform-origin:0 0;max-width:none;margin:0;padding:0;border:0;";
+  canvas.setAttribute(
+    "aria-label",
+    "Planimetria del cimitero comunale di Tarsia"
+  );
+  canvas.style.cssText = [
+    "position:absolute",
+    "display:block",
+    "pointer-events:none",
+    "transform-origin:0 0",
+    "max-width:none",
+    "margin:0",
+    "padding:0",
+    "border:0"
+  ].join(";");
 
-  const contesto = canvas.getContext("2d", { alpha: false });
-  const immaginePrecedente = document.getElementById("planimetria");
-  if (immaginePrecedente) immaginePrecedente.remove();
-  contenitore.appendChild(canvas);
+  const ctx = canvas.getContext("2d", { alpha: false });
+  const oldImage = document.getElementById("planimetria");
+  if (oldImage) oldImage.remove();
+  viewer.appendChild(canvas);
 
-  function limiti() {
-    return { w: contenitore.clientWidth, h: contenitore.clientHeight };
+  function dimensions() {
+    return {
+      width: viewer.clientWidth,
+      height: viewer.clientHeight
+    };
   }
 
-  function limitaPosizione() {
-    const { w, h } = limiti();
-    x = Math.min(0, Math.max(w * (1 - scala), x));
-    y = Math.min(0, Math.max(h * (1 - scala), y));
+  function clampPosition() {
+    const { width, height } = dimensions();
+    const scaledWidth = pageWidth * zoom;
+    const scaledHeight = pageHeight * zoom;
+
+    let left = baseX * zoom + offsetX;
+    let top = baseY * zoom + offsetY;
+
+    if (scaledWidth <= width) {
+      left = (width - scaledWidth) / 2;
+    } else {
+      left = Math.min(0, Math.max(width - scaledWidth, left));
+    }
+
+    if (scaledHeight <= height) {
+      top = (height - scaledHeight) / 2;
+    } else {
+      top = Math.min(0, Math.max(height - scaledHeight, top));
+    }
+
+    offsetX = left - baseX * zoom;
+    offsetY = top - baseY * zoom;
   }
 
-  function programmaRender() {
-    if (frameRender) cancelAnimationFrame(frameRender);
-    frameRender = requestAnimationFrame(() => {
-      frameRender = 0;
-      renderizza();
+  function updateView(redraw = false) {
+    clampPosition();
+
+    canvas.style.transform =
+      `translate3d(${baseX * zoom + offsetX}px, ${baseY * zoom + offsetY}px, 0)`;
+
+    livello.textContent = `${Math.round(zoom * 100)}%`;
+    meno.disabled = zoom <= MIN;
+    piu.disabled = zoom >= MAX;
+
+    viewer.classList.toggle("zoom-attivo", zoom > MIN);
+    viewer.style.cursor = zoom > MIN ? "grab" : "default";
+
+    if (redraw) scheduleRender();
+  }
+
+  function scheduleRender() {
+    renderPending = true;
+
+    if (renderTask) {
+      try {
+        renderTask.cancel();
+      } catch (_) {}
+    }
+
+    if (renderFrame) cancelAnimationFrame(renderFrame);
+
+    renderFrame = requestAnimationFrame(() => {
+      renderFrame = 0;
+      renderPDF();
     });
   }
 
-  function aggiorna(ridisegna = false) {
-    limitaPosizione();
-    canvas.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scala})`;
-    livello.textContent = `${Math.round(scala * 100)}%`;
-    meno.disabled = scala <= MIN;
-    piu.disabled = scala >= MAX;
-    contenitore.classList.toggle("zoom-attivo", scala > MIN);
-    if (ridisegna) programmaRender();
-  }
+  async function renderPDF() {
+    if (!pdfPage || !renderPending || renderTask) return;
 
-  async function renderizza() {
-    if (!pagina) return;
+    renderPending = false;
 
-    if (rendering) {
-      renderRichiesto = true;
-      return;
-    }
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    const visibleWidth = Math.max(1, pageWidth * zoom);
+    const visibleHeight = Math.max(1, pageHeight * zoom);
 
-    rendering = true;
-    renderRichiesto = false;
+    const maxPixels = 36000000;
+    const maxSide = 16000;
+
+    const safeRatio = Math.min(
+      dpr,
+      maxSide / visibleWidth,
+      maxSide / visibleHeight,
+      Math.sqrt(maxPixels / (visibleWidth * visibleHeight))
+    );
+
+    renderRatio = Math.max(0.25, safeRatio);
+
+    const viewport = pdfPage.getViewport({
+      scale: fitScale * zoom * renderRatio
+    });
+
+    canvas.width = Math.max(1, Math.round(viewport.width));
+    canvas.height = Math.max(1, Math.round(viewport.height));
+
+    canvas.style.width = `${pageWidth * zoom}px`;
+    canvas.style.height = `${pageHeight * zoom}px`;
+    canvas.style.left = "0px";
+    canvas.style.top = "0px";
+
+    const task = pdfPage.render({
+      canvasContext: ctx,
+      viewport
+    });
+
+    renderTask = task;
 
     try {
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 3);
-      const viewport = pagina.getViewport({
-        scale: scalaBase * pixelRatio * scala
-      });
-
-      const nuovaLarghezza = Math.max(1, Math.round(viewport.width));
-      const nuovaAltezza = Math.max(1, Math.round(viewport.height));
-
-      canvas.width = nuovaLarghezza;
-      canvas.height = nuovaAltezza;
-      canvas.style.width = `${larghezza}px`;
-      canvas.style.height = `${altezza}px`;
-
-      const task = pagina.render({
-        canvasContext: contesto,
-        viewport
-      });
-      renderTask = task;
-
       await task.promise;
-    } catch (e) {
-      if (e?.name !== "RenderingCancelledException") {
-        console.error("Errore nel rendering della planimetria:", e);
+    } catch (error) {
+      if (error?.name !== "RenderingCancelledException") {
+        console.error("Errore nel rendering PDF:", error);
       }
     } finally {
-      renderTask = null;
-      rendering = false;
+      if (renderTask === task) renderTask = null;
 
-      if (renderRichiesto) {
-        renderRichiesto = false;
-        programmaRender();
-      }
+      if (renderPending) scheduleRender();
     }
   }
 
-  function adattaAllaVista() {
-    if (!pagina) return;
+  function fit(mode = "page") {
+    if (!pdfPage) return;
 
-    const viewportOriginale = pagina.getViewport({ scale: 1 });
-    contenitore.style.aspectRatio =
-      `${viewportOriginale.width} / ${viewportOriginale.height}`;
+    fitMode = mode;
 
-    const { w, h } = limiti();
-    scalaBase = Math.min(
-      w / viewportOriginale.width,
-      h / viewportOriginale.height
+    const original = pdfPage.getViewport({ scale: 1 });
+    const { width, height } = dimensions();
+
+    if (!width || !height) return;
+
+    fitScale = mode === "width"
+      ? width / original.width
+      : Math.min(width / original.width, height / original.height);
+
+    pageWidth = original.width * fitScale;
+    pageHeight = original.height * fitScale;
+
+    baseX = (width - pageWidth) / 2;
+    baseY = (height - pageHeight) / 2;
+
+    zoom = 1;
+    offsetX = 0;
+    offsetY = 0;
+    drag = null;
+    pinch = null;
+
+    updateView(true);
+  }
+
+  function zoomAt(nextZoom, clientX, clientY) {
+    nextZoom = Math.max(MIN, Math.min(MAX, nextZoom));
+
+    const rect = viewer.getBoundingClientRect();
+    const px = clientX - rect.left;
+    const py = clientY - rect.top;
+
+    const currentLeft = baseX * zoom + offsetX;
+    const currentTop = baseY * zoom + offsetY;
+
+    const imageX = (px - currentLeft) / zoom;
+    const imageY = (py - currentTop) / zoom;
+
+    zoom = nextZoom;
+
+    offsetX = px - imageX * zoom - baseX * zoom;
+    offsetY = py - imageY * zoom - baseY * zoom;
+
+    updateView(true);
+  }
+
+  function zoomCenter(factor) {
+    const rect = viewer.getBoundingClientRect();
+    zoomAt(
+      zoom * factor,
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2
     );
-
-    larghezza = viewportOriginale.width * scalaBase;
-    altezza = viewportOriginale.height * scalaBase;
-
-    canvas.style.left = `${(w - larghezza) / 2}px`;
-    canvas.style.top = `${(h - altezza) / 2}px`;
-    canvas.style.width = `${larghezza}px`;
-    canvas.style.height = `${altezza}px`;
-
-    scala = 1;
-    x = 0;
-    y = 0;
-    trascinamento = null;
-    aggiorna(true);
   }
 
-  function zoomSu(nuovaScala, px, py) {
-    nuovaScala = Math.max(MIN, Math.min(MAX, nuovaScala));
+  meno.addEventListener("click", () => zoomCenter(1 / 1.25));
+  piu.addEventListener("click", () => zoomCenter(1.25));
+  reset.addEventListener("click", () => fit("page"));
 
-    const rett = contenitore.getBoundingClientRect();
-    const puntoX = px - rett.left;
-    const puntoY = py - rett.top;
+  viewer.addEventListener("wheel", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
 
-    const immagineX = (puntoX - x) / scala;
-    const immagineY = (puntoY - y) / scala;
-
-    scala = nuovaScala;
-    x = puntoX - immagineX * scala;
-    y = puntoY - immagineY * scala;
-
-    aggiorna(true);
-  }
-
-  function zoomCentro(fattore) {
-    const rett = contenitore.getBoundingClientRect();
-    zoomSu(
-      scala * fattore,
-      rett.left + rett.width / 2,
-      rett.top + rett.height / 2
+    event.preventDefault();
+    zoomAt(
+      zoom * (event.deltaY < 0 ? 1.15 : 1 / 1.15),
+      event.clientX,
+      event.clientY
     );
-  }
-
-  contenitore.addEventListener("wheel", e => {
-    if (e.target.closest(".controlli-planimetria")) return;
-    e.preventDefault();
-    zoomSu(scala * (e.deltaY < 0 ? 1.15 : 1 / 1.15), e.clientX, e.clientY);
   }, { passive: false });
 
-  piu.addEventListener("click", () => zoomCentro(1.25));
-  meno.addEventListener("click", () => zoomCentro(1 / 1.25));
-  reset.addEventListener("click", adattaAllaVista);
+  viewer.addEventListener("dblclick", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
 
-  function aggiornaStatoFullscreen() {
-    const attivo = document.fullscreenElement === contenitore ||
-      contenitore.classList.contains("planimetria-fullscreen-attiva");
-
-    fullscreen.textContent = attivo ? "×" : "⛶";
-    fullscreen.title = attivo ? "Esci dallo schermo intero" : "Schermo intero";
-    fullscreen.setAttribute(
-      "aria-label",
-      attivo ? "Esci dalla planimetria a schermo intero" : "Apri planimetria a schermo intero"
+    event.preventDefault();
+    zoomAt(
+      zoom > 1 ? 1 : 2,
+      event.clientX,
+      event.clientY
     );
-    document.body.classList.toggle(
-      "planimetria-blocco-scroll",
-      contenitore.classList.contains("planimetria-fullscreen-attiva")
-    );
+  });
+
+  function pointDistance(a, b) {
+    return Math.hypot(b.x - a.x, b.y - a.y);
   }
 
-  async function attivaFullscreen() {
-    if (contenitore.classList.contains("planimetria-fullscreen-attiva") ||
-        document.fullscreenElement === contenitore) {
-      await disattivaFullscreen();
-      return;
-    }
-
-    if (contenitore.requestFullscreen) {
-      try {
-        await contenitore.requestFullscreen();
-        return;
-      } catch (e) {
-        // Se il browser rifiuta la modalità nativa, usa il pannello sovrapposto.
-      }
-    }
-
-    contenitore.classList.add("planimetria-fullscreen-attiva");
-    aggiornaStatoFullscreen();
-    requestAnimationFrame(() => adattaAllaVista());
+  function pointCenter(a, b) {
+    return {
+      x: (a.x + b.x) / 2,
+      y: (a.y + b.y) / 2
+    };
   }
 
-  async function disattivaFullscreen() {
-    if (contenitore.classList.contains("planimetria-fullscreen-attiva")) {
-      contenitore.classList.remove("planimetria-fullscreen-attiva");
-      aggiornaStatoFullscreen();
-      requestAnimationFrame(() => adattaAllaVista());
-      return;
-    }
+  viewer.addEventListener("pointerdown", event => {
+    if (event.target.closest(".controlli-planimetria")) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
 
-    if (document.fullscreenElement === contenitore && document.exitFullscreen) {
-      try {
-        await document.exitFullscreen();
-      } catch (e) {
-        console.warn("Impossibile uscire dalla modalità a schermo intero:", e);
-      }
-    }
-  }
+    try {
+      viewer.setPointerCapture(event.pointerId);
+    } catch (_) {}
 
-  fullscreen.addEventListener("click", attivaFullscreen);
-  document.addEventListener("fullscreenchange", () => {
-    aggiornaStatoFullscreen();
-    requestAnimationFrame(() => {
-      if (pagina) adattaAllaVista();
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY
     });
-  });
 
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" &&
-        contenitore.classList.contains("planimetria-fullscreen-attiva")) {
-      disattivaFullscreen();
-    }
-  });
-
-
-  contenitore.addEventListener("dblclick", e => {
-    if (e.target.closest(".controlli-planimetria")) return;
-    e.preventDefault();
-    zoomSu(scala > 1 ? 1 : 2, e.clientX, e.clientY);
-  });
-
-  contenitore.addEventListener("pointerdown", e => {
-    if (e.target.closest(".controlli-planimetria")) return;
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-
-    contenitore.setPointerCapture(e.pointerId);
-    puntatori.set(e.pointerId, { x: e.clientX, y: e.clientY });
-
-    if (puntatori.size === 1) {
-      trascinamento = {
-        id: e.pointerId,
-        x: e.clientX,
-        y: e.clientY,
-        baseX: x,
-        baseY: y
+    if (pointers.size === 1) {
+      drag = {
+        id: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        offsetX,
+        offsetY
       };
-    } else if (puntatori.size === 2) {
-      const p = [...puntatori.values()];
+      pinch = null;
+    } else if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
       pinch = {
-        distanza: Math.hypot(p[1].x - p[0].x, p[1].y - p[0].y),
-        scala,
-        centro: {
-          x: (p[0].x + p[1].x) / 2,
-          y: (p[0].y + p[1].y) / 2
-        }
+        distance: Math.max(1, pointDistance(a, b)),
+        zoom,
+        center: pointCenter(a, b)
       };
-      trascinamento = null;
+      drag = null;
     }
   });
 
-  contenitore.addEventListener("pointermove", e => {
-    if (!puntatori.has(e.pointerId)) return;
-    puntatori.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  viewer.addEventListener("pointermove", event => {
+    if (!pointers.has(event.pointerId)) return;
 
-    if (puntatori.size >= 2 && pinch) {
-      const p = [...puntatori.values()];
-      const distanza = Math.hypot(p[1].x - p[0].x, p[1].y - p[0].y);
-      const centro = {
-        x: (p[0].x + p[1].x) / 2,
-        y: (p[0].y + p[1].y) / 2
-      };
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY
+    });
 
-      const vecchiaScala = scala;
-      zoomSu(
-        pinch.scala * (distanza / Math.max(1, pinch.distanza)),
-        pinch.centro.x,
-        pinch.centro.y
+    if (pointers.size >= 2 && pinch) {
+      const [a, b] = [...pointers.values()];
+      const distance = pointDistance(a, b);
+      const center = pointCenter(a, b);
+
+      zoomAt(
+        pinch.zoom * distance / pinch.distance,
+        pinch.center.x,
+        pinch.center.y
       );
 
-      x += centro.x - pinch.centro.x;
-      y += centro.y - pinch.centro.y;
-      aggiorna(scala !== vecchiaScala);
+      offsetX += center.x - pinch.center.x;
+      offsetY += center.y - pinch.center.y;
+      updateView();
       return;
     }
 
-    if (trascinamento && trascinamento.id === e.pointerId) {
-      x = trascinamento.baseX + e.clientX - trascinamento.x;
-      y = trascinamento.baseY + e.clientY - trascinamento.y;
-      aggiorna();
+    if (drag && drag.id === event.pointerId) {
+      offsetX = drag.offsetX + event.clientX - drag.startX;
+      offsetY = drag.offsetY + event.clientY - drag.startY;
+      updateView();
     }
   });
 
-  function finePuntatore(e) {
-    puntatori.delete(e.pointerId);
+  function endPointer(event) {
+    pointers.delete(event.pointerId);
 
-    if (puntatori.size === 1) {
-      const [id, p] = [...puntatori.entries()][0];
-      trascinamento = {
+    if (pointers.size === 1) {
+      const [id, point] = [...pointers.entries()][0];
+      drag = {
         id,
-        x: p.x,
-        y: p.y,
-        baseX: x,
-        baseY: y
+        startX: point.x,
+        startY: point.y,
+        offsetX,
+        offsetY
       };
     } else {
-      trascinamento = null;
+      drag = null;
     }
 
-    if (puntatori.size < 2) pinch = null;
+    if (pointers.size < 2) pinch = null;
   }
 
-  contenitore.addEventListener("pointerup", finePuntatore);
-  contenitore.addEventListener("pointercancel", finePuntatore);
-  contenitore.addEventListener("lostpointercapture", finePuntatore);
+  viewer.addEventListener("pointerup", endPointer);
+  viewer.addEventListener("pointercancel", endPointer);
+  viewer.addEventListener("lostpointercapture", endPointer);
 
-  let larghezzaOsservata = 0;
-  let altezzaOsservata = 0;
-  let timerResize = 0;
+  async function toggleFullscreen() {
+    const fallback = viewer.classList.contains("planimetria-fullscreen-attiva");
+    const native = document.fullscreenElement === viewer;
 
-  const osservatoreDimensioni = new ResizeObserver(entries => {
-    const entry = entries[0];
-    if (!entry || !pagina) return;
-
-    const w = Math.round(entry.contentRect.width);
-    const h = Math.round(entry.contentRect.height);
-
-    if (!w || !h) return;
-    if (w === larghezzaOsservata && h === altezzaOsservata) return;
-
-    larghezzaOsservata = w;
-    altezzaOsservata = h;
-
-    clearTimeout(timerResize);
-    timerResize = setTimeout(() => {
-      if (pagina) adattaAllaVista();
-    }, 120);
-  });
-
-  osservatoreDimensioni.observe(contenitore);
-
-  window.addEventListener("resize", () => {
-    if (pagina) adattaAllaVista();
-  });
-
-  async function avvia() {
     try {
-      const pdfjsLib = await import("./vendor/pdfjs/pdf.mjs");
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "./js/vendor/pdfjs/pdf.worker.mjs";
+      if (fallback || native) {
+        if (fallback) viewer.classList.remove("planimetria-fullscreen-attiva");
+        else if (document.exitFullscreen) await document.exitFullscreen();
+      } else if (viewer.requestFullscreen) {
+        await viewer.requestFullscreen();
+      } else {
+        viewer.classList.add("planimetria-fullscreen-attiva");
+      }
+    } catch (error) {
+      viewer.classList.toggle("planimetria-fullscreen-attiva");
+    }
 
-      const documento = await pdfjsLib.getDocument(PDF_URL).promise;
-      pagina = await documento.getPage(1);
-      adattaAllaVista();
-    } catch (e) {
-      console.error("Impossibile caricare il PDF della planimetria:", e);
-      livello.textContent = "Errore caricamento PDF";
+    syncFullscreen();
+    requestAnimationFrame(() => fit(fitMode));
+  }
+
+  function syncFullscreen() {
+    const active =
+      document.fullscreenElement === viewer ||
+      viewer.classList.contains("planimetria-fullscreen-attiva");
+
+    fullscreen.textContent = active ? "×" : "⛶";
+    fullscreen.title = active ? "Esci dallo schermo intero" : "Schermo intero";
+    fullscreen.setAttribute(
+      "aria-label",
+      active ? "Esci dallo schermo intero" : "Apri planimetria a schermo intero"
+    );
+
+    document.body.classList.toggle(
+      "planimetria-blocco-scroll",
+      viewer.classList.contains("planimetria-fullscreen-attiva")
+    );
+  }
+
+  fullscreen.addEventListener("click", toggleFullscreen);
+
+  document.addEventListener("fullscreenchange", () => {
+    syncFullscreen();
+    requestAnimationFrame(() => fit(fitMode));
+  });
+
+  document.addEventListener("keydown", event => {
+    if (
+      event.key === "Escape" &&
+      viewer.classList.contains("planimetria-fullscreen-attiva")
+    ) {
+      viewer.classList.remove("planimetria-fullscreen-attiva");
+      syncFullscreen();
+      fit(fitMode);
+    }
+  });
+
+  const observer = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (pdfPage) fit(fitMode);
+    }, 150);
+  });
+
+  observer.observe(viewer);
+
+  async function init() {
+    try {
+      const pdfjs = await import("./vendor/pdfjs/pdf.mjs");
+      pdfjs.GlobalWorkerOptions.workerSrc = "./js/vendor/pdfjs/pdf.worker.mjs";
+
+      const documentPDF = await pdfjs.getDocument(PDF_URL).promise;
+      pdfPage = await documentPDF.getPage(1);
+      fit("page");
+      syncFullscreen();
+    } catch (error) {
+      console.error("Impossibile caricare il PDF:", error);
+      livello.textContent = "Errore PDF";
     }
   }
 
-  avvia();
+  init();
 })();

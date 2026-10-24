@@ -89,22 +89,17 @@ indicate nella scheda del defunto.
 
 </p>
 
-
-
-
 <div class="zoom-container" id="visualizzatore-planimetria" aria-label="Visualizzatore interattivo della planimetria">
   <div class="controlli-planimetria" role="group" aria-label="Controlli planimetria">
-    <button type="button" id="zoom-meno" aria-label="Riduci ingrandimento" title="Riduci ingrandimento">−</button>
-    <button type="button" id="zoom-piu" aria-label="Aumenta ingrandimento" title="Aumenta ingrandimento">+</button>
-    <button type="button" id="zoom-reset" aria-label="Adatta tutta la planimetria alla vista" title="Mostra tutta la planimetria">Adatta alla vista</button>
-    <button type="button" id="zoom-fullscreen" aria-label="Apri planimetria a schermo intero" title="Schermo intero">⛶</button>
+    <button type="button" id="zoom-meno" aria-label="Riduci zoom">−</button>
+    <button type="button" id="zoom-piu" aria-label="Aumenta zoom">+</button>
+    <button type="button" id="zoom-reset">Adatta alla vista</button>
+    <button type="button" id="zoom-fullscreen" aria-label="Schermo intero">⛶</button>
     <span id="zoom-livello" aria-live="polite">100%</span>
+    <a href="immagini/planimetria.pdf" download="Planimetria-Cimitero-di-Tarsia.pdf" aria-label="Scarica planimetria PDF" title="Scarica PDF" style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;min-height:38px;font-size:25px;text-decoration:none;color:inherit;">↓</a>
   </div>
-
   <span class="istruzione-planimetria">Usa la rotellina per ingrandire · Trascina per spostarti</span>
 </div>
-
-
 
 </section>
 
@@ -112,7 +107,8 @@ indicate nella scheda del defunto.
 <div id="footer"></div>
 
 <script src="js/menu-mobile.js" defer></script>
-<script src="js/planimetria.js"></script>
+
+
 
 <script>
 
@@ -127,6 +123,7 @@ document.getElementById("footer").innerHTML = data;
 });
 
 </script>
+  <script src="js/planimetria.js"></script>
 </body>
 
 </html>

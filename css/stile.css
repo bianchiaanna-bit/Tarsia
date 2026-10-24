@@ -5903,7 +5903,7 @@ body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .istruzione
     width: 100% !important;
     max-width: 100% !important;
     margin: 18px 0 !important;
-    padding: 0 !important;
+    padding: 0 14px !important;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -5913,8 +5913,11 @@ body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .istruzione
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     margin: 12px 0 !important;
-    overflow-wrap: anywhere;
+    padding: 18px 16px !important;
+    border-radius: 15px !important;
+    overflow-wrap: anywhere !important;
   }
 
   /* Contatti: riquadri contenuti nella larghezza dello schermo */
@@ -6463,4 +6466,42 @@ body.pagina-secondaria .header-home-tarsia {
     max-width: 52vw !important;
     max-height: 56px !important;
   }
+}
+
+/* PLANIMETRIA — DOWNLOAD DEL PDF ORIGINALE */
+body.pagina-secondaria .azioni-planimetria {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 18px auto 4px;
+  text-align: center;
+}
+
+body.pagina-secondaria .azioni-planimetria a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 20px;
+  border: 1px solid #164b70;
+  border-radius: 9px;
+  background: #164b70;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+body.pagina-secondaria .azioni-planimetria a:hover,
+body.pagina-secondaria .azioni-planimetria a:focus-visible {
+  background: #D7A35C;
+  border-color: #D7A35C;
+  color: #172b3a;
+}
+
+body.pagina-secondaria .azioni-planimetria span {
+  color: #536575;
+  font-size: 12px;
+  line-height: 1.5;
 }
