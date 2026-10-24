@@ -17,27 +17,33 @@
 </head>
 
 
-<body>
+<body class="pagina-secondaria">
+
+<header class="header-home-tarsia">
+  <nav class="nav-home-tarsia" aria-label="Navigazione principale">
+    <div class="nav-home-links">
+      <a href="index.html#informazioni">Informazioni</a>
+      <a href="index.html#contatti">Contatti</a>
+    </div>
+    <a class="logo-home-tarsia" href="index.html" aria-label="Cimitero di Tarsia, home">
+      <img src="immagini/logo.png" alt="Archivio Defunti · Tarsia">
+    </a>
+  </nav>
+</header>
+
 
 
 
 <header class="hero-secondario">
 
 
-<img 
-src="immagini/stemma.webp"
-class="stemma"
-alt="Comune di Tarsia">
 
 
-<h1>
-Cimitero di Tarsia
-</h1>
+
+<h1>Trova dove riposa chi cerchi</h1>
 
 
-<p>
-Archivio storico dei defunti del cimitero comunale
-</p>
+<p>Questo archivio indica la zona e la posizione della sepoltura nel cimitero di Tarsia (CS).</p>
 
 
 </header>
@@ -77,18 +83,15 @@ indicate nella scheda del defunto.
 
 
 
-<div class="zoom-container">
+<div class="zoom-container" id="visualizzatore-planimetria" aria-label="Visualizzatore interattivo della planimetria">
+  <div class="controlli-planimetria" role="group" aria-label="Controlli planimetria">
+    <button type="button" id="zoom-meno" aria-label="Riduci ingrandimento" title="Riduci ingrandimento">−</button>
+    <button type="button" id="zoom-piu" aria-label="Aumenta ingrandimento" title="Aumenta ingrandimento">+</button>
+    <button type="button" id="zoom-reset" aria-label="Adatta tutta la planimetria alla vista" title="Mostra tutta la planimetria">Adatta alla vista</button>
+    <span id="zoom-livello" aria-live="polite">100%</span>
+  </div>
 
-
-<img 
-
-id="planimetria"
-
-src="immagini/planimetria.webp"
-
-alt="Planimetria del cimitero comunale di Tarsia">
-
-
+  <span class="istruzione-planimetria">Usa la rotellina per ingrandire · Trascina per spostarti</span>
 </div>
 
 

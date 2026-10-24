@@ -18,63 +18,31 @@
 </head>
 
 
-<body>
+<body class="home-tarsia">
 
-<div id="avviso-costruzione" class="avviso-costruzione">
-    <div class="avviso-testo">
-        <strong>Sito in fase di aggiornamento</strong>
-        <span>
-            L'archivio è attualmente in fase di costruzione e aggiornamento.
-            Alcune informazioni potrebbero essere ancora incomplete o in fase di verifica.
-        </span>
+
+
+<header class="header-home-tarsia">
+  <nav class="nav-home-tarsia" aria-label="Navigazione principale">
+    <div class="nav-home-links">
+      <a href="#informazioni">Informazioni</a>
+      <a href="#contatti">Contatti</a>
     </div>
+    <a class="logo-home-tarsia" href="#" aria-label="Cimitero di Tarsia, home">
+      <img src="immagini/logo.png" alt="Archivio Defunti · Tarsia">
+    </a>
+  </nav>
+</header>
 
-    <button id="chiudi-avviso" aria-label="Chiudi avviso">
-        ×
-    </button>
-</div>
-
-
-<header class="hero">
-
-
-<img 
-src="immagini/stemma.webp"
-class="stemma"
-alt="Comune di Tarsia">
-
-
-<h1>
-Cimitero di Tarsia
-</h1>
-
-
-<p class="sottotitolo">
-Archivio storico dei defunti del cimitero comunale
-</p>
-
-
-
-<div class="area-ricerca">
-
-
-<input 
-type="text"
-id="cerca"
-placeholder="Inserisci nome o cognome del defunto">
-
-
-<br>
-
-
-<button onclick="cercaDefunto()">
-Cerca
-</button>
-
-
-</div>
-
-
+<header class="hero hero-home-tarsia">
+  <div class="hero-contenuto-tarsia">
+    <h1>Trova dove riposa chi cerchi</h1>
+    <h2>Questo archivio indica la zona e la posizione della sepoltura nel cimitero di Tarsia (CS).</h2>
+    <div class="area-ricerca" id="ricerca-defunti">
+      <input type="text" id="cerca" placeholder="Inserisci nome o cognome del defunto" aria-label="Cognome e nome del defunto">
+      <button type="button" onclick="cercaDefunto()">Cerca</button>
+    </div>
+  </div>
 </header>
 
 
@@ -83,7 +51,7 @@ Cerca
 
 
 
-<section class="blocco-home cosa-puoi-fare">
+<section class="blocco-home cosa-puoi-fare" id="informazioni">
 
 
 <h2>
@@ -271,7 +239,7 @@ Planimetria
 
 
 
-<section class="blocco-home contribuisci">
+<section class="blocco-home contribuisci" id="contatti">
 
 <h2>
 Contribuisci all'archivio
@@ -296,6 +264,15 @@ Contatti e segnalazioni
 
 </section>
 
+
+
+<section class="fascia-memoria-tarsia" aria-label="Archivio dei defunti di Tarsia">
+  <div class="fascia-memoria-tarsia__contenuto">
+    <h2>Archivio dei defunti di Tarsia</h2>
+    <p>Una storia da custodire, insieme.</p>
+    <span class="fascia-memoria-tarsia__linea" aria-hidden="true"></span>
+  </div>
+</section>
 
 <div id="footer"></div>
 
