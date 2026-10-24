@@ -1,0 +1,109 @@
+<footer class="footer-sito">
+
+<div class="footer-box">
+
+<h3>
+Il progetto
+</h3>
+
+<div class="gestione-sito">
+
+<div>
+
+<p>
+Responsabile del progetto
+</p>
+
+<strong>
+Geom. Tullio Bianchi
+</strong>
+
+</div>
+
+<div>
+
+<p>
+Gestione archivio
+</p>
+
+<strong>
+Raffaele Marturano
+</strong>
+
+</div>
+
+<div>
+
+<p>
+Realizzazione sito web
+</p>
+
+<strong>
+Anna Bianchi
+</strong>
+
+</div>
+
+
+</div>
+</div>
+
+
+<div class="footer-box footer-secondario">
+
+<h3>
+Informazioni sul progetto
+</h3>
+
+<p>
+
+I dati presenti nel sito derivano da fonti archivistiche pubbliche
+e sono pubblicati esclusivamente per finalità informative.
+
+</p>
+
+<a href="privacy.html">
+Note legali e condizioni d'uso
+</a>
+
+</div>
+
+
+<div class="footer-box footer-secondario">
+
+<h3>
+Segnalazioni e contatti
+</h3>
+
+<p>
+
+Per comunicazioni relative ai dati pubblicati,
+richieste di modifica o inserimento fotografie:
+
+</p>
+
+<a href="contatti.html">
+
+Contatti e segnalazioni
+
+</a>
+
+
+</div>
+
+
+<a href="admin.html" class="footer-admin">
+    <svg
+        class="footer-admin-icona"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="7.5" r="3.5"></circle>
+        <path d="M4.5 21c0-4.5 3.2-7 7.5-7s7.5 2.5 7.5 7"></path>
+    </svg>
+
+    <span>Area amministrativa</span>
+</a>
+
+
+</footer>
