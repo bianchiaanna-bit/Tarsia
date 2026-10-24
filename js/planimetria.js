@@ -5,9 +5,10 @@
   const meno = document.getElementById("zoom-meno");
   const piu = document.getElementById("zoom-piu");
   const reset = document.getElementById("zoom-reset");
+  const fullscreen = document.getElementById("zoom-fullscreen");
   const livello = document.getElementById("zoom-livello");
 
-  if (!contenitore || !meno || !piu || !reset || !livello) return;
+  if (!contenitore || !meno || !piu || !reset || !livello || !fullscreen) return;
 
   const MIN = 1;
   const MAX = 8;
@@ -180,6 +181,76 @@
   meno.addEventListener("click", () => zoomCentro(1 / 1.25));
   reset.addEventListener("click", adattaAllaVista);
 
+  function aggiornaStatoFullscreen() {
+    const attivo = document.fullscreenElement === contenitore ||
+      contenitore.classList.contains("planimetria-fullscreen-attiva");
+
+    fullscreen.textContent = attivo ? "×" : "⛶";
+    fullscreen.title = attivo ? "Esci dallo schermo intero" : "Schermo intero";
+    fullscreen.setAttribute(
+      "aria-label",
+      attivo ? "Esci dalla planimetria a schermo intero" : "Apri planimetria a schermo intero"
+    );
+    document.body.classList.toggle(
+      "planimetria-blocco-scroll",
+      contenitore.classList.contains("planimetria-fullscreen-attiva")
+    );
+  }
+
+  async function attivaFullscreen() {
+    if (contenitore.classList.contains("planimetria-fullscreen-attiva") ||
+        document.fullscreenElement === contenitore) {
+      await disattivaFullscreen();
+      return;
+    }
+
+    if (contenitore.requestFullscreen) {
+      try {
+        await contenitore.requestFullscreen();
+        return;
+      } catch (e) {
+        // Se il browser rifiuta la modalità nativa, usa il pannello sovrapposto.
+      }
+    }
+
+    contenitore.classList.add("planimetria-fullscreen-attiva");
+    aggiornaStatoFullscreen();
+    requestAnimationFrame(() => adattaAllaVista());
+  }
+
+  async function disattivaFullscreen() {
+    if (contenitore.classList.contains("planimetria-fullscreen-attiva")) {
+      contenitore.classList.remove("planimetria-fullscreen-attiva");
+      aggiornaStatoFullscreen();
+      requestAnimationFrame(() => adattaAllaVista());
+      return;
+    }
+
+    if (document.fullscreenElement === contenitore && document.exitFullscreen) {
+      try {
+        await document.exitFullscreen();
+      } catch (e) {
+        console.warn("Impossibile uscire dalla modalità a schermo intero:", e);
+      }
+    }
+  }
+
+  fullscreen.addEventListener("click", attivaFullscreen);
+  document.addEventListener("fullscreenchange", () => {
+    aggiornaStatoFullscreen();
+    requestAnimationFrame(() => {
+      if (pagina) adattaAllaVista();
+    });
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" &&
+        contenitore.classList.contains("planimetria-fullscreen-attiva")) {
+      disattivaFullscreen();
+    }
+  });
+
+
   contenitore.addEventListener("dblclick", e => {
     if (e.target.closest(".controlli-planimetria")) return;
     e.preventDefault();
@@ -269,6 +340,31 @@
   contenitore.addEventListener("pointerup", finePuntatore);
   contenitore.addEventListener("pointercancel", finePuntatore);
   contenitore.addEventListener("lostpointercapture", finePuntatore);
+
+  let larghezzaOsservata = 0;
+  let altezzaOsservata = 0;
+  let timerResize = 0;
+
+  const osservatoreDimensioni = new ResizeObserver(entries => {
+    const entry = entries[0];
+    if (!entry || !pagina) return;
+
+    const w = Math.round(entry.contentRect.width);
+    const h = Math.round(entry.contentRect.height);
+
+    if (!w || !h) return;
+    if (w === larghezzaOsservata && h === altezzaOsservata) return;
+
+    larghezzaOsservata = w;
+    altezzaOsservata = h;
+
+    clearTimeout(timerResize);
+    timerResize = setTimeout(() => {
+      if (pagina) adattaAllaVista();
+    }, 120);
+  });
+
+  osservatoreDimensioni.observe(contenitore);
 
   window.addEventListener("resize", () => {
     if (pagina) adattaAllaVista();

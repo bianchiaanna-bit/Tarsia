@@ -24,13 +24,22 @@
 
 <header class="header-home-tarsia">
   <nav class="nav-home-tarsia" aria-label="Navigazione principale">
-    <div class="nav-home-links">
-      <a href="#informazioni">Informazioni</a>
-      <a href="contatti.html">Contatti</a>
-    </div>
-    <a class="logo-home-tarsia" href="#" aria-label="Cimitero di Tarsia, home">
+    <a class="logo-home-tarsia" href="index.html" aria-label="Cimitero di Tarsia, home">
       <img src="immagini/logo.png" alt="Archivio Defunti · Tarsia">
     </a>
+
+    <button class="menu-hamburger" type="button"
+      aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-home-links menu-mobile" id="menu-mobile">
+      <a href="index.html#ricerca-defunti">Home e ricerca</a>
+      <a href="index.html#informazioni">Informazioni</a>
+      <a href="contatti.html">Contatti e segnalazioni</a>
+      <a href="planimetria.html">Planimetria</a>
+      <a href="privacy.html">Note legali</a>
+    </div>
   </nav>
 </header>
 
@@ -278,6 +287,7 @@ Contatti e segnalazioni
 
 
 
+<script src="js/menu-mobile.js" defer></script>
 <script src="js/script.js"></script>
 <script>
 

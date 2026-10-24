@@ -21,13 +21,22 @@
 
 <header class="header-home-tarsia">
   <nav class="nav-home-tarsia" aria-label="Navigazione principale">
-    <div class="nav-home-links">
-      <a href="index.html#informazioni">Informazioni</a>
-      <a href="contatti.html">Contatti</a>
-    </div>
     <a class="logo-home-tarsia" href="index.html" aria-label="Cimitero di Tarsia, home">
       <img src="immagini/logo.png" alt="Archivio Defunti · Tarsia">
     </a>
+
+    <button class="menu-hamburger" type="button"
+      aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-home-links menu-mobile" id="menu-mobile">
+      <a href="index.html#ricerca-defunti">Home e ricerca</a>
+      <a href="index.html#informazioni">Informazioni</a>
+      <a href="contatti.html">Contatti e segnalazioni</a>
+      <a href="planimetria.html">Planimetria</a>
+      <a href="privacy.html">Note legali</a>
+    </div>
   </nav>
 </header>
 
@@ -88,6 +97,7 @@ indicate nella scheda del defunto.
     <button type="button" id="zoom-meno" aria-label="Riduci ingrandimento" title="Riduci ingrandimento">−</button>
     <button type="button" id="zoom-piu" aria-label="Aumenta ingrandimento" title="Aumenta ingrandimento">+</button>
     <button type="button" id="zoom-reset" aria-label="Adatta tutta la planimetria alla vista" title="Mostra tutta la planimetria">Adatta alla vista</button>
+    <button type="button" id="zoom-fullscreen" aria-label="Apri planimetria a schermo intero" title="Schermo intero">⛶</button>
     <span id="zoom-livello" aria-live="polite">100%</span>
   </div>
 
@@ -101,6 +111,7 @@ indicate nella scheda del defunto.
 
 <div id="footer"></div>
 
+<script src="js/menu-mobile.js" defer></script>
 <script src="js/planimetria.js"></script>
 
 <script>

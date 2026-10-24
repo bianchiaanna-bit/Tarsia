@@ -4066,7 +4066,7 @@ body.home-tarsia #footer .footer-admin:hover {
 
   body.home-tarsia #footer .footer-box {
     background: rgba(250, 252, 253, .48) !important;
-  
+
   padding: 16px;}
 }
 
@@ -4146,7 +4146,7 @@ body.home-tarsia #footer a.footer-admin:hover {
 
   body.home-tarsia #footer .footer-box {
     background: rgba(255, 255, 255, .82) !important;
-  
+
   padding: 16px;}
 }
 
@@ -4397,7 +4397,7 @@ body.pagina-secondaria .hero-secondario {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: 18px;
+  border-radius: 0;
   background-image:
     linear-gradient(rgba(0, 0, 0, .20), rgba(0, 0, 0, .20)),
     url("../immagini/tarsia-alto.webp");
@@ -5176,5 +5176,1291 @@ body.pagina-secondaria .zoom-container img#planimetria {
   .istruzione-planimetria {
     bottom: 6px;
     font-size: 10px;
+  }
+}
+
+/* =========================================================
+   OTTIMIZZAZIONE MOBILE — CIMITERO DI TARSIA
+   ========================================================= */
+
+@media (max-width: 600px) {
+  /* HEADER: logo a sinistra, link a destra */
+  body.home-tarsia .header-home-tarsia,
+  body.pagina-secondaria .header-home-tarsia {
+    padding: 10px 14px !important;
+    box-sizing: border-box;
+  }
+
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia,
+  body.pagina-secondaria .logo-home-tarsia {
+    order: 0 !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    display: block !important;
+    width: auto !important;
+    max-width: min(42vw, 170px) !important;
+    max-height: 52px !important;
+  }
+
+  body.home-tarsia .nav-home-links,
+  body.pagina-secondaria .nav-home-links {
+    order: 1 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: clamp(10px, 3vw, 18px) !important;
+    margin: 0 !important;
+  }
+
+  body.home-tarsia .nav-home-links a,
+  body.pagina-secondaria .nav-home-links a {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+
+  /* HERO: testo e ricerca ordinati */
+  body.home-tarsia .hero-home-tarsia {
+    min-height: 420px !important;
+    padding: 42px 18px !important;
+    background-attachment: scroll !important;
+    background-position: center !important;
+  }
+
+  body.home-tarsia .hero-home-tarsia h1 {
+    font-size: clamp(30px, 8vw, 40px) !important;
+    line-height: 1.12 !important;
+  }
+
+  body.home-tarsia .hero-home-tarsia h2 {
+    white-space: normal !important;
+    max-width: 100% !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Campo centrato e pulsante Cerca compatto */
+  body.home-tarsia .hero-home-tarsia .area-ricerca {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+  }
+
+  body.home-tarsia .hero-home-tarsia .area-ricerca input {
+    display: block !important;
+    width: 100% !important;
+    min-height: 50px !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+  }
+
+  body.home-tarsia .hero-home-tarsia .area-ricerca button {
+    display: block !important;
+    width: auto !important;
+    min-width: 118px !important;
+    min-height: 44px !important;
+    align-self: center !important;
+    padding: 0 28px !important;
+  }
+
+  /* Footer: separazione chiara tra i tre blocchi */
+  body.home-tarsia #footer .footer-sito,
+  body.pagina-secondaria #footer .footer-sito {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+    padding: 30px 18px !important;
+    background-position: center center !important;
+    background-attachment: scroll !important;
+  }
+
+  body.home-tarsia #footer .footer-box,
+  body.pagina-secondaria #footer .footer-box {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.home-tarsia #footer .footer-box p,
+  body.pagina-secondaria #footer .footer-box p {
+    display: block !important;
+    margin: 10px 0 14px !important;
+    line-height: 1.65 !important;
+    white-space: normal !important;
+  }
+
+  body.home-tarsia #footer .footer-box h3,
+  body.pagina-secondaria #footer .footer-box h3 {
+    margin: 0 0 12px !important;
+    line-height: 1.3 !important;
+  }
+
+  body.home-tarsia #footer .footer-box:first-child .gestione-sito > div {
+    margin-bottom: 12px !important;
+  }
+
+  body.home-tarsia #footer a.footer-admin,
+  body.pagina-secondaria #footer a.footer-admin {
+    justify-self: center !important;
+    grid-column: 1 !important;
+    margin-top: 2px !important;
+  }
+
+  /* Planimetria: più spazio utile sul telefono */
+  body.pagina-secondaria .zoom-container {
+    width: 100% !important;
+    min-height: 230px;
+    aspect-ratio: 1.35 / 1 !important;
+    border-radius: 10px !important;
+  }
+
+  body.pagina-secondaria .controlli-planimetria {
+    top: 6px !important;
+    right: 6px !important;
+    left: 6px !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 5px !important;
+    max-width: calc(100% - 12px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.pagina-secondaria .controlli-planimetria button {
+    min-width: 34px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+  }
+
+  body.pagina-secondaria .istruzione-planimetria {
+    bottom: 6px !important;
+    font-size: 10px !important;
+  }
+
+  /* Le immagini di sfondo restano compatibili con Safari mobile */
+  body.home-tarsia .hero-home-tarsia,
+  body.pagina-secondaria .hero-secondario {
+    background-attachment: scroll !important;
+  }
+
+  body.home-tarsia #footer .footer-sito {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Schermi molto stretti */
+@media (max-width: 360px) {
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    max-width: 34vw !important;
+    max-height: 44px !important;
+  }
+
+  body.home-tarsia .nav-home-links,
+  body.pagina-secondaria .nav-home-links {
+    gap: 9px !important;
+  }
+
+  body.home-tarsia .nav-home-links a,
+  body.pagina-secondaria .nav-home-links a {
+    font-size: 12px !important;
+  }
+}
+
+
+/* TARSIA PLANIMETRIA FULLSCREEN MOBILE */
+body.planimetria-blocco-scroll {
+  overflow: hidden !important;
+}
+
+body.pagina-secondaria .zoom-container:fullscreen,
+body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+body.pagina-secondaria .zoom-container:fullscreen #planimetria-canvas,
+body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva #planimetria-canvas {
+  max-width: none !important;
+}
+
+body.pagina-secondaria .zoom-container:fullscreen .controlli-planimetria,
+body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .controlli-planimetria {
+  position: absolute !important;
+  top: max(10px, env(safe-area-inset-top)) !important;
+  right: max(10px, env(safe-area-inset-right)) !important;
+  left: max(10px, env(safe-area-inset-left)) !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  max-width: none !important;
+  gap: 6px !important;
+}
+
+body.pagina-secondaria .zoom-container:fullscreen .istruzione-planimetria,
+body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .istruzione-planimetria {
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  font-size: 12px !important;
+  padding: 5px 9px !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,.92) !important;
+}
+
+@media (max-width: 600px) {
+  body.pagina-secondaria .zoom-container:fullscreen .controlli-planimetria,
+  body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .controlli-planimetria {
+    justify-content: flex-start !important;
+    gap: 5px !important;
+    padding: 6px !important;
+  }
+
+  body.pagina-secondaria .zoom-container:fullscreen .controlli-planimetria button,
+  body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .controlli-planimetria button {
+    min-height: 42px !important;
+    min-width: 40px !important;
+    padding: 0 10px !important;
+  }
+}
+
+/* =========================================================
+   TARSIA — FINITURA MOBILE: SEZIONI E FOOTER
+   Solo smartphone: desktop invariato
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* SEZIONI: box centrati, interamente visibili e con angoli puliti */
+  body.home-tarsia section.blocco-home,
+  body.pagina-secondaria section.blocco-home {
+    display: block;
+    width: calc(100% - 28px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0;
+    margin: 18px auto !important;
+    padding: 24px 17px !important;
+    box-sizing: border-box !important;
+    border-radius: 18px !important;
+    overflow: visible !important;
+  }
+
+  /* Elementi interni: non devono allargare il box oltre lo schermo */
+  body.home-tarsia .blocco-home > *,
+  body.pagina-secondaria .blocco-home > * {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  body.home-tarsia .funzioni-home {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 18px 0 0 !important;
+  }
+
+  body.home-tarsia .funzione {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 17px !important;
+    box-sizing: border-box !important;
+    border-radius: 14px !important;
+    overflow-wrap: anywhere;
+  }
+
+  body.home-tarsia .pulsanti-cimitero {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  body.home-tarsia .pulsanti-cimitero > *,
+  body.home-tarsia .blocco-home button,
+  body.home-tarsia .blocco-home a {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Fascia fotografica: testo contenuto e non tagliato */
+  body.home-tarsia .fascia-memoria-tarsia {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 30px 18px !important;
+    overflow: hidden;
+  }
+
+  body.home-tarsia .fascia-memoria-tarsia__contenuto {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* FOOTER: tre riquadri separati, completi e centrati */
+  body.home-tarsia #footer,
+  body.pagina-secondaria #footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  body.home-tarsia #footer .footer-sito,
+  body.pagina-secondaria #footer .footer-sito {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: stretch !important;
+    gap: 13px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 24px 14px !important;
+    box-sizing: border-box !important;
+    background: #f7f5ef !important;
+    overflow: visible !important;
+  }
+
+  body.home-tarsia #footer .footer-box,
+  body.pagina-secondaria #footer .footer-box {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 17px 16px !important;
+    box-sizing: border-box !important;
+    border: 1px solid rgba(22, 75, 112, .12) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, .82) !important;
+    box-shadow: 0 3px 12px rgba(20, 42, 58, .06) !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body.home-tarsia #footer .footer-box h3,
+  body.pagina-secondaria #footer .footer-box h3 {
+    margin: 0 0 9px !important;
+    line-height: 1.35 !important;
+  }
+
+  body.home-tarsia #footer .footer-box p,
+  body.pagina-secondaria #footer .footer-box p {
+    margin: 6px 0 8px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Nomi del progetto più vicini tra loro */
+  body.home-tarsia #footer .footer-box:first-child .gestione-sito,
+  body.pagina-secondaria #footer .footer-box:first-child .gestione-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.home-tarsia #footer .footer-box:first-child .gestione-sito > div,
+  body.pagina-secondaria #footer .footer-box:first-child .gestione-sito > div {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.home-tarsia #footer .footer-box:first-child .gestione-sito p,
+  body.pagina-secondaria #footer .footer-box:first-child .gestione-sito p {
+    margin: 0 0 2px !important;
+    line-height: 1.35 !important;
+  }
+
+  body.home-tarsia #footer .footer-box:first-child .gestione-sito strong,
+  body.pagina-secondaria #footer .footer-box:first-child .gestione-sito strong {
+    display: block !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Link legali e contatti subito sotto al testo */
+  body.home-tarsia #footer .footer-box.footer-secondario > a,
+  body.pagina-secondaria #footer .footer-box.footer-secondario > a {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-style: italic !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    line-height: 1.5 !important;
+  }
+
+  body.home-tarsia #footer a.footer-admin,
+  body.pagina-secondaria #footer a.footer-admin {
+    justify-self: center !important;
+    grid-column: 1 !important;
+    margin: 2px 0 0 !important;
+  }
+}
+
+/* =========================================================
+   TARSIA — MOBILE: FOOTER EDITORIALE + PAGINE SECONDARIE
+   Desktop invariato
+   ========================================================= */
+@media (max-width: 600px) {
+
+  /* FOOTER: niente card, solo separatori sottili */
+  #footer,
+  #footer .footer-sito {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #footer .footer-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 24px 22px 18px !important;
+    background: #f5f1ea !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #footer .footer-box,
+  #footer .footer-sito .footer-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 18px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(17, 21, 28, 0.16) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #footer .footer-box:first-child {
+    padding-top: 0 !important;
+  }
+
+  #footer .footer-box h3 {
+    margin: 0 0 12px !important;
+  }
+
+  #footer .footer-box p {
+    margin: 0 0 9px !important;
+  }
+
+  #footer .footer-box a:not(.footer-admin) {
+    display: inline-block !important;
+    margin: 2px 0 0 !important;
+    font-style: italic !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+  }
+
+  #footer .gestione-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 11px !important;
+  }
+
+  #footer .gestione-sito > div {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #footer .gestione-sito p {
+    margin: 0 0 2px !important;
+  }
+
+  #footer .gestione-sito strong {
+    display: block !important;
+    margin: 0 !important;
+  }
+
+  #footer .footer-box:last-of-type {
+    border-bottom: 0 !important;
+  }
+
+  #footer .footer-admin {
+    align-self: center !important;
+    margin-top: 12px !important;
+  }
+
+  /* PAGINE SECONDARIE: contenitori comodi su smartphone */
+  main .blocco-home,
+  main .blocco-contatto,
+  main section.blocco-home,
+  main section.blocco-contatto,
+  main .planimetria {
+    box-sizing: border-box !important;
+    width: calc(100% - 28px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  main .blocco-home,
+  main section.blocco-home,
+  main .blocco-contatto {
+    padding: 22px 17px !important;
+    border-radius: 17px !important;
+  }
+
+  main .blocco-home > *,
+  main .blocco-contatto > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Elementi interni: niente sbordi laterali */
+  main .blocco-home img,
+  main .blocco-contatto img,
+  main .blocco-home iframe,
+  main .blocco-contatto iframe,
+  main .blocco-home table,
+  main .blocco-contatto table {
+    max-width: 100% !important;
+  }
+
+  main .blocco-home input,
+  main .blocco-home select,
+  main .blocco-home textarea,
+  main .blocco-contatto input,
+  main .blocco-contatto select,
+  main .blocco-contatto textarea {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+}
+
+/* CORREZIONE MIRATA — PAGINE SECONDARIE MOBILE */
+@media (max-width: 600px) {
+
+  body.pagina-secondaria > section.blocco-home,
+  body.pagina-secondaria > .blocco-contatto,
+  body.pagina-secondaria .blocco-contatto,
+  body.pagina-secondaria > section.blocco-home.planimetria {
+    display: block;
+    box-sizing: border-box !important;
+    width: calc(100% - 28px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 18px auto !important;
+    padding: 22px 17px !important;
+    border-radius: 17px !important;
+    overflow-wrap: anywhere;
+  }
+
+  body.pagina-secondaria .blocco-home img,
+  body.pagina-secondaria .blocco-contatto img,
+  body.pagina-secondaria .blocco-home iframe,
+  body.pagina-secondaria .blocco-contatto iframe {
+    max-width: 100% !important;
+  }
+
+  body.pagina-secondaria .blocco-home input,
+  body.pagina-secondaria .blocco-home select,
+  body.pagina-secondaria .blocco-home textarea,
+  body.pagina-secondaria .blocco-contatto input,
+  body.pagina-secondaria .blocco-contatto select,
+  body.pagina-secondaria .blocco-contatto textarea {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  /* Footer senza card: solo separatori orizzontali */
+  body.pagina-secondaria #footer .footer-sito,
+  body.home-tarsia #footer .footer-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    padding: 24px 22px 18px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.pagina-secondaria #footer .footer-box,
+  body.home-tarsia #footer .footer-box {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(17, 21, 28, 0.16) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  body.pagina-secondaria #footer .footer-box:first-child,
+  body.home-tarsia #footer .footer-box:first-child {
+    padding-top: 0 !important;
+  }
+
+  body.pagina-secondaria #footer .footer-box:last-of-type,
+  body.home-tarsia #footer .footer-box:last-of-type {
+    border-bottom: 0 !important;
+  }
+}
+
+/* FOOTER MOBILE — allineamento editoriale a sinistra */
+@media (max-width: 600px) {
+  body #footer .footer-sito .footer-box:first-child,
+  body #footer .footer-sito .footer-box:first-child h3,
+  body #footer .footer-sito .footer-box:first-child .gestione-sito,
+  body #footer .footer-sito .footer-box:first-child .gestione-sito > div,
+  body #footer .footer-sito .footer-box:first-child .gestione-sito p,
+  body #footer .footer-sito .footer-box:first-child .gestione-sito strong {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    justify-items: start !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 9px !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito > div {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito p {
+    margin: 0 0 2px !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito strong {
+    display: block !important;
+    margin: 0 !important;
+  }
+}
+
+/* FINITURA MOBILE — risultati, contatti e footer */
+@media (max-width: 600px) {
+
+  /* Risultati ricerca: elimina il riquadro esterno grigio */
+  body #risultati {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 18px 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body #risultati .risultato-card {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* Contatti: riquadri contenuti nella larghezza dello schermo */
+  body.pagina-secondaria .blocco-contatto {
+    box-sizing: border-box !important;
+    width: calc(100% - 28px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 18px auto !important;
+    overflow-wrap: anywhere;
+  }
+
+  body.pagina-secondaria .blocco-contatto > * {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  body.pagina-secondaria .blocco-contatto input,
+  body.pagina-secondaria .blocco-contatto textarea,
+  body.pagina-secondaria .blocco-contatto select {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Footer: niente card separate, solo divisioni discrete */
+  body #footer .footer-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+
+  body #footer .footer-sito .footer-box {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+  }
+
+  body #footer .footer-sito .footer-box + .footer-box {
+    border-top: 1px solid rgba(255,255,255,.16) !important;
+  }
+
+  body #footer .footer-sito .footer-box h3,
+  body #footer .footer-sito .footer-box p,
+  body #footer .footer-sito .footer-box a {
+    text-align: left !important;
+  }
+
+  /* Il progetto: etichette e nomi allineati a sinistra */
+  body #footer .footer-sito .footer-box:first-child .gestione-sito {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito > div {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito p {
+    margin: 0 0 3px !important;
+    text-align: left !important;
+  }
+
+  body #footer .footer-sito .footer-box:first-child .gestione-sito strong {
+    display: block !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+}
+
+/* CORREZIONE DEFINITIVA BOX MOBILE — CONTATTI, PLANIMETRIA, DEFUNTI */
+@media (max-width: 600px) {
+
+  /* Contenitore esterno di Contatti e scheda del defunto */
+  body #scheda {
+    box-sizing: border-box !important;
+    width: calc(100% - 28px) !important;
+    max-width: 700px !important;
+    min-width: 0 !important;
+    margin: 18px auto !important;
+    padding: 22px 17px !important;
+    border-radius: 17px !important;
+    overflow: visible !important;
+  }
+
+  /* Le schede dei risultati della ricerca */
+  body #risultati .risultato-card {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 12px 0 !important;
+    padding: 18px 16px !important;
+    border-radius: 15px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Blocchi interni della pagina Contatti */
+  body #scheda .blocco-contatto {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 18px 0 !important;
+    padding: 19px 15px !important;
+    border-radius: 15px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body #scheda .blocco-contatto .titolo-con-icona {
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    min-width: 0 !important;
+  }
+
+  body #scheda .blocco-contatto .titolo-con-icona img {
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    max-width: 48px !important;
+    height: auto !important;
+  }
+
+  body #scheda .blocco-contatto .titolo-con-icona h2 {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Scheda defunto: dati e foto non devono sbordare */
+  body #scheda .scheda-contenuto,
+  body #scheda .dati-defunto {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body #scheda .foto-defunto {
+    max-width: 100% !important;
+  }
+
+  /* Planimetria: sezione completa, senza tagli laterali */
+  body.pagina-secondaria section.blocco-home.planimetria {
+    box-sizing: border-box !important;
+    width: calc(100% - 28px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 18px auto !important;
+    padding: 22px 15px !important;
+    border-radius: 17px !important;
+    overflow: hidden !important;
+  }
+
+  body.pagina-secondaria .planimetria .zoom-container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* MENU HAMBURGER — SOLO MOBILE */
+.menu-hamburger {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    position: relative !important;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    display: flex !important;
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 10px 9px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    cursor: pointer;
+    order: 2 !important;
+    position: relative;
+    z-index: 1002;
+  }
+
+  .menu-hamburger span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform .22s ease, opacity .18s ease;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    color: #F5F1EA !important;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile,
+  body.pagina-secondaria .nav-home-links.menu-mobile {
+    display: flex !important;
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: -14px !important;
+    right: -14px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 8px 18px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    background: #263B35 !important;
+    border-radius: 0 0 15px 15px !important;
+    box-shadow: 0 12px 24px rgba(0,0,0,.18) !important;
+    z-index: 1001;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile a,
+  body.pagina-secondaria .nav-home-links.menu-mobile a {
+    display: block !important;
+    width: 100% !important;
+    padding: 14px 4px !important;
+    color: #F5F1EA !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    border-bottom: 1px solid rgba(245,241,234,.14);
+    text-decoration: none !important;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile a:last-child,
+  body.pagina-secondaria .nav-home-links.menu-mobile a:last-child {
+    border-bottom: 0;
+  }
+
+  body.home-tarsia .nav-home-tarsia.menu-aperto .nav-home-links.menu-mobile,
+  body.pagina-secondaria .nav-home-tarsia.menu-aperto .nav-home-links.menu-mobile {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  body.home-tarsia .nav-home-tarsia.menu-aperto .menu-hamburger span:first-child,
+  body.pagina-secondaria .nav-home-tarsia.menu-aperto .menu-hamburger span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  body.home-tarsia .nav-home-tarsia.menu-aperto .menu-hamburger span:nth-child(2),
+  body.pagina-secondaria .nav-home-tarsia.menu-aperto .menu-hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  body.home-tarsia .nav-home-tarsia.menu-aperto .menu-hamburger span:last-child,
+  body.pagina-secondaria .nav-home-tarsia.menu-aperto .menu-hamburger span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+@media (min-width: 601px) {
+  .menu-hamburger {
+    display: none !important;
+  }
+}
+
+/* MENU MOBILE — COLORI FINALI */
+@media (max-width: 600px) {
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    background: #E8C95A !important;
+    border-color: #E8C95A !important;
+    color: #173D65 !important;
+  }
+
+  body.home-tarsia .menu-hamburger span,
+  body.pagina-secondaria .menu-hamburger span {
+    background: #173D65 !important;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile,
+  body.pagina-secondaria .nav-home-links.menu-mobile {
+    background: #263B35 !important;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile a,
+  body.pagina-secondaria .nav-home-links.menu-mobile a {
+    color: #173D65 !important;
+    border-bottom-color: rgba(23, 61, 101, .20) !important;
+  }
+}
+
+/* MENU MOBILE — COLORI CORRETTI */
+@media (max-width: 600px) {
+  body.home-tarsia .nav-home-links.menu-mobile,
+  body.pagina-secondaria .nav-home-links.menu-mobile {
+    background: #FFFFFF !important;
+  }
+
+  body.home-tarsia .nav-home-links.menu-mobile a,
+  body.pagina-secondaria .nav-home-links.menu-mobile a {
+    color: #263B35 !important;
+    border-bottom-color: rgba(38, 59, 53, .16) !important;
+  }
+}
+
+/* HAMBURGER — STESSI COLORI DEI PULSANTI DEL SITO */
+@media (max-width: 600px) {
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    background: #D7A35C !important;
+    border-color: #D7A35C !important;
+    color: #172b3a !important;
+  }
+
+  body.home-tarsia .menu-hamburger span,
+  body.pagina-secondaria .menu-hamburger span {
+    background: #172b3a !important;
+  }
+}
+
+/* HEADER FISSO E ALLINEAMENTO DESKTOP */
+body.home-tarsia .header-home-tarsia,
+body.pagina-secondaria .header-home-tarsia {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  width: 100% !important;
+}
+
+/* Desktop: logo a sinistra, navigazione a destra */
+@media (min-width: 601px) {
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia,
+  body.pagina-secondaria .logo-home-tarsia {
+    order: 0 !important;
+    margin-right: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.home-tarsia .nav-home-links,
+  body.pagina-secondaria .nav-home-links {
+    order: 1 !important;
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    width: auto !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    display: none !important;
+  }
+}
+
+/* CORREZIONE DEFINITIVA HEADER */
+@media (min-width: 601px) {
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    direction: ltr !important;
+  }
+
+  body.home-tarsia .nav-home-tarsia > .logo-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia > .logo-home-tarsia {
+    order: 0 !important;
+    float: none !important;
+    margin: 0 auto 0 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  body.home-tarsia .nav-home-tarsia > .nav-home-links,
+  body.pagina-secondaria .nav-home-tarsia > .nav-home-links {
+    order: 1 !important;
+    float: none !important;
+    margin: 0 0 0 auto !important;
+    flex: 0 0 auto !important;
+    flex-direction: row !important;
+  }
+}
+
+/* MOBILE: HEADER PIÙ COMPATTO */
+@media (max-width: 600px) {
+  body.home-tarsia .header-home-tarsia,
+  body.pagina-secondaria .header-home-tarsia {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 0 !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    max-height: 38px !important;
+    width: auto !important;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    width: 38px !important;
+    height: 38px !important;
+    flex-basis: 38px !important;
+  }
+}
+
+/* MOBILE — HAMBURGER PIÙ PICCOLO E ALLINEATO AL LOGO */
+@media (max-width: 600px) {
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    align-items: center !important;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    width: 34px !important;
+    height: 34px !important;
+    flex-basis: 34px !important;
+    padding: 7px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    align-self: center !important;
+    gap: 4px !important;
+  }
+
+  body.home-tarsia .menu-hamburger span,
+  body.pagina-secondaria .menu-hamburger span {
+    width: 19px !important;
+  }
+}
+
+/* MOBILE — LOGO PIÙ GRANDE */
+@media (max-width: 600px) {
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    max-height: 46px !important;
+    width: auto !important;
+  }
+
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    align-items: center !important;
+  }
+}
+
+/* MOBILE — LOGO ANCORA PIÙ GRANDE */
+@media (max-width: 600px) {
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    max-height: 56px !important;
+    width: auto !important;
+  }
+}
+
+/* MOBILE — LOGO PIÙ GRANDE, HEADER ADEGUATO */
+@media (max-width: 600px) {
+  body.home-tarsia .header-home-tarsia,
+  body.pagina-secondaria .header-home-tarsia {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  body.home-tarsia .nav-home-tarsia,
+  body.pagina-secondaria .nav-home-tarsia {
+    min-height: 62px !important;
+    align-items: center !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia,
+  body.pagina-secondaria .logo-home-tarsia {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    align-self: center !important;
+  }
+
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    width: auto !important;
+    max-width: min(58vw, 230px) !important;
+    max-height: 62px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  body.home-tarsia .menu-hamburger,
+  body.pagina-secondaria .menu-hamburger {
+    align-self: center !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  body.home-tarsia .logo-home-tarsia img,
+  body.pagina-secondaria .logo-home-tarsia img {
+    max-width: 52vw !important;
+    max-height: 56px !important;
   }
 }
