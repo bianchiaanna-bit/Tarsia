@@ -6624,3 +6624,318 @@ body.pagina-planimetria .hero-secondario p {
     font-size: clamp(23px, 6vw, 29px) !important;
   }
 }
+
+
+
+/* =========================================================
+   ADMIN MOBILE — OTTIMIZZAZIONE MIRATA
+   Solo smartphone: desktop e funzioni JS invariati
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* Contenitore: evita che l'intera pagina allarghi lo schermo */
+  body:has(#admin-area) {
+    overflow-x: hidden;
+  }
+
+  #admin-area {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
+  .admin-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  /* Intestazione: testo sopra, pulsanti in una riga ordinata */
+  .admin-intestazione {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .admin-intestazione > div:first-child {
+    padding-right: 0;
+  }
+
+  .admin-intestazione h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-intestazione p {
+    font-size: 14px;
+  }
+
+  .admin-intestazione .bottone-esci,
+  .admin-intestazione .bottone-vai-sito {
+    position: static;
+    transform: none;
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  /* Azioni principali: pulsanti facili da toccare */
+  .admin-azioni-principali {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .admin-azioni-principali button,
+  .azioni-importa button {
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  /* Ricerca */
+  .admin-ricerca {
+    padding: 14px;
+  }
+
+  .admin-ricerca-campo {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-ricerca-campo input {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  .admin-ricerca-campo button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  /* Archivio: mantiene tutte le colonne, scorrimento solo nel riquadro */
+  #archivio {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #archivio table {
+    min-width: 900px;
+  }
+
+  #archivio th,
+  #archivio td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  #archivio td button {
+    min-height: 40px;
+    margin: 3px 2px;
+  }
+
+  /* Modifica/inserimento: finestra quasi a schermo intero */
+  #modifica-defunto {
+    top: 3dvh;
+    left: 3%;
+    transform: none;
+    width: 94%;
+    max-width: none;
+    max-height: 94dvh;
+    border-radius: 14px;
+    overscroll-behavior: contain;
+  }
+
+  #modifica-defunto h2 {
+    padding: 18px 58px 18px 18px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  #form-defunto {
+    padding: 18px;
+  }
+
+  #form-defunto input,
+  #form-defunto textarea,
+  #form-defunto select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  #chiudi-modifica,
+  .chiudi-cancellati {
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  /* Elenco eliminati */
+  .finestra-cancellati {
+    padding: 10px 0;
+  }
+
+  .contenuto-cancellati {
+    width: 94%;
+    max-height: 92dvh;
+    margin: 2dvh auto;
+    padding: 18px;
+    border-radius: 14px;
+    overscroll-behavior: contain;
+  }
+
+  .contenuto-cancellati h2 {
+    padding-right: 48px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  #cancellati {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #cancellati table {
+    min-width: 700px;
+  }
+
+  /* Avvisi e finestre */
+  .finestra-avviso {
+    padding: 14px;
+  }
+
+  .avviso-admin {
+    padding: 24px 18px 20px;
+  }
+
+  /* Operatore */
+  #operatore-area {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .form-operatore {
+    padding: 14px;
+  }
+
+  #form-defunto-operatore input,
+  #form-defunto-operatore textarea,
+  #form-defunto-operatore select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  #form-defunto-operatore button[type="submit"],
+  #richiedi-modifica,
+  #logout-operatore {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+
+
+/* ARCHIVIO MOBILE — SCHEDE COMPATTE */
+.archivio-schede-mobile {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    #archivio {
+        overflow-x: visible;
+    }
+
+    #archivio > table {
+        display: none !important;
+    }
+
+    #archivio .archivio-schede-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 14px;
+    }
+
+    #archivio .archivio-scheda-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid #d5dde2;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    #archivio .archivio-scheda-dati {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        min-width: 0;
+    }
+
+    #archivio .archivio-scheda-id {
+        color: #65727d;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    #archivio .archivio-scheda-nome {
+        color: #17232d;
+        font-size: 15px;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    #archivio .archivio-scheda-anno {
+        color: #65727d;
+        font-size: 13px;
+    }
+
+    #archivio .archivio-scheda-modifica {
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 9px 12px;
+        margin: 0;
+        white-space: nowrap;
+    }
+}
+
+/* HOMEPAGE TARSIA — SFONDI NORMALI SU MOBILE, DESKTOP INVARIATO */
+@media (max-width: 600px) {
+  body.home-tarsia .hero-home-tarsia {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+  }
+
+  body.home-tarsia .fascia-memoria-tarsia {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+  }
+}

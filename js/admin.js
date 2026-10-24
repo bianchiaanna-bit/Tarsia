@@ -1545,7 +1545,7 @@ function applicaRicercaArchivio() {
 
     const righe =
         document.querySelectorAll(
-            "#archivio tbody tr"
+            "#archivio [data-ricerca]"
         );
 
     righe.forEach(
@@ -1814,11 +1814,31 @@ function mostraArchivio(defunti) {
     // RIGHE
     // =====================================================
 
+    let schedeMobile = `
+        <div class="archivio-schede-mobile">
+    `;
+
     defunti.forEach(
         function (defunto) {
 
             const ricerca =
                 `${defunto.id} ${(defunto.cognome_nome || "").toLowerCase()}`;
+
+            schedeMobile += `
+                <article class="archivio-scheda-mobile"
+                    data-ricerca="${ricerca}">
+                    <div class="archivio-scheda-dati">
+                        <span class="archivio-scheda-id">ID ${defunto.id}</span>
+                        <strong class="archivio-scheda-nome">${defunto.cognome_nome || "Nome non disponibile"}</strong>
+                        <span class="archivio-scheda-anno">Anno decesso: ${defunto.anno_decesso || "—"}</span>
+                    </div>
+                    <button type="button"
+                        class="bottone-modifica archivio-scheda-modifica"
+                        onclick="modificaDefunto(${defunto.id})">
+                        Modifica
+                    </button>
+                </article>
+            `;
 
             html += `
 
@@ -1886,6 +1906,10 @@ function mostraArchivio(defunti) {
     );
 
 
+    schedeMobile += `
+        </div>
+    `;
+
     html += `
 
             </tbody>
@@ -1893,6 +1917,8 @@ function mostraArchivio(defunti) {
         </table>
 
     `;
+
+    html += schedeMobile;
 
 
     archivio.innerHTML =
