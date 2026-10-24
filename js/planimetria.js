@@ -7,10 +7,9 @@
   const meno = document.getElementById("zoom-meno");
   const piu = document.getElementById("zoom-piu");
   const reset = document.getElementById("zoom-reset");
-  const fullscreen = document.getElementById("zoom-fullscreen");
   const livello = document.getElementById("zoom-livello");
 
-  if (!meno || !piu || !reset || !fullscreen || !livello) return;
+  if (!meno || !piu || !reset || !livello) return;
 
   const PDF_URL = "immagini/planimetria.pdf";
   const MIN = 1;
@@ -385,8 +384,6 @@
       document.fullscreenElement === viewer ||
       viewer.classList.contains("planimetria-fullscreen-attiva");
 
-    fullscreen.textContent = active ? "×" : "⛶";
-    fullscreen.title = active ? "Esci dallo schermo intero" : "Schermo intero";
     fullscreen.setAttribute(
       "aria-label",
       active ? "Esci dallo schermo intero" : "Apri planimetria a schermo intero"
@@ -397,8 +394,6 @@
       viewer.classList.contains("planimetria-fullscreen-attiva")
     );
   }
-
-  fullscreen.addEventListener("click", toggleFullscreen);
 
   document.addEventListener("fullscreenchange", () => {
     syncFullscreen();

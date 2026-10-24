@@ -14,10 +14,103 @@
 
 <link rel="stylesheet" href="css/stile.css">
 
+
+<style id="toolbar-planimetria-fix">
+body.pagina-secondaria .controlli-planimetria {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 10 !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 14px auto 24px;
+  padding: 8px;
+  border: 1px solid rgba(22, 75, 112, .15);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(20, 42, 58, .12);
+}
+body.pagina-secondaria .controlli-planimetria button,
+body.pagina-secondaria .controlli-planimetria .controllo-download {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #d8e0e5;
+  border-radius: 7px;
+  background: #f7f5ef;
+  color: #164b70;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+body.pagina-secondaria .controlli-planimetria button:hover,
+body.pagina-secondaria .controlli-planimetria .controllo-download:hover {
+  background: #D7A35C;
+  border-color: #D7A35C;
+  color: #172b3a;
+}
+body.pagina-secondaria .controlli-planimetria .controllo-download svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+body.pagina-secondaria .zoom-container {
+  clear: both;
+}
+body.pagina-secondaria .zoom-container:fullscreen .controlli-planimetria,
+body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .controlli-planimetria {
+  position: absolute !important;
+  top: max(10px, env(safe-area-inset-top)) !important;
+  right: max(10px, env(safe-area-inset-right)) !important;
+  left: max(10px, env(safe-area-inset-left)) !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+</style>
+
+
+<style id="toolbar-icone-allineate">
+body.pagina-secondaria .controlli-planimetria {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+body.pagina-secondaria .controlli-planimetria button,
+body.pagina-secondaria .controlli-planimetria .controllo-download {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  min-width: 38px !important;
+  margin: 0 !important;
+  vertical-align: middle;
+}
+body.pagina-secondaria .controlli-planimetria .controllo-download svg {
+  display: block;
+  flex: 0 0 20px;
+}
+</style>
+
 </head>
 
 
-<body class="pagina-secondaria">
+<body class="pagina-secondaria pagina-planimetria">
 
 <header class="header-home-tarsia">
   <nav class="nav-home-tarsia" aria-label="Navigazione principale">
@@ -49,10 +142,10 @@
 
 
 
-<h1>Trova dove riposa chi cerchi</h1>
+<h1>Planimetria</h1>
 
 
-<p>Questo archivio indica la zona e la posizione della sepoltura nel cimitero di Tarsia (CS).</p>
+
 
 
 </header>
@@ -72,11 +165,7 @@
 
 
 
-<h2 class="titolo-centro">
 
-Planimetria del cimitero comunale
-
-</h2>
 
 
 
@@ -90,16 +179,27 @@ indicate nella scheda del defunto.
 </p>
 
 <div class="zoom-container" id="visualizzatore-planimetria" aria-label="Visualizzatore interattivo della planimetria">
-  <div class="controlli-planimetria" role="group" aria-label="Controlli planimetria">
+</div>
+<div class="controlli-planimetria" role="group" aria-label="Controlli planimetria">
     <button type="button" id="zoom-meno" aria-label="Riduci zoom">−</button>
     <button type="button" id="zoom-piu" aria-label="Aumenta zoom">+</button>
     <button type="button" id="zoom-reset">Adatta alla vista</button>
-    <button type="button" id="zoom-fullscreen" aria-label="Schermo intero">⛶</button>
     <span id="zoom-livello" aria-live="polite">100%</span>
-    <a href="immagini/planimetria.pdf" download="Planimetria-Cimitero-di-Tarsia.pdf" aria-label="Scarica planimetria PDF" title="Scarica PDF" style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;min-height:38px;font-size:25px;text-decoration:none;color:inherit;">↓</a>
+    <a class="controllo-download"
+       href="immagini/planimetria.pdf"
+       target="_blank"
+       rel="noopener"
+       aria-label="Apri la planimetria PDF in una nuova scheda"
+       title="Apri PDF in una nuova scheda">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 5h6v6"/>
+        <path d="M19 5 10 14"/>
+        <path d="M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>
+      </svg>
+    </a>
   </div>
-  <span class="istruzione-planimetria">Usa la rotellina per ingrandire · Trascina per spostarti</span>
-</div>
 
 </section>
 

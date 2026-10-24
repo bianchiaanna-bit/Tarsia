@@ -3556,7 +3556,7 @@ body.home-tarsia .hero-home-tarsia h1 {
   max-width: 800px;
   margin: 0 auto 18px;
   color: #fff;
-  font-size: clamp(34px, 4.5vw, 54px);
+  font-size: clamp(34px, 4vw, 46px);
   line-height: 1.12;
   letter-spacing: -.7px;
   text-shadow: 0 3px 18px rgba(0, 0, 0, .7);
@@ -3566,7 +3566,7 @@ body.home-tarsia .hero-home-tarsia h2 {
   max-width: none;
   margin: 0 auto 30px;
   color: #fff;
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.6vw, 20px);
   font-weight: 400;
   line-height: 1.55;
   text-shadow: 0 2px 12px rgba(0, 0, 0, .85);
@@ -3719,7 +3719,7 @@ body.home-tarsia.mostra-avviso .avviso-costruzione {
   body.home-tarsia .hero-home-tarsia h2 {
     white-space: normal;
     max-width: 100%;
-    font-size: 17px;
+    font-size: 18px;
   }
 
 }
@@ -3822,7 +3822,7 @@ body.home-tarsia #footer .footer-box:first-child .gestione-sito strong {
   }
 
   body.home-tarsia .hero-home-tarsia {
-    background-attachment: scroll;
+    background-attachment: fixed;
   }
 
   body.home-tarsia #footer .footer-sito {
@@ -4590,7 +4590,7 @@ body.home-tarsia #footer .footer-sito::before {
   body.home-tarsia .fascia-memoria-tarsia {
     min-height: 270px;
     padding: 48px 20px;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-position: center;
   }
 
@@ -5238,7 +5238,7 @@ body.pagina-secondaria .zoom-container img#planimetria {
   body.home-tarsia .hero-home-tarsia {
     min-height: 420px !important;
     padding: 42px 18px !important;
-    background-attachment: scroll !important;
+    background-attachment: fixed !important;
     background-position: center !important;
   }
 
@@ -5362,13 +5362,16 @@ body.pagina-secondaria .zoom-container img#planimetria {
   }
 
   /* Le immagini di sfondo restano compatibili con Safari mobile */
-  body.home-tarsia .hero-home-tarsia,
+  body.home-tarsia .hero-home-tarsia {
+    background-attachment: fixed !important;
+  }
+
   body.pagina-secondaria .hero-secondario {
     background-attachment: scroll !important;
   }
 
   body.home-tarsia #footer .footer-sito {
-    background-attachment: scroll !important;
+    background-attachment: fixed !important;
   }
 }
 
@@ -5849,7 +5852,7 @@ body.pagina-secondaria .zoom-container.planimetria-fullscreen-attiva .istruzione
 
   body.pagina-secondaria #footer .footer-box:first-child,
   body.home-tarsia #footer .footer-box:first-child {
-    padding-top: 0 !important;
+    padding-top: 42px !important;
   }
 
   body.pagina-secondaria #footer .footer-box:last-of-type,
@@ -6504,4 +6507,120 @@ body.pagina-secondaria .azioni-planimetria span {
   color: #536575;
   font-size: 12px;
   line-height: 1.5;
+}
+
+
+/* Footer mobile: maggiore spazio tra logo e sezione successiva */
+@media (max-width: 600px) {
+  #footer .logo-footer,
+  #footer .footer-logo,
+  #footer .logo-sito-footer {
+    margin-bottom: 28px !important;
+  }
+}
+
+
+
+
+/* HERO COMPATTO — SOLO CONTATTI */
+body.pagina-contatti .hero-secondario {
+  min-height: 115px !important;
+  height: 115px;
+  padding: 20px clamp(22px, 5vw, 72px) !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  text-align: left !important;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, .48), rgba(0, 0, 0, .48)),
+    url("../immagini/tarsia-alto.webp");
+  background-size: cover;
+  background-position: center 48%;
+  background-attachment: scroll !important;
+}
+
+body.pagina-contatti .hero-secondario h1 {
+  margin: 0 !important;
+  max-width: 100%;
+  color: #fff;
+  font-size: clamp(25px, 3vw, 36px) !important;
+  line-height: 1.15;
+  text-align: left;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .65);
+}
+
+body.pagina-contatti .hero-secondario p {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  body.pagina-contatti .hero-secondario {
+    min-height: 90px !important;
+    height: 90px;
+    padding: 16px 20px !important;
+    background-position: center 48%;
+  }
+
+  body.pagina-contatti .hero-secondario h1 {
+    font-size: clamp(23px, 6vw, 29px) !important;
+  }
+}
+
+
+/* HERO COMPATTO — NOTE LEGALI, SCHEDA DEFUNTO E PLANIMETRIA */
+body.pagina-privacy .hero-secondario,
+body.pagina-defunto .hero-secondario,
+body.pagina-planimetria .hero-secondario {
+  min-height: 115px !important;
+  height: 115px;
+  padding: 20px clamp(22px, 5vw, 72px) !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  text-align: left !important;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, .48), rgba(0, 0, 0, .48)),
+    url("../immagini/tarsia-alto.webp");
+  background-size: cover;
+  background-position: center 48%;
+  background-attachment: scroll !important;
+}
+
+body.pagina-privacy .hero-secondario h1,
+body.pagina-defunto .hero-secondario h1,
+body.pagina-planimetria .hero-secondario h1 {
+  margin: 0 !important;
+  max-width: 100%;
+  color: #fff;
+  font-size: clamp(25px, 3vw, 36px) !important;
+  line-height: 1.15;
+  text-align: left;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .65);
+}
+
+body.pagina-privacy .hero-secondario p,
+body.pagina-defunto .hero-secondario p,
+body.pagina-planimetria .hero-secondario p {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  body.pagina-privacy .hero-secondario,
+  body.pagina-defunto .hero-secondario,
+  body.pagina-planimetria .hero-secondario {
+    min-height: 90px !important;
+    height: 90px;
+    padding: 16px 20px !important;
+    background-position: center 48%;
+  }
+
+  body.pagina-privacy .hero-secondario h1,
+  body.pagina-defunto .hero-secondario h1,
+  body.pagina-planimetria .hero-secondario h1 {
+    font-size: clamp(23px, 6vw, 29px) !important;
+  }
 }
